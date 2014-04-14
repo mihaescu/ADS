@@ -1,0 +1,81 @@
+
+
+
+DISPLAY TREE
+                         [22 23](23)
+
+                                 [15 20](20)
+
+                 [15 26](26)
+
+                         [14 21](21)
+
+         [14 25](26)
+
+                 [13 14](14)
+
+ [13 20](100)
+
+                 [7 10](10)
+
+         [6 18](100)
+
+                         [5 16](100)
+
+                                 [3 100](100)
+
+                 [3 4](100)
+
+                                 [2 12](12)
+
+                         [1 2](12)
+
+                                 [0 1](1)
+
+                                         [-1 0](0)
+
+
+
+Querry interval: [9,10] 
+Intersected intervals:
+[6,18] [2,12] [5,16] [3,100] [7,10] 
+
+Querry interval: [6,20] 
+Intersected intervals:
+[13,20] [6,18] [2,12] [5,16] [3,100] [7,10] [14,25] [13,14] [15,26] [14,21] [15,20] 
+
+Querry interval: [-1,100] 
+Intersected intervals:
+[13,20] [6,18] [3,4] [1,2] [0,1] [-1,0] [2,12] [5,16] [3,100] [7,10] [14,25] [13,14] [15,26] [14,21] [22,23] [15,20] 
+
+Querry interval: [7,14] 
+Intersected intervals:
+[13,20] [6,18] [2,12] [5,16] [3,100] [7,10] [14,25] [13,14] [14,21] 
+
+Querry interval: [5,50] 
+Intersected intervals:
+[13,20] [6,18] [2,12] [5,16] [3,100] [7,10] [14,25] [13,14] [15,26] [14,21] [22,23] [15,20] 
+
+Querry point:8 
+Intersected intervals:
+[6 18] [2 12] [5 16] [3 100] [7 10] 
+
+Querry point:32 
+Intersected intervals:
+[3 100] 
+
+Querry point:5 
+Intersected intervals:
+[2 12] [5 16] [3 100] 
+
+Querry point:1 
+Intersected intervals:
+[1 2] [0 1] 
+
+Querry point:20 
+Intersected intervals:
+[13 20] [3 100] [14 25] [15 26] [14 21] [15 20] 
+
+Querry point:6 
+Intersected intervals:
+[6 18] [2 12] [5 16] [3 100] 
