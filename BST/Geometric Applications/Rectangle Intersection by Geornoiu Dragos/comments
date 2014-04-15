@@ -1,0 +1,7 @@
+    -  ultimele grafice sunt cu standard plot ... si cred ca e neclar ce reprezinta axele: pe Ox trebuie sa fie input size [1k, 2k, 4k,...] si pe oY tb. sa fie timpul [s]
+    - la log-log plot: NU trebuie trasata curba intre puncte ci numai linia. ai aici:
+http://mathworld.wolfram.com/LeastSquaresFitting.html
+    cum se face linia ... poate gasesti o unealta care o calculeaza repede!
+    - graficele trebuie puse DUPA Slide 9 si ar trebui sa afisezi brute-force si (sweep-line + BST). Ordonarea este preprocesare!
+    
+    
