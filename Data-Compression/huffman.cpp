@@ -39,7 +39,7 @@ void QInsert(HuffNode N)
 	while ((j=i/2))
 	{
 		if (Queue[j]->frequency <= N->frequency)
-            break;
+            		break;
 		Switch(Queue[i],Queue[j]);
 		Switch(i,j);
 	}
@@ -58,9 +58,9 @@ HuffNode GetNode()
 	HuffNode N = Queue[QueueFirst];
 	QueueSize--;
 	while ((j=i*2) < QueueSize)
-    {
+    	{
 		if (j+1 < QueueSize && Queue[j+1]->frequency < Queue[j]->frequency)
-                j++;
+                	j++;
 		Switch(Queue[i],Queue[j]);
 		Switch(i,j);
 	}
@@ -107,13 +107,13 @@ void Huffman(const char *input)
             QInsert(CreateLeafNode(Frequency[i],i));
 
 	while (QueueSize>2)
-    {
-        HuffNode N;
-        N = (struct nod*)malloc(sizeof(struct nod));
-        N->frequency = 0;
-        N->symbol = 0;
+    	{
+	        HuffNode N;
+	        N = (struct nod*)malloc(sizeof(struct nod));
+	        N->frequency = 0;
+	        N->symbol = 0;
 		QInsert(CreateInternalNode(N,GetNode(),GetNode()));
-    }
+    	}
     FillTree(TreeTop,Codes,0);
 }
 
@@ -130,7 +130,7 @@ void PrintCodes(FILE *f)
 void HuffmanEncoding(const char *input, char *output)
 {
 	while (*input)
-    {
+    	{
 		strcpy(output,HuffmanCodes[*input]);
 		output+=strlen(HuffmanCodes[*input++]);
 	}
@@ -144,15 +144,15 @@ void DecodingHuffman(const char *EncodedSequence, HuffNode Root,FILE *f)
 {
 	HuffNode TEMP = Root;
 	while (*EncodedSequence)
-    {
+    	{
 		if (*EncodedSequence++ == '0')
-            TEMP = TEMP->left;
+            		TEMP = TEMP->left;
 		else
-            TEMP = TEMP->right;
+        		 TEMP = TEMP->right;
 		if (TEMP->symbol)
 		{
-            fprintf(f,"%c",TEMP->symbol);
-            TEMP = Root;
+	            fprintf(f,"%c",TEMP->symbol);
+	            TEMP = Root;
 		}
 	}
 	if (Root != TEMP)
