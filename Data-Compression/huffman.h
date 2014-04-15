@@ -34,7 +34,5 @@ extern TreeNode Tree[MAX_NODES];
 extern HuffNode Queue[MAX_NODES];
 extern int TreeSize;
 extern int QueueSize;
-extern char *HuffmanCodes[MAX_SYMBS];
-extern char Buffer[ENCODE_LEN];
 
 #endif
