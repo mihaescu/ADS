@@ -5,14 +5,14 @@
 #define M 300
 #include<vector>
 
-struct Edge{
+struct Edge {
 
 	int source;
 	int destination;
 	int cost;
 };
 
-struct Graph{
+struct Graph {
 
 	int V, E;
 	struct Edge *adjListarr;

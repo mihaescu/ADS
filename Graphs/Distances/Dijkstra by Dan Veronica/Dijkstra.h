@@ -20,6 +20,4 @@ int minDistance(struct Graph* graph, int distanceDFS[N]);
 void bruteForceDijkstra(int source, Graph *G, MinHeap *mh, int end, int cost, int prevCost, int &count, int distance[N], int predecesor[N]);
 
 void printResult(struct Graph* Graph, int distance[N], int source);
-
-bool compare(struct Graph* Graph, int distanceSimple[N], int distanceMinHeap[N], int distanceBruteForce[N]);
  #endif

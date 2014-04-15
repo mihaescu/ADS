@@ -35,7 +35,6 @@ void DijkstraMH(struct Graph* G, int source, MinHeap *mh, int distance[N], int p
 		}
 	}	
 	for(int j = 1; j <= G->V; j ++){//deals with the source's adjencent nodes	
-
 		for (int i = 0; i < nodesCounter; i ++){
 		
 			if(j!=source){
@@ -65,7 +64,7 @@ void DijkstraMH(struct Graph* G, int source, MinHeap *mh, int distance[N], int p
 		if( mh -> seen[currentVertex] )
 			continue;
 
-		 mh -> seen[currentVertex] = 1;
+		mh -> seen[currentVertex] = 1;
 		
 		for (int i = 0; i < G->E;i++){//getting the adjencent nodes of the source's adjencent node taken into consideration
 			
@@ -73,12 +72,10 @@ void DijkstraMH(struct Graph* G, int source, MinHeap *mh, int distance[N], int p
 				adjnodes[nodesCounter] = G->adjListarr[i].destination;
 				adjcosts[nodesCounter] = G->adjListarr[i].cost;
 				nodesCounter ++;
-		}
-	}	
+			}
+		}	
 		
 		for (int i = 0; i < nodesCounter; i ++){
-
-
 			if( distance[adjnodes[i]] > distance[currentVertex] + adjcosts[i]){//Dijkstra minimum criteria
 
 				distance[adjnodes[i]] = distance[currentVertex] + adjcosts[i];
@@ -284,10 +281,4 @@ void bruteForceDijkstra(int source, Graph *G, MinHeap *mh, int end, int cost, in
 			}
 		}
 
-}
-bool compare(struct Graph* Graph, int distanceSimple[N], int distanceMinHeap[N], int distanceBruteForce[N]){
-	for(int i = 0; i < Graph->V; i++ )
-		if(distanceSimple[i] != distanceMinHeap[i] && distanceMinHeap[i] != distanceBruteForce[i])
-			return false;
-	return true;
 }

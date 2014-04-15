@@ -3,11 +3,11 @@
 
 #include"Graph.h"
 
-typedef struct MinHeapNode{
+typedef struct MinHeapNode {
 	int destinationVertex, distance;
 } MinHeapNode;
 
-typedef struct MinHeap{
+typedef struct MinHeap {
 	MinHeapNode heap[N];
 	int seen[N];
 	int heapSize;

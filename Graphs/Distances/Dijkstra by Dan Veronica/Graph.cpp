@@ -4,7 +4,7 @@
 #include<conio.h>
 #include<vector>
 
-Graph *GraphInit(){
+Graph *GraphInit() {
 
 	struct Graph *G= (Graph*) malloc(sizeof(Graph));
 	G->adjListarr = (Edge*)malloc(sizeof(Edge)*G->E);	
@@ -13,7 +13,7 @@ Graph *GraphInit(){
 	G->adjListarr=NULL;
 	return G;
 }
-Graph *loadGraph(FILE *fp){
+Graph *loadGraph(FILE *fp) {
 		
 	struct Graph *G = GraphInit();
 	
@@ -27,7 +27,7 @@ Graph *loadGraph(FILE *fp){
 
 	G->adjListarr = (Edge*)malloc(sizeof(Edge)*G->E);			
 	
-	for (int i = 0; i < E; i ++){
+	for (int i = 0; i < E; i ++) {
 
 		fscanf(fp, "%d", &G->adjListarr[i].source);
 		fscanf(fp, "%d", &G->adjListarr[i].destination);
@@ -37,14 +37,14 @@ Graph *loadGraph(FILE *fp){
 	fclose(fp);
 	return G;			
 }
-bool nodeVisited(std::vector<int> &visited, int node){
+bool nodeVisited(std::vector<int> &visited, int node) {
 
 	for (int i = 0; i < visited.size();i++)
 		if (node == visited[i])
 			return true;
 	return false;
 }
-void printGraph(struct Graph *G){
+void printGraph(struct Graph *G) {
 	
 	int adjnodes[N], adjcosts[N], nodesCounter=0;
 
@@ -56,7 +56,7 @@ void printGraph(struct Graph *G){
 
 	puts("\n");
 
-	for(int j = 1 ; j <= G->V ; j ++){
+	for(int j = 1 ; j <= G->V ; j ++) {
 		for (int i = 0; i < G->E;i++)//getting the adjencent nodes and their costs
 
 			if (G->adjListarr[i].source == j){
@@ -83,14 +83,14 @@ void printGraph(struct Graph *G){
 	getch();
 }
 
-bool nodeVisited2(std::vector<int> &visited, int node){
+bool nodeVisited2(std::vector<int> &visited, int node) {
 
 	for (int i = 0; i < visited.size();i++)
 		if (node == visited[i])
 			return true;
 	return false;
 }
-std::vector<int> getAdjNodes(Graph *G, int node){
+std::vector<int> getAdjNodes(Graph *G, int node) {
 
 	std::vector<int> nodes;
 
@@ -100,7 +100,7 @@ std::vector<int> getAdjNodes(Graph *G, int node){
 		
 	return nodes;
 }
-std::vector<int> getAdjCosts(Graph *G, int node){
+std::vector<int> getAdjCosts(Graph *G, int node) {
 
 	std::vector<int> costs;
 
