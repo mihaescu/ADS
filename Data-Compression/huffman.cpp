@@ -38,13 +38,13 @@ void QInsert(HuffNode N)
 	while ((HighPI = LowPI / 2))
 	{
 		if (Queue[HighPI]->frequency <= N->frequency)
-            break;
+            		break;
 		Switch(Queue[LowPI],Queue[HighPI]);
 		Switch(LowPI,HighPI);
 	}
 	Queue[LowPI]=N;
 	if(Queue[LowPI]->symbol)
-        fprintf(fQueue,"\" %c \" occured %d time(s).\n",Queue[LowPI]->symbol,Queue[LowPI]->frequency);
+        	fprintf(fQueue,"\" %c \" occured %d time(s).\n",Queue[LowPI]->symbol,Queue[LowPI]->frequency);
 }
 
 /*      Getting nodes from the queue in order to create internal nodes.
@@ -53,13 +53,13 @@ void QInsert(HuffNode N)
 HuffNode GetNode()
 {
 	int HighPI = QueueFirst ;
-    int LowPI;
+    	int LowPI;
 	HuffNode N = Queue[QueueFirst];
 	QueueSize--;
 	while ((LowPI = HighPI*2) < QueueSize)
-    {
+    	{
 		if (LowPI + 1 < QueueSize && Queue[LowPI+1]->frequency < Queue[LowPI]->frequency)
-                LowPI++;
+                	LowPI++;
 		Switch(Queue[HighPI],Queue[LowPI]);
 		Switch(HighPI,LowPI);
 	}
@@ -101,18 +101,18 @@ void Huffman(const char *input)
 	while (*input)
         Frequency[(int)*input++]++;
 
-    for (int i=0;i<MAX_SYMBS;i++)
-        if (Frequency[i])
-            QInsert(CreateLeafNode(Frequency[i],i));
+    	for (int i=0;i<MAX_SYMBS;i++)
+        	if (Frequency[i])
+            		QInsert(CreateLeafNode(Frequency[i],i));
 
 	while (QueueSize>2)
-    {
+    	{
 	        HuffNode N;
 	        N = (struct nod*)malloc(sizeof(struct nod));
 	        N->frequency = 0;
 	        N->symbol = 0;
-            QInsert(CreateInternalNode(N,GetNode(),GetNode()));
-    }
+            	QInsert(CreateInternalNode(N,GetNode(),GetNode()));
+    	}
     FillTree(TreeTop,Codes,0);
 }
 
@@ -129,7 +129,7 @@ void PrintCodes(FILE *f)
 void HuffmanEncoding(const char *input, char *output)
 {
 	while (*input)
-    {
+    	{
 		strcpy(output,HuffmanCodes[*input]);
 		output+=strlen(HuffmanCodes[*input++]);
 	}
@@ -143,15 +143,15 @@ void DecodingHuffman(const char *EncodedSequence, HuffNode Root,FILE *f)
 {
 	HuffNode TEMP = Root;
 	while (*EncodedSequence)
-    {
+    	{
 		if (*EncodedSequence++ == '0')
-            TEMP = TEMP->left;
+            		TEMP = TEMP->left;
 		else
-            TEMP = TEMP->right;
+            		TEMP = TEMP->right;
 		if (TEMP->symbol)
 		{
-            fprintf(f,"%c",TEMP->symbol);
-            TEMP = Root;
+            		fprintf(f,"%c",TEMP->symbol);
+            		TEMP = Root;
 		}
 	}
 }
