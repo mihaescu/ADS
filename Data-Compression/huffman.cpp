@@ -5,11 +5,11 @@ HuffNode Queue[MAX_NODES];
 int TreeSize=0;
 int QueueSize=1;
 char *HuffmanCodes[MAX_SYMBS];
-char Buffer[ENCODE_LEN];
+char CodingBuffer[MAX_CODE_LEN];
 FILE *fQueue=fopen("#Freq.out","w");
 
-
-HuffNode CreateLeafNode(int frequency,char symbol)			// Creating leaf-nodes containing symbols found in the input and their frequencies
+//Creating leaf-nodes containing symbols found in the input and their frequencies
+HuffNode CreateLeafNode(int frequency,char symbol)
 {
     TreeSize++;
     HuffNode Leaf = Tree + TreeSize;
@@ -18,7 +18,8 @@ HuffNode CreateLeafNode(int frequency,char symbol)			// Creating leaf-nodes cont
     return Leaf;
 }
 
-HuffNode CreateInternalNode(HuffNode Internal,HuffNode leftNode, HuffNode rightNode)		// Creating internal nodes contaning no symbols but frenquencies of their children
+//Creating internal nodes contaning no symbols but frenquencies of their children
+HuffNode CreateInternalNode(HuffNode Internal,HuffNode leftNode, HuffNode rightNode)
 {
     TreeSize++;
     Internal = Tree + TreeSize;
@@ -28,50 +29,58 @@ HuffNode CreateInternalNode(HuffNode Internal,HuffNode leftNode, HuffNode rightN
     return Internal;
 }
 
+/*      Inserting nodes in the priority queue
+   Every time we insert a node into the queue we compare frequencies to keep
+   lower frequency on higher priority position < low index >. */
 void QInsert(HuffNode N)
 {
 	int i = QueueSize++;
 	int j;
 	while ((j=i/2))
 	{
-		if (Queue[j]->frequency <= N->frequency)		// Check for frequencies in order to establish priority
-            break;										// Keeping higher freqs on low priority ( higher index ) ; Q[i] <- the new node	< on lower priority >
-		Switch(Queue[i],Queue[j]);						// Else, Q[j] is set on low priority
-		Switch(i,j);									// J is the new index ( higher priority) ; Q[i] <- new node < on higher priority >
+		if (Queue[j]->frequency <= N->frequency)
+            break;
+		Switch(Queue[i],Queue[j]);
+		Switch(i,j);
 	}
 	Queue[i]=N;
 	if(Queue[i]->symbol)
         fprintf(fQueue,"\" %c \" occured %d time(s).\n",Queue[i]->symbol,Queue[i]->frequency);
 }
 
+/*      Getting nodes from the queue in order to create internal nodes.
+   Keeping nodes sorted by frequency in order to have the low frequency
+   nodes on higher priority. */
 HuffNode GetNode()
 {
 	int i = QueueFirst ;
     int j;
-	HuffNode N = Queue[QueueFirst];      // Getting the first node in the queue
-	if (QueueSize < 2)
-        return 0;
-	QueueSize--;					// Lowering the higher limit of the queue
+	HuffNode N = Queue[QueueFirst];
+	QueueSize--;
 	while ((j=i*2) < QueueSize)
     {
-		if (j+1 < QueueSize && Queue[j+1]->frequency < Queue[j]->frequency)		// If there are more than 3 node left in the Queue and the node on lower priority < higher index >
-                j++;															//   has a lower frequency than the one on higher priority we walk forward into the queue and get the node with
-		Switch(Queue[i],Queue[j]);                                              //   lower frequency. Q[i] <- this node.
+		if (j+1 < QueueSize && Queue[j+1]->frequency < Queue[j]->frequency)
+                j++;
+		Switch(Queue[i],Queue[j]);
 		Switch(i,j);
 	}
-	Queue[i]=Queue[QueueLast];													// The place where the low-frequency node was found is filled with the lowest-priority node in the Queue
+	Queue[i]=Queue[QueueLast];
 	return N;
 }
 
-void FillTree(HuffNode Root, char *Code, int codeLen)
+
+/*      Walk down the tree until a symbol is found. According to it's position
+    in the tree, a code was build. Every time a symbol is found it's code
+    is copied into the HuffmanCodes array */
+void FillTree(HuffNode Root,char *Code, int codeLen)
 {
-	static char *out = Buffer ;
+	static char *HuffCode = CodingBuffer ;
 	if (Root->symbol)
 	{
-		Code[codeLen]=0;
-		strcpy(out,Code);
-		HuffmanCodes[Root->symbol]=out;
-		out += codeLen + 1;
+		Code[codeLen] = 0;
+		strcpy(HuffCode,Code);
+		HuffmanCodes[Root->symbol] = HuffCode;
+		HuffCode += codeLen + 1;
 		return;
 	}
 	Code[codeLen] = '0';
@@ -80,17 +89,22 @@ void FillTree(HuffNode Root, char *Code, int codeLen)
 	FillTree(Root->right,Code,codeLen+1); // Fill right branches with '1'
 }
 
+/*      Main Function:
+    Step 1: Count Frequencies of the symbols found in the input.
+    Step 2: Create LeafNodes formed by symbols found and their frequencies.
+    Step 3: Create Internal Nodes by geting 2 nodes from the queue every step
+            until only the root is left in the queue. */
 void Huffman(const char *input)
 {
 	int Frequency[MAX_SYMBS]={0};
 	char Codes[MAX_CODE_LEN];
 
 	while (*input)
-        Frequency[(int)*input++]++;    // Counting frequencies of character found in file.
+        Frequency[(int)*input++]++;
 
     for (int i=0;i<MAX_SYMBS;i++)
         if (Frequency[i])
-            QInsert(CreateLeafNode(Frequency[i],i));  // Creating leaf-nodes containing the characters found in file and their frequency.
+            QInsert(CreateLeafNode(Frequency[i],i));
 
 	while (QueueSize>2)
     {
@@ -98,11 +112,12 @@ void Huffman(const char *input)
         N = (struct nod*)malloc(sizeof(struct nod));
         N->frequency = 0;
         N->symbol = 0;
-		QInsert(CreateInternalNode(N,GetNode(),GetNode()));   // Creating internal nodes
+		QInsert(CreateInternalNode(N,GetNode(),GetNode()));
     }
     FillTree(TreeTop,Codes,0);
 }
 
+// For every symbol found we print it's computed code.
 void PrintCodes(FILE *f)
 {
     for (int i = 0; i < MAX_SYMBS; i++)
@@ -110,28 +125,34 @@ void PrintCodes(FILE *f)
             fprintf(f,"\" %c \" -> %s\n",i,HuffmanCodes[i]);
 }
 
+/*      While reading the input, we copy into the output the Huffman Code
+    of each read symbol. */
 void HuffmanEncoding(const char *input, char *output)
 {
-	while (*input)									// While reading the input
+	while (*input)
     {
-		strcpy(output,HuffmanCodes[*input]);			// Copy the Huffman Code of the encountered character from the input into the output
+		strcpy(output,HuffmanCodes[*input]);
 		output+=strlen(HuffmanCodes[*input++]);
 	}
 }
 
+/*      While reading the encoded sequence,for every bit read we walk down the tree.
+    If '0' is read we walk to the left, if '1' is read we walk to the right.
+    When a character is found in the tree,it is outputed and we start again
+    from the root. */
 void DecodingHuffman(const char *EncodedSequence, HuffNode Root,FILE *f)
 {
 	HuffNode TEMP = Root;
-	while (*EncodedSequence)				        // While reading the encoded sequence
+	while (*EncodedSequence)
     {
-		if (*EncodedSequence++ == '0')    	        // If '0' is encountered we walk the left path
+		if (*EncodedSequence++ == '0')
             TEMP = TEMP->left;
 		else
-            TEMP = TEMP->right;  					// If '1' is encountered we walk the right path
+            TEMP = TEMP->right;
 		if (TEMP->symbol)
 		{
-            fprintf(f,"%c",TEMP->symbol);		    // Until a symbol is found and it is written into the file
-            TEMP = Root;						    // We start again from the top
+            fprintf(f,"%c",TEMP->symbol);
+            TEMP = Root;
 		}
 	}
 	if (Root != TEMP)
