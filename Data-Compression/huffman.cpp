@@ -8,11 +8,11 @@ char *HuffmanCodes[MAX_SYMBS];
 char CodingBuffer[MAX_CODE_LEN];
 FILE *fQueue=fopen("#Freq.out","w");
 
+
 //Creating leaf-nodes containing symbols found in the input and their frequencies
 HuffNode CreateLeafNode(int frequency,char symbol)
 {
-    TreeSize++;
-    HuffNode Leaf = Tree + TreeSize;
+    HuffNode Leaf = Tree + TreeSize++;
     Leaf->frequency = frequency;
     Leaf->symbol = symbol;
     return Leaf;
@@ -21,8 +21,7 @@ HuffNode CreateLeafNode(int frequency,char symbol)
 //Creating internal nodes contaning no symbols but frenquencies of their children
 HuffNode CreateInternalNode(HuffNode Internal,HuffNode leftNode, HuffNode rightNode)
 {
-    TreeSize++;
-    Internal = Tree + TreeSize;
+    Internal = Tree + TreeSize++;
     Internal->left = leftNode;
     Internal->right = rightNode;
     Internal->frequency = leftNode->frequency + rightNode->frequency;
@@ -34,18 +33,18 @@ HuffNode CreateInternalNode(HuffNode Internal,HuffNode leftNode, HuffNode rightN
    lower frequency on higher priority position < low index >. */
 void QInsert(HuffNode N)
 {
-	int i = QueueSize++;
-	int j;
-	while ((j=i/2))
+	int LowPI = QueueSize++;
+	int HighPI;
+	while ((HighPI = LowPI / 2))
 	{
-		if (Queue[j]->frequency <= N->frequency)
-            		break;
-		Switch(Queue[i],Queue[j]);
-		Switch(i,j);
+		if (Queue[HighPI]->frequency <= N->frequency)
+            break;
+		Switch(Queue[LowPI],Queue[HighPI]);
+		Switch(LowPI,HighPI);
 	}
-	Queue[i]=N;
-	if(Queue[i]->symbol)
-        fprintf(fQueue,"\" %c \" occured %d time(s).\n",Queue[i]->symbol,Queue[i]->frequency);
+	Queue[LowPI]=N;
+	if(Queue[LowPI]->symbol)
+        fprintf(fQueue,"\" %c \" occured %d time(s).\n",Queue[LowPI]->symbol,Queue[LowPI]->frequency);
 }
 
 /*      Getting nodes from the queue in order to create internal nodes.
@@ -53,18 +52,18 @@ void QInsert(HuffNode N)
    nodes on higher priority. */
 HuffNode GetNode()
 {
-	int i = QueueFirst ;
-    int j;
+	int HighPI = QueueFirst ;
+    int LowPI;
 	HuffNode N = Queue[QueueFirst];
 	QueueSize--;
-	while ((j=i*2) < QueueSize)
-    	{
-		if (j+1 < QueueSize && Queue[j+1]->frequency < Queue[j]->frequency)
-                	j++;
-		Switch(Queue[i],Queue[j]);
-		Switch(i,j);
+	while ((LowPI = HighPI*2) < QueueSize)
+    {
+		if (LowPI + 1 < QueueSize && Queue[LowPI+1]->frequency < Queue[LowPI]->frequency)
+                LowPI++;
+		Switch(Queue[HighPI],Queue[LowPI]);
+		Switch(HighPI,LowPI);
 	}
-	Queue[i]=Queue[QueueLast];
+	Queue[HighPI]=Queue[QueueLast];
 	return N;
 }
 
@@ -107,13 +106,13 @@ void Huffman(const char *input)
             QInsert(CreateLeafNode(Frequency[i],i));
 
 	while (QueueSize>2)
-    	{
+    {
 	        HuffNode N;
 	        N = (struct nod*)malloc(sizeof(struct nod));
 	        N->frequency = 0;
 	        N->symbol = 0;
-		QInsert(CreateInternalNode(N,GetNode(),GetNode()));
-    	}
+            QInsert(CreateInternalNode(N,GetNode(),GetNode()));
+    }
     FillTree(TreeTop,Codes,0);
 }
 
@@ -130,7 +129,7 @@ void PrintCodes(FILE *f)
 void HuffmanEncoding(const char *input, char *output)
 {
 	while (*input)
-    	{
+    {
 		strcpy(output,HuffmanCodes[*input]);
 		output+=strlen(HuffmanCodes[*input++]);
 	}
@@ -144,19 +143,17 @@ void DecodingHuffman(const char *EncodedSequence, HuffNode Root,FILE *f)
 {
 	HuffNode TEMP = Root;
 	while (*EncodedSequence)
-    	{
+    {
 		if (*EncodedSequence++ == '0')
-            		TEMP = TEMP->left;
+            TEMP = TEMP->left;
 		else
-        		 TEMP = TEMP->right;
+            TEMP = TEMP->right;
 		if (TEMP->symbol)
 		{
-	            fprintf(f,"%c",TEMP->symbol);
-	            TEMP = Root;
+            fprintf(f,"%c",TEMP->symbol);
+            TEMP = Root;
 		}
 	}
-	if (Root != TEMP)
-        printf("Error!\n");
 }
 
 void DisplayTree(TreeNode *Root,int l,FILE *f)
@@ -173,27 +170,27 @@ void DisplayTree(TreeNode *Root,int l,FILE *f)
 
 void DisplayTreeLevels(TreeNode *Root,FILE *f)
 {
-  fprintf(f,"\n\nTree Levels\n");
-  if (!Root)
-    return;
-  queue<nod*> currentLevel,nextLevel;
-  currentLevel.push(Root);
-  while (!currentLevel.empty())
-  {
-    nod *currNode = currentLevel.front();
-    currentLevel.pop();
-    if (currNode)
+    fprintf(f,"\n\nTree Levels\n");
+    if (!Root)
+        return;
+    queue<nod*> ThisLevel,NextLevel;
+    ThisLevel.push(Root);
+    while (!ThisLevel.empty())
     {
-      fprintf(f,"(%c)-[%d]\t",currNode->symbol,currNode->frequency);
-      nextLevel.push(currNode->left);
-      nextLevel.push(currNode->right);
+        TreeNode *Node = ThisLevel.front();
+        ThisLevel.pop();
+        if (Node)
+        {
+              fprintf(f,"(%c)-[%d]\t",Node->symbol,Node->frequency);
+              NextLevel.push(Node->left);
+              NextLevel.push(Node->right);
+        }
+        if (ThisLevel.empty())
+        {
+              fprintf(f,"\n");
+              swap(ThisLevel, NextLevel);
+        }
     }
-    if (currentLevel.empty())
-    {
-      fprintf(f,"\n");
-      swap(currentLevel, nextLevel);
-    }
-  }
 }
 
 void compressionRatio(char *input,char *output,FILE *f)
@@ -201,12 +198,15 @@ void compressionRatio(char *input,char *output,FILE *f)
     int countIn,countOut;
     float CInput,COutput,Result;
     int inSize,outSize;
+
     for(countIn=0;input[countIn];countIn++) ;
     for(countOut=0;output[countOut];countOut++) ;
+
     inSize=countIn*8;
     outSize=countOut;
     CInput=inSize;
     COutput=outSize;
+
     fprintf(f,"Input:%d Characters ( %d bits )\nOutput:%d Characters ( %d bits)\n",countIn,inSize,countOut,outSize);
     Result=CInput/COutput;
     fprintf(f,"\nCompression Ratio: %.2f",Result);
