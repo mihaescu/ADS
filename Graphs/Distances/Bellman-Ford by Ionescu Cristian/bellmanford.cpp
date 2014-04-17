@@ -24,7 +24,8 @@ graph *createGraph(FILE *fp)									// creates a graph with V vertixes and E ed
 	return G;													// return the graph
 }
 
-void BellmanFord(graph *G,int source,int **cost,int *predecesors)												// bellmanford alogrithm
+void BellmanFord(graph *G,int source,int **cost,int *predecesors)												
+/// bellmanford alogrithm
 {
 	
 	// set all costs to infinite
@@ -113,72 +114,85 @@ int **alocateMemoryForCost(int noOfVertices)
 	return cost;														//return the matrix
 }
 
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------TESTING------------------------------------------------------------------------------------------------
-
-void graphGenerator()
+void driverProgram(char *inputFile, char *outputFile)
 {
-	int noOfEdges = 0;
-	srand(time(0));
+	FILE *fin = fopen(inputFile, "r");
+	FILE *fout = fopen(outputFile, "w");
+	int source;
+	graph *G = loadGraph(fin);
+	int **cost = alocateMemoryForCost(G->noOfVertices);
+	int *predecesors = allocateMemoryForPredecesors(G->noOfVertices);
 
-	FILE *fp = fopen("testsample.txt", "w");
-	int noOfVertices = 50;													//the number of vertices the graph will have
-	for (int i = 0; i<noOfVertices; i++)									//for each vertex generate between 1 and 4 edges
+	
+
+
+	printf_s("Give the source vertex:");
+	scanf_s("%d", &source);
+	BellmanFord(G, source, cost, predecesors);
+	for (int i = 0; i < G->noOfVertices; i++)
 	{
-		int currEdges = rand() % 3 + 1;
-		noOfEdges += currEdges;												//add them to the total number of vertices
-		edge *pEdge = (edge*)malloc(sizeof(edge)*currEdges);				//alloc memory for vertex's edges
-		for (int j = 0; j<currEdges; j++)									//for each edge
+		fprintf_s(fout, "%d\n", cost[1][i]);
+	}
+
+	while (true)
+	{
+		int destination;
+		printf_s("Give the vertex to which you want to reconstruct the path:");
+		scanf_s("%d", &destination);
+		if (cost[1][destination] == infinite)
 		{
-			bool exists;
-			do
-			{
-				pEdge[j].destination = rand() % noOfVertices;				//give a destination vertex
-				pEdge[j].source = i;										//mark its source
-				pEdge[j].weight = rand() % 30;								//give a weight
-				exists = false;
-				for (int k = 0; k<j; k++)									//check if the already exists or the vertex has an edge to himself
-				if (pEdge[j].destination == pEdge[k].destination || pEdge[j].destination == pEdge[j].source)
-				{
-					exists = true;
-				}
-				if (exists == false)										//if the edge doesn't exist,write the edge
-				{
-					fprintf(fp, "%d %d %d\n", pEdge[j].source, pEdge[j].destination, pEdge[j].weight);
-					//printf("%d %d %d\n",pEdge[j].source,pEdge[j].destination,pEdge[j].weight);
-				}
-			} while (exists == true);
+			printf_s("there is no path to %d from %d\n", destination, source);
+		}
+		else if (cost[1][destination] == minfinite)
+		{
+			printf_s("it is a negative cycle cannot display path\n");
+		}
+		else
+		{
+			reconstructPath(source, destination, G, predecesors);
 		}
 
-		free(pEdge);														//dealloc pEdge memory
+		printf_s("Continue? \n1.Yes\n0.No\n");
+		int dummy;
+		scanf_s("%d",&dummy);
+		if (dummy == 0)
+		{
+			break;
+		}
 	}
-	fprintf(fp, "%d %d\n", noOfVertices, noOfEdges);						//write the total number of vertices and edges
-	fclose(fp);
+	fclose(fin);
+	fclose(fout);
 }
 
-bool containsNode(std::vector<int> &visited, int node)
-{
-	for (unsigned int i = 0; i < visited.size(); i++)						//search the visited vector for the node value
-	if (node == visited[i])													//if found return true
-		return true;
-	return false;															//else false
-}
 
-std::vector<int> getAdjNodes(graph *G, int node)							
+int speedTest(graph *G)
 {
-	std::vector<int> nodes;																
-	for (int i = 0; i < G->noOfEdges; i++)									//search all graph edges
-	if (G->pEdge[i].source == node)											//if edge source is "node"
+	int *predecesors = allocateMemoryForPredecesors(G->noOfVertices);	
+	int **cost = alocateMemoryForCost(G->noOfVertices);					
+	int source, t0, test[10];
+	int average = 0;
+	printf_s("give the source vertex:");
+	scanf_s("%d", &source);
+	for (int i = 0; i < 10; i++)
 	{
-		nodes.push_back(G->pEdge[i].destination);							//memorize its destination
+		t0 = clock();
+		BellmanFord(G, source, cost, predecesors);
+		test[i] = clock() - t0;
+		average += test[i];
 	}
-	return nodes;															//return the destination nodes
+
+	return average / 10;
+
 }
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------TESTING------------------------------------------------------------------------------------------------
 
 int calculateCost(graph *G, std::vector<int> &visited)
 {
 	int cost = 0;
-	for (int j = 0; j<visited.size() - 1; j++)								//for all the nodes in the path
+	for (unsigned int j = 0; j<visited.size() - 1; j++)								//for all the nodes in the path
 	{
 		int source = visited[j];
 		int destination = visited[j + 1];
@@ -207,7 +221,7 @@ void DFS(graph *G, std::vector<int> &visited, int end, int &cost)
 		node_it++)
 	{
 		int node = (*node_it);
-		if (containsNode(visited, node)) continue;							//check if the node has ben visited
+		if (nodeVisited(visited, node)) continue;							//check if the node has ben visited
 
 		if (node == end)													//if the node is the one we search
 		{
@@ -235,7 +249,7 @@ void DFS(graph *G, std::vector<int> &visited, int end, int &cost)
 	{
 		int node = (*node_it);
 
-		if (containsNode(visited, node) || node == end)						//if the node has been visited or it's the node we search continue
+		if (nodeVisited(visited, node) || node == end)						//if the node has been visited or it's the node we search continue
 			continue;
 
 		visited.push_back(node);											//otherwise put the node in the path
@@ -260,4 +274,35 @@ bool compareFiles(FILE *fp1, FILE *fp2)										//compare two files
 		}
 	}
 	return true;															//otherwise return true5
+}
+
+void testProgram()
+{
+	FILE *file1 = fopen("input.in", "r");
+	FILE *file2 = fopen("output.data", "w");
+
+	graph *G = loadGraph(file1);
+	int **testcost = alocateMemoryForCost(G->noOfVertices);
+	int *testpredecesors = allocateMemoryForPredecesors(G->noOfVertices);
+
+
+	BellmanFord(G, 0, testcost, testpredecesors);
+	for (int i = 0; i < G->noOfVertices; i++)
+	{
+		fprintf_s(file2, "%d\n", testcost[1][i]);
+	}
+	fclose(file1);
+	fclose(file2);
+	file1 = fopen("output.data", "r");
+	file2 = fopen("result.txt", "r");
+
+	if (compareFiles(file1, file2))
+	{
+		printf_s("Test succeded!\n");
+	}
+	else
+	{
+		printf_s("Test failed!\n");
+	}
+
 }
