@@ -1,5 +1,5 @@
 #include "Prim.h"
-#include <D:\Programs\Visual Probl\MST\MST\Kruskall.h>
+#include "Kruskall.h"
 
 int main(){
 
