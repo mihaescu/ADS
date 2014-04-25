@@ -60,7 +60,7 @@ int main(){
 
 		case '2':
 
-			printf("\n Edges: \n");
+			printf("\n Prim: \n");
 
 			displayMST(H, n);
 
@@ -70,7 +70,7 @@ int main(){
 
 		case '3':
 
-			printf("\n Edges: \n");
+			printf("\n Kruskall: \n");
 
 			krusk(n, m, L, u);
 
