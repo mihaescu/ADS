@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <conio.h>
 
 #define VMAX 5000
 
