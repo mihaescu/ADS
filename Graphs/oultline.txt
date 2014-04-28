@@ -1,0 +1,9 @@
+- datele de intrare stau in folderul data. trebuie sa avem date de intrare pentru toate tipurile de grafuri
+ex: MST(k & p): nedirectionate si ponderate =>data/undirectedWeighted6N10V.txt
+
+- in core trebuie pus TOT ce este generic si nu tine de algoritmul proprizis:
+	- structuri
+	- incarcari de date
+	- initializari
+	- operatii curente
+	

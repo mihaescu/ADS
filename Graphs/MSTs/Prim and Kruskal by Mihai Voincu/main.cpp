@@ -16,8 +16,9 @@ int main(){
 	}v[50];
 
 	FILE* f;
-	f = fopen("cost.txt", "r");
+	f = fopen("cost.txt", "r");//doar aici se deschide
 
+	//trebuie functie de incarcare date implementata in core!
 	fscanf(f, "%d", &f1);
 	fscanf(f, "%d", &f2);
 
@@ -34,7 +35,7 @@ int main(){
 
 	f1=i;
 
-	k = prim(a, Q, H, n, r);
+	k = prim(a, Q, H, n, r);//OK!
 
 	while(go != '0'){
 

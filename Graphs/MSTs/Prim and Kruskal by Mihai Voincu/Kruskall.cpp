@@ -2,7 +2,7 @@
 
 void readData(int &n, int &m, muchie u[20]){
 
-	FILE* f = fopen("cost.txt", "rt");
+	FILE* f = fopen("cost.txt", "rt");//trebuie pus in main!.. si transmis ca parametru!
 
 	int use;
 
