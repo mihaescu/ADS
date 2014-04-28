@@ -1,0 +1,4 @@
+here are implemenbtations for:
+- KMP
+- RK
+- BM
