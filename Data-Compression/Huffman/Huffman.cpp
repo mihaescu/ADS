@@ -98,7 +98,7 @@ void QInsert(HuffNode N,HuffNode *Queue,int& QueueSize)
 	while ((HighPI = LowPI / 2))
 	{
 		if (Queue[HighPI]->Frequency < N->Frequency)
-            break;
+            		break;
 		Queue[LowPI] = Queue[HighPI];
 		LowPI = HighPI;
 	}
@@ -108,13 +108,13 @@ void QInsert(HuffNode N,HuffNode *Queue,int& QueueSize)
 HuffNode GetNode(HuffNode *Queue,int& QueueSize)
 {
 	int HighPI = QueueFirst ;
-    int LowPI;
+    	int LowPI;
 	HuffNode N = Queue[QueueFirst];
 	QueueSize--;
 	while ((LowPI = HighPI*2) < QueueSize)
     {
 		if (LowPI + 1 < QueueSize && Queue[LowPI+1]->Frequency < Queue[LowPI]->Frequency)
-                LowPI++;
+                	LowPI++;
 		Queue[HighPI] = Queue[LowPI];
 		HighPI = LowPI;
 	}
@@ -183,10 +183,10 @@ string DecodeText(string Encoded,HuffNode Root)
         else
             Temp = Temp->right;
         if (!Temp->Symbol.empty())
-		{
+	{
             Decoded += Temp->Symbol;
             Temp = Root;
-		}
+	}
     }
     return Decoded;
 }
