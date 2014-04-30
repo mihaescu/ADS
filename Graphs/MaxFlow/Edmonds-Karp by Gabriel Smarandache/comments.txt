@@ -1,0 +1,9 @@
+--comments 30.04.2014
+: everything should be in English
+: you should have:
+	- EK.h //for structs and function prototypes
+	- EK.cpp//for function definitions
+	- mainEK.cpp//for functiom calls
+	- EK & EK.cpp should not have local variables
+	
+: see also the inline comments

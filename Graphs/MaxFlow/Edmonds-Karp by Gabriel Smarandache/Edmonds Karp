@@ -26,7 +26,7 @@ int main()
     getch();
     return 0;
 }
-
+//should be moved to Graphs/core and called in main!
 void citire()
 {
     FILE *f = fopen("graf.txt","r");
@@ -40,6 +40,7 @@ void citire()
     }
 }
 
+//should be moved to Graphs/core and called in main!
 void afisare()
 {
     int i,j,vf = 0;
@@ -55,6 +56,7 @@ void afisare()
     printf("Fluxul maxim este: %d",vf);
 }
 
+//rename Edmonds-Karp()
 void ek()
 {
     int i,a,b,lg,v;
@@ -92,7 +94,7 @@ void ek()
                 F[L[i-1]][L[i]] -=v;
     }while(1);
 }
-
+//should be moved to Graphs/Traversals and called in Edmonds-Karp!
 int bfs()
 {
     int p,u,i,x;
