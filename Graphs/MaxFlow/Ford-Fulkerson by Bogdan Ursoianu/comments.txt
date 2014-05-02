@@ -1,0 +1,9 @@
+--comments 02.05.2014
+: everything should be in English
+: you should have:
+	- FF.h //for structs and function prototypes
+	- FF.cpp//for function definitions
+	- mainFF.cpp//for functiom calls
+	- FF.h & FF.cpp should not have local variables
+	
+
