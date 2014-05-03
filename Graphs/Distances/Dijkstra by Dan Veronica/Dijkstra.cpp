@@ -18,7 +18,7 @@ void DijkstraMH(struct Graph* G, int source, MinHeap *mh, int distance[N], int p
 	temp.destinationVertex = source;
 	Insert(mh, temp);
 
-	for(int node = 0; node < G->E; node ++){
+	for(int node = 0; node < G->noOfEdges; node ++){
 		if(node!= source)
 			distance[node]=inf;
 	}
@@ -26,7 +26,7 @@ void DijkstraMH(struct Graph* G, int source, MinHeap *mh, int distance[N], int p
 	distance[source]=0;
 	
 
-	for (int i = 0; i < G->E;i++){//getting the adjencent nodes of the source and their costs
+	for (int i = 0; i < G->noOfEdges;i++){//getting the adjencent nodes of the source and their costs
 
 		if (G->adjListarr[i].source == source){
 			adjnodes[nodesCounter] = G->adjListarr[i].destination;
@@ -34,7 +34,7 @@ void DijkstraMH(struct Graph* G, int source, MinHeap *mh, int distance[N], int p
 			nodesCounter ++;
 		}
 	}	
-	for(int j = 1; j <= G->V; j ++){//deals with the source's adjencent nodes	
+	for(int j = 1; j <= G->noOfVertices; j ++){//deals with the source's adjencent nodes	
 		for (int i = 0; i < nodesCounter; i ++){
 		
 			if(j!=source){
@@ -66,7 +66,7 @@ void DijkstraMH(struct Graph* G, int source, MinHeap *mh, int distance[N], int p
 
 		mh -> seen[currentVertex] = 1;
 		
-		for (int i = 0; i < G->E;i++){//getting the adjencent nodes of the source's adjencent node taken into consideration
+		for (int i = 0; i < G->noOfEdges;i++){//getting the adjencent nodes of the source's adjencent node taken into consideration
 			
 			if (G->adjListarr[i].source == currentVertex){
 				adjnodes[nodesCounter] = G->adjListarr[i].destination;
@@ -90,7 +90,7 @@ void DijkstraMH(struct Graph* G, int source, MinHeap *mh, int distance[N], int p
 }
 void printResult(struct Graph* G, int distance[N],int source){
 
-	for(int i=1;i<=G->V;i++){
+	for(int i=1;i<=G->noOfVertices;i++){
 		if( distance[i] != 0 && distance[i] != inf && i!=source)
 			printf("Distance from source to %d is %d\n",i,distance[i]);
 	}
@@ -130,8 +130,8 @@ bool hasNegativeCosts(struct Graph* G){
 	bool ok=false;
 	int adjcosts[N],nodesCounter=0;
 		
-	for(int j = 0; j <= G->V; j ++ ){//getting the adjencent nodes' costs of every node
-		for (int i = 0; i < G->E; i ++)
+	for(int j = 0; j <= G->noOfVertices; j ++ ){//getting the adjencent nodes' costs of every node
+		for (int i = 0; i < G->noOfEdges; i ++)
 
 			if (G->adjListarr[i].source == j){
 				adjcosts[nodesCounter] = G->adjListarr[i].cost;
@@ -148,7 +148,7 @@ void Dijkstra(struct Graph* G, int source, int distance[N], int predecesor[N]){
 
 	int currentVertex, count, visited[100], min;
 
-	for(int node = 0; node < G->E; node ++){
+	for(int node = 0; node < G->noOfEdges; node ++){
 		if(node!= source)
 		visited[node] = 0;
 		distance[node]=inf;
@@ -156,7 +156,7 @@ void Dijkstra(struct Graph* G, int source, int distance[N], int predecesor[N]){
 
 	distance[source]=0;
 	
-	for(int node = 0; node < G->E; node ++){
+	for(int node = 0; node < G->noOfEdges; node ++){
 		if (G->adjListarr[node].source == source){
 			visited[G->adjListarr[node].destination] = 0;
 			distance[G->adjListarr[node].destination]=G->adjListarr[node].cost;
@@ -164,9 +164,9 @@ void Dijkstra(struct Graph* G, int source, int distance[N], int predecesor[N]){
 	}
 	count=2;
 	
-	while(count <= G->V) {
+	while(count <= G->noOfVertices) {
 		min = inf;
-		for(int node = 0; node < G->V; node ++)
+		for(int node = 0; node < G->noOfVertices; node ++)
 			if(distance[node]<min && !visited[node]){
 				min=distance[node];
 				currentVertex=node;
@@ -174,7 +174,7 @@ void Dijkstra(struct Graph* G, int source, int distance[N], int predecesor[N]){
 		visited[currentVertex]=1;
 		count++;
 		
-		for(int node = 0; node <= G->E; node ++){
+		for(int node = 0; node <= G->noOfEdges; node ++){
 
 			if(G->adjListarr[node].source == currentVertex)
 				if((distance[currentVertex] + G->adjListarr[node].cost < distance[G->adjListarr[node].destination]) && !visited[G->adjListarr[node].destination])
@@ -244,7 +244,7 @@ void DFS(Graph *G, std::vector<int> &visited2, std::vector<int> &visitedCosts, i
 
 int minDistance(struct Graph* graph, int distanceDFS[N]){
 	int min = inf;
-	for(int j = 0;j <= graph->V; j ++)
+	for(int j = 0;j <= graph->noOfVertices; j ++)
 		if(distanceDFS[j] < min && distanceDFS[j] > 0)
 			min = distanceDFS[j];
 	return min;
@@ -256,7 +256,7 @@ void bruteForceDijkstra(int source, Graph *G, MinHeap *mh, int end, int cost, in
 	int cnt = 0;
 	
 
-		for(int i = 0; i <= G->V; i ++){
+		for(int i = 0; i <= G->noOfVertices; i ++){
 			distance[i] = 0;	
 			minDistanceDFS[i]  = 0;
 			distanceDFS[i] = 0;
@@ -267,7 +267,7 @@ void bruteForceDijkstra(int source, Graph *G, MinHeap *mh, int end, int cost, in
 		
 		DijkstraMH( G, source, mh, distance, predecesor);
 		
-		for(int destination = 1; destination <= G->V; destination ++){
+		for(int destination = 1; destination <= G->noOfVertices; destination ++){
 		
 			distanceDFS[source] = 0;//vector for all the paths from source to destination
 		
@@ -276,7 +276,7 @@ void bruteForceDijkstra(int source, Graph *G, MinHeap *mh, int end, int cost, in
 				DFS(G, visited, visitedCosts, destination, cost, prevCost, count, distanceDFS);
 				minDistanceDFS[destination] = minDistance( G, distanceDFS);
 
-				for(int i = 0; i <= G->V; i ++)
+				for(int i = 0; i <= G->noOfVertices; i ++)
 					distanceDFS[i] = 0;				//reset the vector				
 			}
 		}

@@ -6,18 +6,15 @@
 #include"Dijkstra.h"
 #include"MinHeap.h"
 #include<vector>
-#include <time.h>
 #include <assert.h>
 
 int main() {
 	FILE *fp = fopen("graph.in", "r");
-	FILE *fRand = fopen("graph2.in", "r");
 	
 	int y, tests ,source, count=0, cnt=0, destination;
 	int distance[N] = {0}, predecesor[N] = {0};
 	int distanceSimple[N], distanceMinHeap[N], distanceBruteForce[N];
 	bool ok;
-	clock_t beginSD,endSD,beginDMH, endDMH, beginDBF, endDBF;
 	struct Graph* G = (Graph*) malloc(sizeof(Graph));
 	struct MinHeap *mh = (MinHeap*) malloc(sizeof(MinHeap));
 	Init(mh);

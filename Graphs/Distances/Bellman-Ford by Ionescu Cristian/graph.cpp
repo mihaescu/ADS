@@ -81,3 +81,13 @@ bool nodeVisited(std::vector<int> &visited, int node)
 		return true;
 	return false;															//else false
 }
+std::vector<int> getAdjCosts(Graph *G, int node) {
+
+	std::vector<int> costs;
+
+	for (int i = 0; i < G->E;i++)
+		if (G->adjListarr[i].source == node)
+			costs.push_back(G->adjListarr[i].cost);
+	
+	return costs;
+}
