@@ -20,11 +20,14 @@ typedef struct graph																//structure for graph
 };
 
 
+Graph *GraphInit();
 graph* loadGraph(FILE* fp);															//creates the graph, V - number of vertices , E - number of Edges , returns the created graph
 
 void graphGenerator(char * fileName);												//function which generates directed graphs					
 
 bool nodeVisited(std::vector<int> &visited, int node);								//function which finds if "node" has been visited
+bool nodeVisited2(int visited[N], int node);
+std::vector<int> getAdjNodes(graph *G, int node);	
 
-std::vector<int> getAdjNodes(graph *G, int node);									//function which returns all nodes that have an edge with the source node "node"
+std::vector<int> getAdjCosts(Graph *G, int node);
 #endif
