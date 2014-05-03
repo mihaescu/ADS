@@ -1,4 +1,4 @@
-#include"Graph.h"
+#include"graph.h"
 #include"Dijkstra.h"
 #include"MinHeap.h"
 #include<fstream>
@@ -6,11 +6,11 @@
 #include<conio.h>
 
 
-void DijkstraMH(struct Graph* G, int source, MinHeap *mh, int distance[N], int predecesor[N]){
+void DijkstraMH(struct graph* G, int source, MinHeap *mh, int distance[N], int predecesor[N]){
 
 	MinHeapNode temp;
 	Init(mh);
-	int adjnodes[N], adjcosts[N], nodesCounter=0;
+	int adjnodes[N], adjweights[N], nodesCounter=0;
 	temp.distance = 0;
 	distance[0] = 0;
 	mh->seen[source] = 1;
@@ -26,11 +26,11 @@ void DijkstraMH(struct Graph* G, int source, MinHeap *mh, int distance[N], int p
 	distance[source]=0;
 	
 
-	for (int i = 0; i < G->noOfEdges;i++){//getting the adjencent nodes of the source and their costs
+	for (int i = 0; i < G->noOfEdges;i++){//getting the adjencent nodes of the source and their weights
 
-		if (G->adjListarr[i].source == source){
-			adjnodes[nodesCounter] = G->adjListarr[i].destination;
-			adjcosts[nodesCounter] = G->adjListarr[i].cost;
+		if (G->pEdge[i].source == source){
+			adjnodes[nodesCounter] = G->pEdge[i].destination;
+			adjweights[nodesCounter] = G->pEdge[i].weight;
 			nodesCounter ++;
 		}
 	}	
@@ -39,8 +39,8 @@ void DijkstraMH(struct Graph* G, int source, MinHeap *mh, int distance[N], int p
 		
 			if(j!=source){
 				if(adjnodes[i] == j){
-					temp.distance = adjcosts[i];
-					distance[adjnodes[i]]= adjcosts[i];
+					temp.distance = adjweights[i];
+					distance[adjnodes[i]]= adjweights[i];
 					mh->seen[adjnodes[i]]=0;
 					
 					temp.destinationVertex = adjnodes[i];
@@ -68,17 +68,17 @@ void DijkstraMH(struct Graph* G, int source, MinHeap *mh, int distance[N], int p
 		
 		for (int i = 0; i < G->noOfEdges;i++){//getting the adjencent nodes of the source's adjencent node taken into consideration
 			
-			if (G->adjListarr[i].source == currentVertex){
-				adjnodes[nodesCounter] = G->adjListarr[i].destination;
-				adjcosts[nodesCounter] = G->adjListarr[i].cost;
+			if (G->pEdge[i].source == currentVertex){
+				adjnodes[nodesCounter] = G->pEdge[i].destination;
+				adjweights[nodesCounter] = G->pEdge[i].weight;
 				nodesCounter ++;
 			}
 		}	
 		
 		for (int i = 0; i < nodesCounter; i ++){
-			if( distance[adjnodes[i]] > distance[currentVertex] + adjcosts[i]){//Dijkstra minimum criteria
+			if( distance[adjnodes[i]] > distance[currentVertex] + adjweights[i]){//Dijkstra minimum criteria
 
-				distance[adjnodes[i]] = distance[currentVertex] + adjcosts[i];
+				distance[adjnodes[i]] = distance[currentVertex] + adjweights[i];
 				temp.destinationVertex = adjnodes[i];
 				temp.distance = distance[adjnodes[i]];
 				Insert( mh, temp );
@@ -88,7 +88,7 @@ void DijkstraMH(struct Graph* G, int source, MinHeap *mh, int distance[N], int p
 		}
 	}
 }
-void printResult(struct Graph* G, int distance[N],int source){
+void printResult(struct graph* G, int distance[N],int source){
 
 	for(int i=1;i<=G->noOfVertices;i++){
 		if( distance[i] != 0 && distance[i] != inf && i!=source)
@@ -96,15 +96,15 @@ void printResult(struct Graph* G, int distance[N],int source){
 	}
 	getch();
 }
-void getDistance(struct Graph* Graph, int source, int destination, MinHeap *mh, int distance[N], int predecesor[N]){
+void getDistance(struct graph* graph, int source, int destination, MinHeap *mh, int distance[N], int predecesor[N]){
 	
-	DijkstraMH( Graph, source, mh, distance, predecesor );
+	DijkstraMH( graph, source, mh, distance, predecesor );
 	printf("Distance from %d to %d is: %d", source, destination, distance[destination] );
 	getch();
 }
-void getPath(struct Graph* Graph, int source, int destination, MinHeap *mh, int distance[N], int predecesor[N]){
+void getPath(struct graph* graph, int source, int destination, MinHeap *mh, int distance[N], int predecesor[N]){
 	
-	DijkstraMH(Graph, source, mh, distance, predecesor);
+	DijkstraMH(graph, source, mh, distance, predecesor);
 	printf("The path from %d to %d is: ", source, destination);
 
 	int i = destination;
@@ -126,25 +126,25 @@ void getPath(struct Graph* Graph, int source, int destination, MinHeap *mh, int 
 	printf("%d", destination);
 	getch();
 }
-bool hasNegativeCosts(struct Graph* G){
+bool hasNegativeweights(struct graph* G){
 	bool ok=false;
-	int adjcosts[N],nodesCounter=0;
+	int adjweights[N],nodesCounter=0;
 		
-	for(int j = 0; j <= G->noOfVertices; j ++ ){//getting the adjencent nodes' costs of every node
+	for(int j = 0; j <= G->noOfVertices; j ++ ){//getting the adjencent nodes' weights of every node
 		for (int i = 0; i < G->noOfEdges; i ++)
 
-			if (G->adjListarr[i].source == j){
-				adjcosts[nodesCounter] = G->adjListarr[i].cost;
+			if (G->pEdge[i].source == j){
+				adjweights[nodesCounter] = G->pEdge[i].weight;
 				nodesCounter ++;
 			}		
 		for (int i=0;i<nodesCounter;i++){
-			if(adjcosts[i]< 0)
+			if(adjweights[i]< 0)
 				ok = true;
 		}
 	}
 	return ok;
 }
-void Dijkstra(struct Graph* G, int source, int distance[N], int predecesor[N]){
+void Dijkstra(struct graph* G, int source, int distance[N], int predecesor[N]){
 
 	int currentVertex, count, visited[100], min;
 
@@ -157,9 +157,9 @@ void Dijkstra(struct Graph* G, int source, int distance[N], int predecesor[N]){
 	distance[source]=0;
 	
 	for(int node = 0; node < G->noOfEdges; node ++){
-		if (G->adjListarr[node].source == source){
-			visited[G->adjListarr[node].destination] = 0;
-			distance[G->adjListarr[node].destination]=G->adjListarr[node].cost;
+		if (G->pEdge[node].source == source){
+			visited[G->pEdge[node].destination] = 0;
+			distance[G->pEdge[node].destination]=G->pEdge[node].weight;
 		}
 	}
 	count=2;
@@ -176,73 +176,73 @@ void Dijkstra(struct Graph* G, int source, int distance[N], int predecesor[N]){
 		
 		for(int node = 0; node <= G->noOfEdges; node ++){
 
-			if(G->adjListarr[node].source == currentVertex)
-				if((distance[currentVertex] + G->adjListarr[node].cost < distance[G->adjListarr[node].destination]) && !visited[G->adjListarr[node].destination])
+			if(G->pEdge[node].source == currentVertex)
+				if((distance[currentVertex] + G->pEdge[node].weight < distance[G->pEdge[node].destination]) && !visited[G->pEdge[node].destination])
 
-					distance[G->adjListarr[node].destination] = distance[currentVertex] + G->adjListarr[node].cost;
+					distance[G->pEdge[node].destination] = distance[currentVertex] + G->pEdge[node].weight;
 		}
 	}
 }
-void DFS(Graph *G, std::vector<int> &visited2, std::vector<int> &visitedCosts, int end, int cost, int prevCost, int &count, int distanceDFS[20]){
+void DFS(graph *G, std::vector<int> &visited2, std::vector<int> &visitedweights, int end, int weight, int prevweight, int &count, int distanceDFS[20]){
 
 	int back;
 	back = visited2.back();
 	std::vector<int> adjNodes = getAdjNodes(G, back);
-	std::vector<int> costs = getAdjCosts(G, back);
+	std::vector<int> weights = getAdjweights(G, back);
 
 	typedef std::vector<int>::iterator iterNodes;
-	typedef std::vector<int>::iterator iterCosts;
+	typedef std::vector<int>::iterator iterweights;
 
 	
-	for (std::pair<iterNodes, iterCosts> i(adjNodes.begin(), costs.begin()); i.first != adjNodes.end(); ++ i.first, ++ i.second){
+	for (std::pair<iterNodes, iterweights> i(adjNodes.begin(), weights.begin()); i.first != adjNodes.end(); ++ i.first, ++ i.second){
 	
 		int node = (*i.first);
 
-		if (nodeVisited2(visited2, node)) 
+		if (nodeVisited(visited2, node)) 
 			continue;
 
 		if (node == end){
 			visited2.push_back(*i.first);
-			prevCost = cost;
-			cost = cost + (*i.second);
-			visitedCosts.push_back(cost);
+			prevweight = weight;
+			weight = weight + (*i.second);
+			visitedweights.push_back(weight);
 			
 			count ++;
-			distanceDFS[count] = cost;
+			distanceDFS[count] = weight;
 
 			int n = (int)visited2.size() - 1;
 			visited2.erase(visited2.begin() + n);
-			int m = (int)visitedCosts.size() - 1;
-			visitedCosts.erase(visitedCosts.begin() + m);
-			cost = prevCost;
+			int m = (int)visitedweights.size() - 1;
+			visitedweights.erase(visitedweights.begin() + m);
+			weight = prevweight;
 		
 			break;
 		}
 	}
 
-	for (std::pair<iterNodes, iterCosts> i(adjNodes.begin(), costs.begin()); i.first != adjNodes.end(); ++ i.first, ++ i.second){
+	for (std::pair<iterNodes, iterweights> i(adjNodes.begin(), weights.begin()); i.first != adjNodes.end(); ++ i.first, ++ i.second){
 
 		int node = (*i.first);
 
-		if (nodeVisited2(visited2, node) || node == end)
+		if (nodeVisited(visited2, node) || node == end)
 			continue;
-		prevCost=cost;
-		cost = cost + (*i.second);
+		prevweight=weight;
+		weight = weight + (*i.second);
 		visited2.push_back(node);
 		
-		DFS(G, visited2,visitedCosts, end, cost, prevCost, count, distanceDFS);
+		DFS(G, visited2,visitedweights, end, weight, prevweight, count, distanceDFS);
 
 		int n = (int)visited2.size() - 1;
 		visited2.erase(visited2.begin() + n);
-		int m = (int)visitedCosts.size() - 1;
+		int m = (int)visitedweights.size() - 1;
 		if(m > 0)
-			visitedCosts.erase(visitedCosts.begin() + m);
-		cost = prevCost;
+			visitedweights.erase(visitedweights.begin() + m);
+		weight = prevweight;
 	}
 
 }
 
-int minDistance(struct Graph* graph, int distanceDFS[N]){
+int minDistance(struct graph* graph, int distanceDFS[N]){
 	int min = inf;
 	for(int j = 0;j <= graph->noOfVertices; j ++)
 		if(distanceDFS[j] < min && distanceDFS[j] > 0)
@@ -250,7 +250,7 @@ int minDistance(struct Graph* graph, int distanceDFS[N]){
 	return min;
 }
 
-void bruteForceDijkstra(int source, Graph *G, MinHeap *mh, int end, int cost, int prevCost, int &count, int distance[N], int predecesor[N]){
+void bruteForceDijkstra(int source, graph *G, MinHeap *mh, int end, int weight, int prevweight, int &count, int distance[N], int predecesor[N]){
 	int destination;
 	int minDistanceDFS[N] = {0}, distanceDFS[N] = {0};
 	int cnt = 0;
@@ -263,7 +263,7 @@ void bruteForceDijkstra(int source, Graph *G, MinHeap *mh, int end, int cost, in
 		}
 
 		std::vector<int> visited;
-		std::vector<int> visitedCosts;
+		std::vector<int> visitedweights;
 		
 		DijkstraMH( G, source, mh, distance, predecesor);
 		
@@ -273,7 +273,7 @@ void bruteForceDijkstra(int source, Graph *G, MinHeap *mh, int end, int cost, in
 		
 			if(destination != source){
 				visited.push_back(source);
-				DFS(G, visited, visitedCosts, destination, cost, prevCost, count, distanceDFS);
+				DFS(G, visited, visitedweights, destination, weight, prevweight, count, distanceDFS);
 				minDistanceDFS[destination] = minDistance( G, distanceDFS);
 
 				for(int i = 0; i <= G->noOfVertices; i ++)

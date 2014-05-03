@@ -1,7 +1,7 @@
 #ifndef __MinHeap_H__
 #define __MinHeap_H__
 
-#include"Graph.h"
+#include"graph.h"
 
 typedef struct MinHeapNode {
 	int destinationVertex, distance;

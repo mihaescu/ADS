@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include"MinHeap.h"
-#include "Graph.h"
+#include "graph.h"
 
 void Init(MinHeap *mh) {
 

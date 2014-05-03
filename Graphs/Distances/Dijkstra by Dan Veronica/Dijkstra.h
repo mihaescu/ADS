@@ -1,23 +1,23 @@
 #ifndef __DIJKSTRA_H__
 #define __DIJKSTRA_H__
 
-#include "Graph.h"
+#include "graph.h"
 #include "MinHeap.h"
 #include<vector>
 
 #define inf 999999
 
-bool hasNegativeCosts(struct Graph* Graph);
+bool hasNegativeweights(struct graph* graph);
 
-void DijkstraMH(struct Graph* Graph, int src,MinHeap *mh, int distance[N], int predecesor[N]);
-void Dijkstra(struct Graph* Graph, int src, int distance[N], int predecesor[N]);
+void DijkstraMH(struct graph* graph, int src,MinHeap *mh, int distance[N], int predecesor[N]);
+void Dijkstra(struct graph* graph, int src, int distance[N], int predecesor[N]);
 
-void getDistance(struct Graph* Graph, int source, int destination ,MinHeap *mh, int distance[N], int predecesor[N]);
-void getPath(struct Graph* Graph, int source, int destination ,MinHeap *mh, int distance[N], int predecesor[N]);
+void getDistance(struct graph* graph, int source, int destination ,MinHeap *mh, int distance[N], int predecesor[N]);
+void getPath(struct graph* graph, int source, int destination ,MinHeap *mh, int distance[N], int predecesor[N]);
 
-void DFS(Graph *G, std::vector<int> &visited2, std::vector<int> &visitedCosts, int end, int cost, int prevCost, int &count, int distanceDFS[N]);
-int minDistance(struct Graph* graph, int distanceDFS[N]);
-void bruteForceDijkstra(int source, Graph *G, MinHeap *mh, int end, int cost, int prevCost, int &count, int distance[N], int predecesor[N]);
+void DFS(graph *G, std::vector<int> &visited2, std::vector<int> &visitedweights, int end, int weight, int prevweight, int &count, int distanceDFS[N]);
+int minDistance(struct graph* graph, int distanceDFS[N]);
+void bruteForceDijkstra(int source, graph *G, MinHeap *mh, int end, int weight, int prevweight, int &count, int distance[N], int predecesor[N]);
 
-void printResult(struct Graph* Graph, int distance[N], int source);
+void printResult(struct graph* graph, int distance[N], int source);
  #endif

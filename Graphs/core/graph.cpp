@@ -1,6 +1,6 @@
 #include "graph.h"
 
-graph* loadGraph(FILE* fp)
+graph* loadgraph(FILE* fp)
 {
 	int V, E;
 	fscanf(fp, "%d", &V);
@@ -82,13 +82,13 @@ bool nodeVisited(std::vector<int> &visited, int node)
 	return false;															//else false
 }
 
-std::vector<int> getAdjCosts(Graph *G, int node) {
+std::vector<int> getAdjweights(graph *G, int node) {
 
-	std::vector<int> costs;
+	std::vector<int> weights;
 
-	for (int i = 0; i < G->E;i++)
-		if (G->adjListarr[i].source == node)
-			costs.push_back(G->adjListarr[i].cost);
+	for (int i = 0; i < G->noOfEdges;i++)
+		if (G->pEdge[i].source == node)
+			weights.push_back(G->pEdge[i].weight);
 	
-	return costs;
+	return weights;
 }

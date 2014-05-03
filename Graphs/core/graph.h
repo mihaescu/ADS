@@ -1,10 +1,11 @@
-#ifndef GRAPH_H
-#define GRAPH_H
+#ifndef graph_H
+#define graph_H
 
 #include<stdlib.h>
 #include<time.h>
 #include<vector>
-
+#define N 300
+#define M 300
 typedef struct edge																	//structure for edge
 {
 	int source;																		//source vertex
@@ -20,8 +21,8 @@ typedef struct graph																//structure for graph
 };
 
 
-Graph *GraphInit();
-graph* loadGraph(FILE* fp);															//creates the graph, V - number of vertices , E - number of Edges , returns the created graph
+graph *graphInit();
+graph* loadgraph(FILE* fp);															//creates the graph, V - number of vertices , E - number of Edges , returns the created graph
 
 void graphGenerator(char * fileName);												//function which generates directed graphs					
 
@@ -29,5 +30,5 @@ bool nodeVisited(std::vector<int> &visited, int node);								//function which f
 bool nodeVisited2(int visited[N], int node);
 std::vector<int> getAdjNodes(graph *G, int node);	
 
-std::vector<int> getAdjCosts(Graph *G, int node);
+std::vector<int> getAdjweights(graph *G, int node);
 #endif
