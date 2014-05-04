@@ -1,0 +1,4 @@
+10
+8
+abaabbaabb
+aabbaabb
