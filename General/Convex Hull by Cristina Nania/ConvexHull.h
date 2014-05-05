@@ -11,7 +11,7 @@ struct Point {
  
 	bool operator <(const Point &p) const {
 		return x < p.x || (x == p.x && y < p.y);
-	}
+	}// se scoate supraincarcarea op. <
 };
 
 coord2_t cross(const Point &O, const Point &A, const Point &B);

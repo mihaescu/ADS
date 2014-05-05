@@ -10,6 +10,7 @@ void main()
 	pFile = fopen ("input.txt" , "r");
 	if (pFile == NULL) perror ("Error opening file");
 	   else
+	   // trebuie functie de incarcare a datelor intr-o structura
 	   {
 		 while ( ! feof (pFile) )
 		 {

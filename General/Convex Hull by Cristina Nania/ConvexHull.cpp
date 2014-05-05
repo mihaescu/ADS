@@ -2,6 +2,7 @@
  
 // Returns a positive value, if OAB makes a counter-clockwise turn,
 // negative for clockwise turn, and zero if the points are collinear.
+// coord2_t trebuie int
 coord2_t cross(const Point &O, const Point &A, const Point &B)
 {
 	return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
@@ -9,12 +10,16 @@ coord2_t cross(const Point &O, const Point &A, const Point &B)
  
 // Returns a list of points on the convex hull in counter-clockwise order.
 // Note: the last point in the returned list is the same as the first one.
+
+//redenumire convexHull
+// trebuie cu tablou [], NU cu vector
 vector<Point> convex_hull(vector<Point> P)
 {
 	int n = P.size(), k = 0;
 	vector<Point> H(2*n);
  
 	// Sort points lexicographically
+	// se implementaza un qSort care se apeleaza si care este implementat in Sort
 	sort(P.begin(), P.end());
  
 	// Build lower hull
