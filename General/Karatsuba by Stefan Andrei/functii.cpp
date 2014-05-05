@@ -202,15 +202,15 @@ void sum(char *Number1_left,char *Number1_right,char *Number1_sum,int *length_Nu
 		Number1_sum[i]=0;
 	for(i=0;i<*length_Number1_left;i++)
 			{
-										 Number1_sum[i]=Number1_sum[i]+Number1_left[i];
-									     length_Number1_sum++;
+								Number1_sum[i]=Number1_sum[i]+Number1_left[i];
+							        length_Number1_sum++;
 			}
 	for(i=0;i<*length_Number1_right;i++)
 	{
 		t=0;
-										 Number1_sum[i]=Number1_sum[i]+Number1_right[i]+t;
-										 t=Number1_sum[i]/10;
-										 Number1_sum[i]=Number1_sum[i]%10;
+							        Number1_sum[i]=Number1_sum[i]+Number1_right[i]+t;
+							        t=Number1_sum[i]/10;
+								Number1_sum[i]=Number1_sum[i]%10;
 										
 		if(t)
 		Number1_sum[length_Number1_sum++]=t;							
