@@ -39,6 +39,7 @@ void search(char *pattern, char *text, int q){
  
 char* fileReader(){
 	char text[MAX];
+	//nu aici se specifica fisierul de intrare ... ci in main
 	FILE *fp = fopen("Input.in", "r+");
 	int counter = 0;
 
