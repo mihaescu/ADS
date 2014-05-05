@@ -7,7 +7,7 @@ typedef int coord_t;         // coordinate type
 typedef int coord2_t;  // must be big enough to hold 2*max(|coordinate|)^2
  
 struct Point {
-	coord_t x, y;
+	coord_t x, y;// trebuie int
  
 	bool operator <(const Point &p) const {
 		return x < p.x || (x == p.x && y < p.y);
