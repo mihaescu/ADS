@@ -178,8 +178,8 @@ void karatsuba(char *Number1,char *Number2,int *length_Number1,int *length_Numbe
 		
 	cout<<endl;
 
-    sum(Number1_left,Number1_right,Number1_sum,&length_Number1_left,&length_Number1_right);
-	length_Number1_sum=*length_Number1-1;//Number1_sum
+    sum(Number1_left,Number1_right,Number1_sum,&length_Number1_left,&length_Number1_right);//Number1_sum
+	length_Number1_sum=*length_Number1-1;
     sum(Number2_left,Number2_right,Number2_sum,&length_Number2_left,&length_Number2_right);//Number2_sum
 	length_Number2_sum=*length_Number2-1;
 	//Calculam x3
