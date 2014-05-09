@@ -14,7 +14,6 @@ void getNum(char *Number1,int *length_Number1)
 		
     for (i=*length_Number1; i<DIMMAX; i++)
 		Number1[i] = 0;
-	cout<<"Nr este: ";
 
 	for (i=*length_Number1-1; i>=0; i--)
 		cout<<(int) Number1[i];
@@ -79,6 +78,7 @@ void Produs_Clasic(char *Number1,char *Number2,char *produs,int *length_Number1,
 	
 	for (t=lgprodus-1; t>=0; t--)
 		cout<<(int)produs[t];
+	cout<<endl;
 	 
 }
 
@@ -118,9 +118,12 @@ void karatsuba(char *Number1,char *Number2,int *length_Number1,int *length_Numbe
 	char x1[NMAX];//Aleft*Bleft
 	char x2[NMAX];//Aright*Bright
 	char x3[NMAX];
+	char U[NMAX];
 	int length_x1=0;
 	int length_x2=0;
-	int length_x3=0;
+	int length_U;
+	char K[NMAX];
+	int length_K=0;
 	
 	
 	//Calculam Number1_left
@@ -131,9 +134,9 @@ void karatsuba(char *Number1,char *Number2,int *length_Number1,int *length_Numbe
 		length_Number1_left++;
 	}
 
-	cout<<"Nr1.left: ";
+	/*cout<<"Nr1.left: ";
 	for(t=length_Number1_left-1;t>=0;t--)
-		cout<<(int)Number1_left[t];
+		cout<<(int)Number1_left[t];*/
 	cout<<endl;
 	//Calculam Number2_left
 	length_Number2_left=0;
@@ -143,12 +146,13 @@ void karatsuba(char *Number1,char *Number2,int *length_Number1,int *length_Numbe
 		length_Number2_left++;
 	}	
 
-	cout<<"Nr2.left: ";
+	/*cout<<"Nr2.left: ";
 	for(t=length_Number2_left - 1;t>=0;t--)
-		cout<<(int)Number2_left[t];
+		cout<<(int)Number2_left[t];*/
 	cout<<endl;
 	//Calculam x1
 	Produs_Clasic(Number1_left,Number2_left,x1,&length_Number1_left,&length_Number2_left);
+	length_x1=length_Number1_left + length_Number2_left - 1;
 	cout<<endl;
 	//Calculam Number1_right
 	length_Number1_right=0;
@@ -157,9 +161,9 @@ void karatsuba(char *Number1,char *Number2,int *length_Number1,int *length_Numbe
 				Number1_right[length_Number1_right]=Number1[i];
 				length_Number1_right++;
 			}
-	cout<<"Nr1_right: ";
+	/*cout<<"Nr1_right: ";
 	for(t=length_Number1_right-1;t>=0;t--)
-				cout<<(int)Number1_right[t];
+				cout<<(int)Number1_right[t];*/
 	cout<<endl;
 	//Calculam Number2_right
 	length_Number2_right=0;
@@ -169,21 +173,26 @@ void karatsuba(char *Number1,char *Number2,int *length_Number1,int *length_Numbe
 				Number2_right[length_Number2_right]=Number2[j];
 				length_Number2_right++;
 			}	
-	cout<<"Nr2_right: ";
+	/*cout<<"Nr2_right: ";
 	for(t=length_Number2_right-1;t>=0;t--)
-				cout<<(int)Number2_right[t];
+				cout<<(int)Number2_right[t];*/
 	cout<<endl;
 	//Calculam x2
 	Produs_Clasic(Number1_right,Number2_right,x2,&length_Number1_right,&length_Number2_right);
+	length_x2=length_Number1_right + length_Number2_right - 1;
 		
 	cout<<endl;
 
-    sum(Number1_left,Number1_right,Number1_sum,&length_Number1_left,&length_Number1_right);//Number1_sum
-	length_Number1_sum=*length_Number1-1;
+    sum(Number1_left,Number1_right,Number1_sum,&length_Number1_left,&length_Number1_right);
+	length_Number1_sum=*length_Number1-1;//Number1_sum
     sum(Number2_left,Number2_right,Number2_sum,&length_Number2_left,&length_Number2_right);//Number2_sum
 	length_Number2_sum=*length_Number2-1;
 	//Calculam x3
-	Produs_Clasic(Number1_sum,Number2_sum,x3,&length_Number1_sum,&length_Number2_sum);
+	Produs_Clasic(Number1_sum,Number2_sum,U,&length_Number1_sum,&length_Number2_sum);
+	cout<<endl;
+	length_U=length_Number1_sum+length_Number2_sum - 1;
+	dif(U,x3,x2,x1,&length_U);
+	cout<<endl;
 }
  int powi(int number, int exponent)
 {
@@ -202,24 +211,53 @@ void sum(char *Number1_left,char *Number1_right,char *Number1_sum,int *length_Nu
 		Number1_sum[i]=0;
 	for(i=0;i<*length_Number1_left;i++)
 			{
-								Number1_sum[i]=Number1_sum[i]+Number1_left[i];
-							        length_Number1_sum++;
+										 Number1_sum[i]=Number1_sum[i]+Number1_left[i];
+									     length_Number1_sum++;
 			}
 	for(i=0;i<*length_Number1_right;i++)
 	{
 		t=0;
-							        Number1_sum[i]=Number1_sum[i]+Number1_right[i]+t;
-							        t=Number1_sum[i]/10;
-								Number1_sum[i]=Number1_sum[i]%10;
+										 Number1_sum[i]=Number1_sum[i]+Number1_right[i]+t;
+										 t=Number1_sum[i]/10;
+										 Number1_sum[i]=Number1_sum[i]%10;
 										
 		if(t)
 		Number1_sum[length_Number1_sum++]=t;							
 	}
 	if(Number1_sum[length_Number1_sum])
 		length_Number1_sum++;
-	cout<<"sum : ";
+	/*cout<<"sum : ";
 	
 	for(t=length_Number1_sum - 1 ; t>=0; t--)
-		cout<<(int)Number1_sum[t];
+		cout<<(int)Number1_sum[t];*/
 	cout<<endl;
  }
+
+void dif(char *U,char *x3,char *x2,char *x1,int *length_U)
+{   
+	int i;
+	int t=0;
+	
+	for(i=0;i<DIMMAX;i++)
+	x3[i]=0;
+	int length_x3=*length_U;
+	for(i=0;i<*length_U;i++)
+	{
+		x3[i]=U[i] - x2[i] - x1[i] + t;
+		if(x3[i]<0)
+		{
+			x3[i]=x3[i]+10;
+			t=-1;
+		}
+		else
+			t=0;
+	}
+	i=length_x3 - 1;
+	while(x3[i]==0)
+		i--;
+	length_x3=i+1;	
+	cout<<"Diferenta este : ";
+	for(t=length_x3 - 1;t>=0;t--)
+		cout<<(int) x3[t];
+	cout<<endl;
+}
