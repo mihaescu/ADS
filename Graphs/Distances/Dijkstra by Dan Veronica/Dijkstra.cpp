@@ -183,64 +183,6 @@ void Dijkstra(struct graph* G, int source, int distance[N], int predecesor[N]){
 		}
 	}
 }
-void DFS(graph *G, std::vector<int> &visited2, std::vector<int> &visitedweights, int end, int weight, int prevweight, int &count, int distanceDFS[20]){
-
-	int back;
-	back = visited2.back();
-	std::vector<int> adjNodes = getAdjNodes(G, back);
-	std::vector<int> weights = getAdjweights(G, back);
-
-	typedef std::vector<int>::iterator iterNodes;
-	typedef std::vector<int>::iterator iterweights;
-
-	
-	for (std::pair<iterNodes, iterweights> i(adjNodes.begin(), weights.begin()); i.first != adjNodes.end(); ++ i.first, ++ i.second){
-	
-		int node = (*i.first);
-
-		if (nodeVisited(visited2, node)) 
-			continue;
-
-		if (node == end){
-			visited2.push_back(*i.first);
-			prevweight = weight;
-			weight = weight + (*i.second);
-			visitedweights.push_back(weight);
-			
-			count ++;
-			distanceDFS[count] = weight;
-
-			int n = (int)visited2.size() - 1;
-			visited2.erase(visited2.begin() + n);
-			int m = (int)visitedweights.size() - 1;
-			visitedweights.erase(visitedweights.begin() + m);
-			weight = prevweight;
-		
-			break;
-		}
-	}
-
-	for (std::pair<iterNodes, iterweights> i(adjNodes.begin(), weights.begin()); i.first != adjNodes.end(); ++ i.first, ++ i.second){
-
-		int node = (*i.first);
-
-		if (nodeVisited(visited2, node) || node == end)
-			continue;
-		prevweight=weight;
-		weight = weight + (*i.second);
-		visited2.push_back(node);
-		
-		DFS(G, visited2,visitedweights, end, weight, prevweight, count, distanceDFS);
-
-		int n = (int)visited2.size() - 1;
-		visited2.erase(visited2.begin() + n);
-		int m = (int)visitedweights.size() - 1;
-		if(m > 0)
-			visitedweights.erase(visitedweights.begin() + m);
-		weight = prevweight;
-	}
-
-}
 
 int minDistance(struct graph* graph, int distanceDFS[N]){
 	int min = inf;

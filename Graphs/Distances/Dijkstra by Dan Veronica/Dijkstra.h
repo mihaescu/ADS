@@ -15,7 +15,6 @@ void Dijkstra(struct graph* graph, int src, int distance[N], int predecesor[N]);
 void getDistance(struct graph* graph, int source, int destination ,MinHeap *mh, int distance[N], int predecesor[N]);
 void getPath(struct graph* graph, int source, int destination ,MinHeap *mh, int distance[N], int predecesor[N]);
 
-void DFS(graph *G, std::vector<int> &visited2, std::vector<int> &visitedweights, int end, int weight, int prevweight, int &count, int distanceDFS[N]);
 int minDistance(struct graph* graph, int distanceDFS[N]);
 void bruteForceDijkstra(int source, graph *G, MinHeap *mh, int end, int weight, int prevweight, int &count, int distance[N], int predecesor[N]);
 

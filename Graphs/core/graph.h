@@ -27,8 +27,8 @@ graph* loadgraph(FILE* fp);															//creates the graph, V - number of ver
 void graphGenerator(char * fileName);												//function which generates directed graphs					
 
 bool nodeVisited(std::vector<int> &visited, int node);								//function which finds if "node" has been visited
-bool nodeVisited2(int visited[N], int node);
-std::vector<int> getAdjNodes(graph *G, int node);	
-
+std::vector<int> getAdjNodes(graph *G, int node);
 std::vector<int> getAdjweights(graph *G, int node);
+
+void DFS(graph *G, std::vector<int> &visited2, std::vector<int> &visitedweights, int end, int weight, int prevweight, int &count, int distanceDFS[N]);
 #endif
