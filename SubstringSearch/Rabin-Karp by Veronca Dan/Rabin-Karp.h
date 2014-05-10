@@ -1,11 +1,12 @@
 #pragma once
 
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
 #include<conio.h>
 #define d 256
 #define MAX 10000
 
-//spus ce reprezinta parametrii
-void search(char *pat, char *txt, int q);
-char* fileReader();
+void RabinKarp(char *pattern, char *text, int q);
+char* fileReader(FILE *fp);
+void bruteForceSubstringSearch(char *pattern, char *text);

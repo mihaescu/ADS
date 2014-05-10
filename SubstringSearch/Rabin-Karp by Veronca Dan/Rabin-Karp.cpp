@@ -1,14 +1,14 @@
 #include"Rabin-Karp.h"
 
-void search(char *pattern, char *text, int q){
+void RabinKarp(char *pattern, char *txt, int q){
 
     int M = strlen(pattern);
-    int N = strlen(text);
+    int N = strlen(txt);
     int i, j;
     int p = 0;  // hash value for pattern
     int t = 0; // hash value for text
     int h = 1;
-  
+	char *text = txt;
     for (i = 0; i < M-1; i++)
         h = (h*d)%q;
   
@@ -36,11 +36,28 @@ void search(char *pattern, char *text, int q){
         }
     }
 }
- 
-char* fileReader(){
+
+void bruteForceSubstringSearch(char *pattern, char *text){
+	int M = strlen(pattern);
+    int N = strlen(text);
+	int j = 0, i;
+	for (i = 0; i < N ; i++) {
+		if (text[i] == pattern[j]){
+			j++;
+			if (j == M){
+				printf("Pattern found at index %d \n", i-M+1);
+				j=0;
+			}
+		}
+		else 
+			j = 0; 		
+	}
+	if (j == 0)
+		 printf("Pattern not found.");
+}
+char* fileReader(FILE *fp){
 	char text[MAX];
-	//nu aici se specifica fisierul de intrare ... ci in main
-	FILE *fp = fopen("Input.in", "r+");
+	
 	int counter = 0;
 
 	while(!feof(fp) && counter < MAX-1) {
