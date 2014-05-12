@@ -1,6 +1,6 @@
 #include "graph.h"
 
-graph* loadgraph(FILE* fp)
+graph* loadGraph(FILE* fp)
 {
 	int V, E;
 	fscanf(fp, "%d", &V);
