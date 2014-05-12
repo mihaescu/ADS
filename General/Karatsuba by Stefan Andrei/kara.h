@@ -16,7 +16,7 @@
 using namespace std;
 
 void getOperand(char *operand,int *length);
-void karatsuba(char *Number1,char *Number2,int *length_Number1,int *length_Number2,char *produs);
+void karatsuba(char *N1,char *N2,int *lengthN1,int *lengthN2,char *result);
 
 /*utils*/
 int powi(int number, int exponent);
