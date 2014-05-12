@@ -17,7 +17,7 @@ void getNum(char *Number1,int *length_Number1)
 
 	for (i=*length_Number1-1; i>=0; i--)
 		cout<<(int) Number1[i];
-	cout<<endl;	
+	cout<<endl;	//prinft!!!
 }
 
 
@@ -99,20 +99,19 @@ void karatsuba(char *Number1,char *Number2,int *length_Number1,int *length_Numbe
 	int length_Number2_sum=0;
 	int max,m,m1,i,j,t;
 	
-	if(*length_Number1>*length_Number2)
-		{
-			max=*length_Number1;
-		}
-	else
-		{
-			max=*length_Number2;
-		}
+	if(*length_Number1 > *length_Number2){
+			max = *length_Number1;
+	}else{
+			max = *length_Number2;
+	}
 	
-	m=max;
-	if(m%2==1)
-		m=m+1;
-	m1=m/2;
-	int p=powi(10,m1);
+	m = max;
+	
+	if(m%2 == 1)
+		m = m+1;
+	m1 = m/2;
+	
+	int p = powi(10, m1);
 	
 	
 	char x1[NMAX];//Aleft*Bleft
@@ -139,6 +138,7 @@ void karatsuba(char *Number1,char *Number2,int *length_Number1,int *length_Numbe
 		cout<<(int)Number1_left[t];*/
 	cout<<endl;
 	//Calculam Number2_left
+	//TREBUIE O FUNCTIE!!!!
 	length_Number2_left=0;
 	for(j=m1;j<*length_Number2;j++)
 	{
