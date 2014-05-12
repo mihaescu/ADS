@@ -15,7 +15,8 @@
 
 using namespace std;
 
-void getOperand(char *operand,int *length);
+loadNumbers(File *input, char *A, char *B);
+//void getOperand(char *operand,int *length);
 void karatsuba(char *N1,char *N2,int *lengthN1,int *lengthN2,char *result);
 
 /*utils*/

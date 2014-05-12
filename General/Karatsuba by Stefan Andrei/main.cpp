@@ -6,7 +6,8 @@ int main(){
 
 	char a[NMAX],b[NMAX],produs[2*DIMMAX];
 	int lga,lgb,lgprodus;
-	
+	// trebuie citire din fisier!!!
+	//trebuie rezultatul in fisier!
 	cout<<"The first nr is: ";
 	getNum(a,&lga);
 	cout<<endl;
