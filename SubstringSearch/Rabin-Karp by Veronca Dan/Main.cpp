@@ -1,6 +1,13 @@
 #include"Rabin-Karp.h"
 
 int main(){
+/*
+trebuie sa avem:
+- pattern3Chars.in
+- text10kInts.in
+- result.out
+
+*/
 	char *pattern = "124";
 	FILE *fp = fopen("Input.in", "r+");
     int q = 101;
