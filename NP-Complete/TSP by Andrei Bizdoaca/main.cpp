@@ -27,7 +27,7 @@ int main() {
 
 	FILE *fin;
 	int i, j, index, count, cost, min, j_min, save_cost = MINIMUM, save_path[MAXNUM];
-	fin = fopen("eu.txt", "rt"); if (!fin) {
+	fin = fopen("euristic.txt", "rt"); if (!fin) {
 		printf("ERROR: cannot open file.\n");
 		return -1;
 	}
