@@ -1,14 +1,14 @@
 #include"header.h"
   
 //sorteaza vectorul si returneaza numarul de inversiuni
-int MergeSort(int a[], int n)
+int MergeSort(int a[], int n)//countInversions
 {
     int *temp = (int *)malloc(sizeof(int)*n);
-    return MergeAuxSort(a, temp, 0,n - 1);
+    return MergeAuxSort(a, temp, 0,n - 1);//sortAndMerge
 }
   
 //functie auxiliara care sorteaza vectorul si returneaza numarul de inversiuni
-int MergeAuxSort(int a[], int temp[], int left, int right)
+int MergeAuxSort(int a[], int temp[], int left, int right)sortAndMerge
 {
   int middle;
   int count_inversion = 0;
@@ -19,16 +19,16 @@ int MergeAuxSort(int a[], int temp[], int left, int right)
     middle = (right + left)/2;
   
    //count_inversion este suma dintre inversiunile celor doua part si a unirii lor
-   count_inversion  = MergeAuxSort(a, temp, left, middle);
-   count_inversion += MergeAuxSort(a, temp, middle+1, right);
+   countInversion  = MergeAuxSort(a, temp, left, middle);sortAndMerge
+   count_inversion += MergeAuxSort(a, temp, middle+1, right);sortAndMerge
   
-   count_inversion += Merge(a, temp, left, middle+1, right);
+   count_inversion += Merge(a, temp, left, middle+1, right);merge
   }
   return count_inversion;
 }
   
 //uneste cei doi vectori sortati(stanga si dreapta) si determina numarul de inversiuni
-int Merge(int a[], int temp[], int left, int middle, int right)
+int Merge(int a[], int temp[], int left, int middle, int right)//merge
 {
   int i;
   int j;
@@ -71,7 +71,7 @@ int Merge(int a[], int temp[], int left, int middle, int right)
 void LoadArray(int A[50],int &n)
 {
 
-  FILE *f=fopen("vector.txt","r");
+  FILE *f=fopen("vector.txt","r");//NU AICI!!!
 
 	if(f)
 	{
