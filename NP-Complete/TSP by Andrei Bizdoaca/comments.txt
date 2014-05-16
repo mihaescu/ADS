@@ -1,0 +1,10 @@
+- trebuie impartit in main, .h, .cpp, fara variabile in .h si .cpp
+- input-ul trebuie sa se cheme input7nodes.txt
+- trebuie o functie care incarca datele din fisier
+- trebuie o functie TSP (int N, int d[][], int path[], int *cost) unde:
+	- N este numarul de noduri
+	- d este matricea de adiacenta
+	- path este solutia
+	- cost este valoarea turului optim
+
+
