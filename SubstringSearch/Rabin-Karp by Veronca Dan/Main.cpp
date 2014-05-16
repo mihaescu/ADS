@@ -10,7 +10,7 @@ trebuie sa avem:
 */
 	char *pattern = "124";
 	FILE *fp = fopen("Input.in", "r+");
-    int q = 101;
+    int q = 101;//trebuie spus ce reprezinta
 	char* text = fileReader(fp);
 	RabinKarp(pattern, text, q);
     bruteForceSubstringSearch(pattern, text);

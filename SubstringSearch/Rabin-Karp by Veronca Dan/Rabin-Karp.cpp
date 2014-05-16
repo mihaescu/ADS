@@ -1,16 +1,26 @@
 #include"Rabin-Karp.h"
 
+/* functia trebuie sa returneze:
+	-1 daca nu se gaseste pattern in text
+	>0 adica i-ul
+	*/
+	
+	/*
+	trebuie sa avem o functie 
+		long modularHashing(char *key, int M);//key este stringul pentru care se calculeaza hash-ul si M este radix-ul lui pattern 
+	*/
+	
 void RabinKarp(char *pattern, char *txt, int q){
-
+	
     int M = strlen(pattern);
     int N = strlen(txt);
-    int i, j;
-    int p = 0;  // hash value for pattern
-    int t = 0; // hash value for text
+    int i, j;//trebuie explicat ce reprezinta fiecare
+    int patHash = 0;  // hash value for pattern
+    int txtHash = 0; 	// hash value for text
     int h = 1;
 	char *text = txt;
     for (i = 0; i < M-1; i++)
-        h = (h*d)%q;
+        h = (h * d) % q;
   
     for (i = 0; i < M; i++) {
         p = (d * p + pattern[i]) % q;
