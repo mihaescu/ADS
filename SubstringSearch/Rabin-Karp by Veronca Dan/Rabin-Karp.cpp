@@ -1,79 +1,53 @@
 #include"Rabin-Karp.h"
+#include "substringSearchCore.h"
 
-/* functia trebuie sa returneze:
-	-1 daca nu se gaseste pattern in text
-	>0 adica i-ul
-	*/
-	
-	/*
-	trebuie sa avem o functie 
-		long modularHashing(char *key, int M);//key este stringul pentru care se calculeaza hash-ul si M este radix-ul lui pattern 
-	*/
-	
-void RabinKarp(char *pattern, char *txt, int q){
-	
-    int M = strlen(pattern);
-    int N = strlen(txt);
-    int i, j;//trebuie explicat ce reprezinta fiecare
-    int patHash = 0;  // hash value for pattern
-    int txtHash = 0; 	// hash value for text
-    int h = 1;
-	char *text = txt;
-    for (i = 0; i < M-1; i++)
-        h = (h * d) % q;
-  
-    for (i = 0; i < M; i++) {
-        p = (d * p + pattern[i]) % q;
-        t = (d * t + text[i]) % q;
-    }
-  
-    for (i = 0; i <= N - M; i++) {
-        if ( p == t ) {
-            for (j = 0; j < M; j++)  
-                if (text[i+j] != pattern[j])
-                    break;
-            if (j == M)
-                 printf("Pattern found at index %d \n", i);
-            
-        }
-       
- 
-        if ( i < N-M ) {
-            t = (d*(t - text[i]*h) + text[i+M])%q;      
+/*
+Method that computes the modular hashing for a Text structure's test array
 
-            if(t < 0) 
-              t = (t + q); 
-        }
-    }
-}
+txt -  Text structure on whose text array the hash function will be executed
+patternLenght - the lenght of the pattern that will be searched for
+q - large prime number representing the hypothetical hash table size
 
-void bruteForceSubstringSearch(char *pattern, char *text){
-	int M = strlen(pattern);
-    int N = strlen(text);
-	int j = 0, i;
-	for (i = 0; i < N ; i++) {
-		if (text[i] == pattern[j]){
-			j++;
-			if (j == M){
-				printf("Pattern found at index %d \n", i-M+1);
-				j=0;
-			}
-		}
-		else 
-			j = 0; 		
+return - the hash value
+*/
+long modularHashing(struct Text &txt, int patternLenght, int q){
+	long h = 0;
+	for (int i = 0; i < patternLenght; i ++){
+		h = (txt.radix * h + txt.text[i]) % q;
 	}
-	if (j == 0)
-		 printf("Pattern not found.");
+	return h;
 }
-char* fileReader(FILE *fp){
-	char text[MAX];
-	
-	int counter = 0;
 
-	while(!feof(fp) && counter < MAX-1) {
-		fscanf(fp, "%s", &text[counter]);
-		counter++;
-	}	
-	fclose(fp);
-	return &text[0];
+/*
+Method that executed the rabin-Karp algorithm
+
+pattern - the Text structure that contains the pattern that will be searched for
+txt - the Text structure in which the pattern will be searched for
+q - large prime number representing the hypothetical hash table size
+
+return - 0, if not found,
+	   - the index, if found
+*/
+
+int RabinKarp(struct Text &pattern, struct Text &txt, int q){
+	
+	txt.hash = modularHashing(txt, pattern.lenght, q);	
+	pattern.hash = modularHashing(pattern,pattern.lenght, q);
+	int RM = 1;
+	
+	for (int i = 1; i <= pattern.lenght - 1; i ++)
+		RM = (txt.radix * RM) % q;
+	
+	if(pattern.hash == txt.hash)
+		return 0;
+	
+	for(int i = pattern.lenght; i < txt.lenght; i ++){
+		
+		txt.hash = (txt.hash + q - RM * txt.text[i-pattern.lenght] % q) % q;
+		txt.hash = (txt.hash * txt.radix + txt.text[i]) % q;
+		
+		if(pattern.hash == txt.hash){
+			return i - pattern.lenght + 1;	
+		}
+	}
 }

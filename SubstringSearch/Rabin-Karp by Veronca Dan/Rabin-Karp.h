@@ -3,11 +3,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include<conio.h>
 
-#define d 256//trebuie spus ce reprezinta. pentru numere cred ca trebuie sa fie 10
-#define MAX 10000 //ce reprezinta?
+#define MAX 10000 //max dimension for the input file
 
-
-void RabinKarp(char *pattern, char *text, int q);
-
+int RabinKarp(struct Text &pattern, struct Text &txt, int q);
+long modularHashing(struct Text &txt, int lenght, int q);

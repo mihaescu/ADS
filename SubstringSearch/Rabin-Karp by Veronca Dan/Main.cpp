@@ -1,19 +1,23 @@
 #include"Rabin-Karp.h"
+#include"substringSearchCore.h"
+#include<malloc.h>
 
 int main(){
-/*
-trebuie sa avem:
-- pattern3Chars.in
-- text10kInts.in
-- result.out
+	long q = 101;//large prime number representing the hypothetical hash table size
+	
+	FILE *fp = fopen("text10kInts.in", "r+");
+	FILE *fp2 = fopen("pattern3Ints.in", "r+");
+	FILE *fp3 = fopen("results.out","w");
 
-*/
-	char *pattern = "124";
-	FILE *fp = fopen("Input.in", "r+");
-    int q = 101;//trebuie spus ce reprezinta
-	char* text = fileReader(fp);
-	RabinKarp(pattern, text, q);
-    bruteForceSubstringSearch(pattern, text);
-    getch();
+	Text pattern;
+	initPattern(pattern,fp2);
+	int M = pattern.lenght;
+	Text txt;
+	initText(txt,M,fp);
+	
+	int resultRK = RabinKarp(pattern, txt, q);
+	int resultBF = bruteForceSubstringSearch(pattern, txt);
+	  
+	printResult(resultRK, resultBF, fp3);
     return 0;
 }
