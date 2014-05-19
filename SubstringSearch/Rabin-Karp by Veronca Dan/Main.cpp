@@ -5,9 +5,9 @@
 int main(){
 	long q = 101;//large prime number representing the hypothetical hash table size
 	
-	FILE *fp = fopen("text10kInts.in", "r+");
-	FILE *fp2 = fopen("pattern3Ints.in", "r+");
-	FILE *fp3 = fopen("results.out","w");
+	FILE *textF = fopen("text10kInts.in", "r+");
+	FILE *patF = fopen("pattern3Ints.in", "r+");
+	FILE *resultF = fopen("results.out","w");
 
 	Text pattern;
 	initPattern(pattern,fp2);
