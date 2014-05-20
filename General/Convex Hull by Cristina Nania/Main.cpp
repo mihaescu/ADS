@@ -7,7 +7,10 @@ void main()
 	FILE * pFile;
 	int c=0;
 	int n=0;
-
+	
+	/*
+	loadPoints("input.txt", D, n);
+	*/
 	pFile = fopen ("input.txt" , "r");
 	if (pFile == NULL) perror ("Error opening file");
 	   else
@@ -21,7 +24,9 @@ void main()
 		 fclose (pFile);
 	   }
 		
-	convex_hull(D,n);
+	sol = convexHull(D,n);
+	
+	/* displaySolution(sol, n)*/
 	for(c = 0; c < n; c++)
 	{
 		a = D[c];

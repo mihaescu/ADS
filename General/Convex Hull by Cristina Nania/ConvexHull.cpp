@@ -2,6 +2,10 @@
  
 // Returns a positive value, if OAB makes a counter-clockwise turn,
 // negative for clockwise turn, and zero if the points are collinear.
+
+/*
+	O, A, B - ....
+*/
 int cross(const Point &O, const Point &A, const Point &B)
 {
 	return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
@@ -9,7 +13,11 @@ int cross(const Point &O, const Point &A, const Point &B)
  
 // Returns a list of points on the convex hull in counter-clockwise order.
 // Note: the last point in the returned list is the same as the first one.
-void convex_hull(Point P[],int &n)
+/*
+	P[] - ....
+	n - ....
+*/
+void convexHull(Point P[],int &n)
 {
 	int k = 0,i=0,j=0,t=0;
 	Point H[40], aux;

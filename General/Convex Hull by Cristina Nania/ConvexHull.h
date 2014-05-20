@@ -10,5 +10,13 @@ struct Point {
 	}
 };
 
+/*  abbout function & parametrers*/
 int cross(const Point &O, const Point &A, const Point &B);
-void convex_hull(Point P[],int &n);
+/*  
+	- about function & parametrers
+	- function should return the solution
+
+*/
+Point[] convexHull(Point P[],int &n);
+
+void displaySolution(Point[] solution);
