@@ -1,18 +1,14 @@
-#include <algorithm>
-#include <vector>
-#include<iostream>
-using namespace std;
+#include<stdio.h>
+#include<stdlib.h>
  
-typedef int coord_t;         // coordinate type
-typedef int coord2_t;  // must be big enough to hold 2*max(|coordinate|)^2
  
 struct Point {
-	coord_t x, y;// trebuie int
+	int x, y;
  
 	bool operator <(const Point &p) const {
 		return x < p.x || (x == p.x && y < p.y);
-	}// se scoate supraincarcarea op. <
+	}
 };
 
-coord2_t cross(const Point &O, const Point &A, const Point &B);
-vector<Point> convex_hull(vector<Point> P);
+int cross(const Point &O, const Point &A, const Point &B);
+void convex_hull(Point P[],int &n);

@@ -2,28 +2,29 @@
 
 void main()
 {
-	vector<Point> D;
+	Point D[20];
 	Point a;
 	FILE * pFile;
-  
-	
+	int c=0;
+	int n=0;
+
 	pFile = fopen ("input.txt" , "r");
 	if (pFile == NULL) perror ("Error opening file");
 	   else
-	   // trebuie functie de incarcare a datelor intr-o structura
 	   {
 		 while ( ! feof (pFile) )
 		 {
 		   fscanf(pFile, "%d %d", &a.x, &a.y);
-		   D.push_back(a);
+		   D[n]=a;
+		   n++;
 		 }
 		 fclose (pFile);
 	   }
 		
-	D = convex_hull(D);
-	for(int i = 0; i < D.size(); i++)
+	convex_hull(D,n);
+	for(c = 0; c < n; c++)
 	{
-		a = D.at(i);
-		cout<<"x= "<<a.x<<" y= "<<a.y<<endl;
+		a = D[c];
+		printf("x=%d  y=%d \n",a.x,a.y);
 	}
 }
