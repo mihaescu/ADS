@@ -175,7 +175,7 @@ void karatsuba(char *N1,char *N2,int *lengthN1,int *lengthN2,char *result)
 	printf("%d",rightN2[t]);
 	printf("\n");
 
-	//split_Numbers(N1,N2,lengthN1,lengthN2);
+	split_Numbers(N1,N2,lengthN1,lengthN2);
 	
  	classicProduct(leftN1,leftN2,x1,&lengthLeftN1,&lengthLeftN2);   //x1 = leftN1 * leftN2
 
