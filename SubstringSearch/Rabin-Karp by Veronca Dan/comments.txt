@@ -1,5 +1,3 @@
-- baza 10: textul este format din 0, 1, ..9
-- NU 256, pt. ca nu tratam cifrele ca si caractere
 - trebuie fara spatii
 - creare exemplu de rulare detaliat
 

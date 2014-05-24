@@ -9,7 +9,7 @@ lenght- the pattern's lenght
 fp - the input file pointer
 */
 void initText(struct Text &txt, int lenght, FILE *fp){
-	txt.radix = 256;
+	txt.radix = 10;
 	txt.text = loadText(fp);
 	txt.lenght = strlen(txt.text);
 }
@@ -20,7 +20,7 @@ pattern - the Text structure to be initialized
 fp - the input file pointer
 */
 void initPattern(struct Text &pattern, FILE *fp2){
-	pattern.radix = 256;
+	pattern.radix = 10;
 	pattern.text = loadText(fp2);
 	pattern.lenght = strlen(pattern.text);
 }

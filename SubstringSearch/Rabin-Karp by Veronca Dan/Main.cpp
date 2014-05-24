@@ -7,17 +7,17 @@ int main(){
 	
 	FILE *textF = fopen("text10kInts.in", "r+");
 	FILE *patF = fopen("pattern3Ints.in", "r+");
-	FILE *resultF = fopen("results.out","w");
+	FILE *resultF = fopen("results.out", "w");
 
 	Text pattern;
-	initPattern(pattern,fp2);
+	initPattern(pattern, patF);
 	int M = pattern.lenght;
 	Text txt;
-	initText(txt,M,fp);
+	initText(txt, M, textF);
 	
 	int resultRK = RabinKarp(pattern, txt, q);
 	int resultBF = bruteForceSubstringSearch(pattern, txt);
 	  
-	printResult(resultRK, resultBF, fp3);
+	printResult(resultRK, resultBF, resultF);
     return 0;
 }
