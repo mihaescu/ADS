@@ -1,50 +1,5 @@
 #include "Prim.h"
-
-void loadData(int a[50][50], int Q[50], int H[50], int &n, int &r){
-
-	int x, y, c ,i, j;
-
-	FILE* f;
-	f = fopen("cost.txt", "r");
-
-	if(f != NULL){
-
-		fscanf(f, "%d", &n);
-		fscanf(f, "%d", &r);
-
-	init(a,Q,H,n);				//initializing with 0
-
-		for(i = 1; i <= n; i++){
-
-			for(j = 1; j <= n; j++){
-
-				if(i != j){
-
-					a[i][j] = VMAX;
-
-				}
-
-			}
-
-		}
-
-		while(!feof(f)){
-
-			i++;
-			fscanf(f, "%d %d %d", &x,&y,&c);
-			a[x][y] = a[y][x] = c;
-		
-		}
-		
-		for(i = 1; i <= n; i++)
-
-			if(i != r)
-
-				Q[i] = r;
-
-		fclose(f);
-	}
-}
+#include <D:\Work\C++ - Visual\Proiecte\MST Reload\MST Reload\Graph.h>
 
 int findEdge(int a[50][50], int Q[50], int n){
 
@@ -98,11 +53,50 @@ void displayMST(int H[50], int n){
 			printf("[%d <-> %d] \n", H[i], i);
 }
 
-int prim(int a[50][50], int Q[50], int H[50], int &n, int &r){
+int prim(int a[50][50], int Q[50], int H[50], int &n, int &r, graph *G){
 
-	int j, k = 0, ct = 0;
+//-----------------------------------------Loading--------------------------------------
+	int k = 0, ct = 0;
 
-	loadData(a,Q,H,n,r);			//loading input
+	int x, y, c ,i, j;
+
+	n = G->noOfVertices;
+	r = 1;
+
+	init(a,Q,H,n);	
+
+	for(i = 1; i <= n; i++){
+
+			for(j = 1; j <= n; j++){
+
+				if(i != j){
+
+					a[i][j] = VMAX;
+
+				}
+
+			}
+
+		}
+
+	for(i = 0; i < n; i++){
+
+		x = G->pEdge[i].source;
+		y = G->pEdge[i].destination;
+		c = G->pEdge[i].weight;
+
+		a[x][y] = a[y][x] = c;
+		
+		}
+
+	for(i = 1; i <= n; i++)
+
+			if(i != r)
+
+				Q[i] = r;
+
+//----------------------------------------------EnD------------------------------------------------
+//---------------------------------------------Prim------------------------------------------------
 
 	while(k < n-1){					//until there are still more edges
 		
