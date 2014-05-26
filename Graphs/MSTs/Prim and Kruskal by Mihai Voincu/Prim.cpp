@@ -1,6 +1,11 @@
 #include "Prim.h"
 #include "Graph.h"		//--core--
 
+/*
+- nu trebuie in clar pentru 50 de noduri ... 
+- trebuie spus ce reprezinta variabilele a, q, h, etc...
+*/
+
 int findEdge(int a[50][50], int Q[50], int n){
 
 	int i,j,min = VMAX;

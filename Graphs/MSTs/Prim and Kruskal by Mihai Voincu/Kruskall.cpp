@@ -1,7 +1,7 @@
 #include "Kruskall.h"
 #include "Graph.h"  //--core--
 
-void krusk(int &n, int &m, int L[20], graph *G){
+void kruskal(int &n, int &m, int L[20], graph *G){
 //--------------------------------------Preparation----------------------------------
 	int i = 1, j, k = 0, ct = 0;
 	int x, y;

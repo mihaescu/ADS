@@ -5,6 +5,6 @@
 #include <iostream>
 #include "Graph.h"		//--From Core--
 
-void krusk(int &n, int &m, int L[20], graph *G);
+void kruskal(int &n, int &m, int L[20], graph *G);
 
 #endif
