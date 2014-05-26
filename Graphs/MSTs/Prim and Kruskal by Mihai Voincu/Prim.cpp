@@ -1,5 +1,5 @@
 #include "Prim.h"
-#include "Graph.h"
+#include "Graph.h"		//--core--
 
 int findEdge(int a[50][50], int Q[50], int n){
 
