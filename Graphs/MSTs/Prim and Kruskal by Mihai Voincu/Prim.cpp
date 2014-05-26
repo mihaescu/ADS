@@ -1,5 +1,5 @@
 #include "Prim.h"
-#include <D:\Work\C++ - Visual\Proiecte\MST Reload\MST Reload\Graph.h>
+#include "Graph.h"
 
 int findEdge(int a[50][50], int Q[50], int n){
 
