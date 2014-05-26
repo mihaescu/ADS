@@ -1,5 +1,5 @@
 #include "Kruskall.h"
-#include "Graph.h"
+#include "Graph.h"  //--core--
 
 void krusk(int &n, int &m, int L[20], graph *G){
 //--------------------------------------Preparation----------------------------------
