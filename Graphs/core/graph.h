@@ -6,6 +6,8 @@
 #include<vector>
 #define N 300
 #define M 300
+
+/* for adjacency list representation */
 typedef struct edge																	//structure for edge
 {
 	int source;																		//source vertex
@@ -19,6 +21,9 @@ typedef struct graph																//structure for graph
 	int noOfEdges;																	//number of edges
 	edge *pEdge;																	//edges
 };
+
+/* for adjacency matrix representation*/
+
 
 
 /* CORE*/

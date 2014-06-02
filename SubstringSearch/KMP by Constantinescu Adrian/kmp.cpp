@@ -8,11 +8,11 @@ void Read_String(char S[], FILE *f)
 
 void KMP_Matcher_NFA(char String[], char SubString[], int L_String, int L_SubString)
 {
-	int *Prefix = (int *)malloc(L_SubString * sizeof(int));
+	int *prefix = (int *)malloc(L_SubString * sizeof(int));
 
-	Compute_Prefix(SubString,L_SubString, Prefix);
+	computePrefix(SubString,L_SubString, Prefix);
 	//Nr of characters matched
-	int ch_matched=0;
+	int chMatched = 0;
 
 	for(int i=1; i<=L_String; i++) //Scan the text from left to right
 	{
@@ -53,7 +53,7 @@ void Compute_Prefix(char SubString[], int L_SubString, int Prefix[])
 }
 
 
-void KMP_Matcher_DFA(char String[], char SubString[], int L_String, int L_SubString)
+void buildDFA(char String[], char SubString[], int L_String, int L_SubString)
 {
 	// Build DFA from pattern.
 
