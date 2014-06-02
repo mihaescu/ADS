@@ -5,8 +5,12 @@ int main() {
 	FILE *fo = fopen("output.out", "w");
 	FILE *fi = fopen("input.in", "r");
 	int **flow, **capacities, i, j;
+	
+	//trebuie citire cu functie din core!
 	flow = (int **)calloc(NODES, sizeof(int*));
 	capacities = (int **)calloc(NODES, sizeof(int*));
+	
+	
 	for (i = 0; i < NODES; i++) {
 		flow[i] = (int *)calloc(NODES, sizeof(int));
 		capacities[i] = (int *)calloc(NODES, sizeof(int));
