@@ -2,30 +2,14 @@
 
 
 int main() {
-	FILE *fo = fopen("output.out", "w");
-	FILE *fi = fopen("input.in", "r");
-	int **flow, **capacities, i, j;
-	
-	//trebuie citire cu functie din core!
-	flow = (int **)calloc(NODES, sizeof(int*));
-	capacities = (int **)calloc(NODES, sizeof(int*));
-	
-	
-	for (i = 0; i < NODES; i++) {
-		flow[i] = (int *)calloc(NODES, sizeof(int));
-		capacities[i] = (int *)calloc(NODES, sizeof(int));
-	}
-	while (!feof(fi)){
-		fscanf(fi, "%d%d", &i, &j);
-		fscanf(fi, "%d", &capacities[i][j]);
-	}
-	fclose(fi);
-
+	FILE *fo = fopen("data/output.out", "w");
+	FILE *fi = fopen("data/undirectedWeighted50N97V.txt", "r");
+	adjMatrixGraph *G = loadAdjMatrixGraph(fi);
 	fprintf(fo, "Capacity matrix:\n");
-	printMatrix(fo, capacities);
-	fprintf(fo, "Max Flow:\n%d\n", pushRelabel(capacities, flow, 0, 5));
+	printCapacitiesMatrix(fo, G);
+	fprintf(fo, "Max Flow:\n%d\n", pushRelabel(G, 0, 49));
 	fprintf(fo, "Flow matrix:\n");
-	printMatrix(fo, flow);
+	printFlowMatrix(fo, G);
 	fclose(fo);
 	return 0;
 }

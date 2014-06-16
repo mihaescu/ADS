@@ -1,37 +1,37 @@
 #include"PushRelabel.h"
 
-void push(int** capacity, int** flow, int* excess, int u, int v) {
-	int send = MIN(excess[u], capacity[u][v] - flow[u][v]);
-	flow[u][v] += send;
-	flow[v][u] -= send;
+void push(adjMatrixGraph *G, int* excess, int u, int v) {
+	int send = MIN(excess[u], G->capacities[u][v] - G->flow[u][v]);
+	G->flow[u][v] += send;
+	G->flow[v][u] -= send;
 	excess[u] -= send;
 	excess[v] += send;
 }
 
-void relabel(int** capacity, int** flow, int* height, int u) {
+void relabel(adjMatrixGraph *G, int* height, int u) {
 	int v;
 	int minHeight = INFINITE;
-	for (v = 0; v < NODES; v++) {
-		if (capacity[u][v] - flow[u][v] > 0) {
+	for (v = 0; v < G->noOfVertices; v++) {
+		if (G->capacities[u][v] - G->flow[u][v] > 0) {
 			minHeight = MIN(minHeight, height[v]);
 			height[u] = minHeight + 1;
 		}
 	}
 }
 
-void discharge(int** capacity, int** flow, int* excess, int* height, int* seen, int u) {
+void discharge(adjMatrixGraph *G, int* excess, int* height, int* seen, int u) {
 	while (excess[u] > 0) {
-		if (seen[u] < NODES) {
+		if (seen[u] < G->noOfVertices) {
 			int v = seen[u];
-			if ((capacity[u][v] - flow[u][v] > 0) && (height[u] > height[v])){
-				push(capacity, flow, excess, u, v);
+			if ((G->capacities[u][v] - G->flow[u][v] > 0) && (height[u] > height[v])){
+				push(G, excess, u, v);
 			}
 			else{
 				seen[u] += 1;
 			}
 		}
 		else {
-			relabel(capacity, flow, height, u);
+			relabel(G, height, u);
 			seen[u] = 0;
 		}
 	}
@@ -46,33 +46,36 @@ void moveToFront(int i, int* list) {
 	list[0] = temp;
 }
 
-int pushRelabel(int** capacity, int** flow, int source, int sink) {
+int pushRelabel(adjMatrixGraph *G, int source, int sink) {
+	if (G == 0){
+		exit(0);
+	}
 	int *excess, *height, *list, *seen, p;
 
-	excess = (int *)calloc(NODES, sizeof(int));
-	height = (int *)calloc(NODES, sizeof(int));
-	list = (int *)calloc(NODES, sizeof(int));
-	seen = (int *)calloc(NODES, sizeof(int));
+	excess = (int *)calloc(G->noOfVertices, sizeof(int));
+	height = (int *)calloc(G->noOfVertices, sizeof(int));
+	list = (int *)calloc(G->noOfVertices, sizeof(int));
+	seen = (int *)calloc(G->noOfVertices, sizeof(int));
 
 
-	for (int i = 0, p = 0; i < NODES; i++){
+	for (int i = 0, p = 0; i < G->noOfVertices; i++){
 		if ((i != source) && (i != sink)) {
 			list[p] = i;
 			p++;
 		}
 	}
 
-	height[source] = NODES;
+	height[source] = G->noOfVertices;
 	excess[source] = INFINITE;
-	for (int i = 0; i < NODES; i++){
-		push(capacity, flow, excess, source, i);
+	for (int i = 0; i < G->noOfVertices; i++){
+		push(G, excess, source, i);
 	}
 
 	p = 0;
-	while (p < NODES - 2) {
+	while (p < G->noOfVertices - 2) {
 		int u = list[p];
 		int old_height = height[u];
-		discharge(capacity, flow, excess, height, seen, u);
+		discharge(G, excess, height, seen, u);
 		if (height[u] > old_height) {
 			moveToFront(p, list);
 			p = 0;
@@ -82,8 +85,8 @@ int pushRelabel(int** capacity, int** flow, int source, int sink) {
 		}
 	}
 	int maxflow = 0;
-	for (int i = 0; i < NODES; i++){
-		maxflow += flow[source][i];
+	for (int i = 0; i < G->noOfVertices; i++){
+		maxflow += G->flow[source][i];
 	}
 
 	free(list);
@@ -94,12 +97,3 @@ int pushRelabel(int** capacity, int** flow, int source, int sink) {
 	return maxflow;
 }
 
-void printMatrix(FILE* f, int** matrix) {
-	int i, j;
-	for (i = 0; i < NODES; i++) {
-		for (j = 0; j < NODES; j++){
-			fprintf(f, "%d\t", matrix[i][j]);
-		}
-		fprintf(f, "\n");
-	}
-}

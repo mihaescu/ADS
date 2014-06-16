@@ -1,13 +1,13 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include "core/graph.h"
 
-#define NODES 6
 #define MIN(X,Y) ((X) < (Y) ? (X) : (Y))
 #define INFINITE 10000000
 
-void push(int** capacity, int** flow, int* excess, int u, int v);
-void relabel(int** capacity, int** flow, int* height, int u);
-void discharge(int * const * capacity, int** flow, int* excess, int* height, int* seen, int u);
-void moveToFront(int i, int* list);
-int pushRelabel(int** capacity, int** flow, int source, int sink);
-void printMatrix(FILE* f, int** matrix);
+/*Push-Relabel function 
+@param adjMatrixGraph *G - flow network
+@param int source - start node
+@param int sink - destination node
+
+@return maxFlow value
+*/
+int pushRelabel(adjMatrixGraph *G, int source, int sink);
