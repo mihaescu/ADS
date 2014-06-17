@@ -6,101 +6,94 @@ void Read_String(char S[], FILE *f)
 }
 
 
-void KMP_Matcher_NFA(char String[], char SubString[], int L_String, int L_SubString)
+void KMP_Matcher_NFA(char text[], char pattern[], int textLen, int patternLen)
 {
-	int *prefix = (int *)malloc(L_SubString * sizeof(int));
+	int *prefix = (int *)malloc(patternLen * sizeof(int));
 
-	computePrefix(SubString,L_SubString, Prefix);
+	buildNFA(pattern, patternLen, prefix);
+
 	//Nr of characters matched
-	int chMatched = 0;
+	int chMatched=0;
 
-	for(int i=1; i<=L_String; i++) //Scan the text from left to right
+	for (int i = 1; i <= textLen; i++) //Scan the text from left to right
 	{
 		//Next character does not match
-		while(ch_matched>0 && SubString[ch_matched+1] != String[i])
-		{
-			ch_matched=Prefix[ch_matched]; 
-		}
+		while (chMatched > 0 && pattern[chMatched + 1] != text[i])
+			chMatched = prefix[chMatched];
 		
 		//Next character match
-		if(SubString[ch_matched+1] == String[i])
-			ch_matched++;	
+		if (pattern[chMatched + 1] == text[i])
+			chMatched++;
 
-		//Is all of SubString matched?
-		if(ch_matched==L_SubString-1)        
+		//Is all of pattern matched?
+		if (chMatched == patternLen - 1)
 		{
-			printf("Pattern occurs with shift %d-%d\n", i-L_SubString + 1,i);
+			printf("Pattern occurs with shift %d-%d\n", i - patternLen + 1, i);
 			//Look for the next match
-			ch_matched=Prefix[ch_matched]; 
+			chMatched = prefix[chMatched];
 		}	
 	}
 }
-void Compute_Prefix(char SubString[], int L_SubString, int Prefix[])
+void buildNFA(char pattern[], int L_SubString, int prefix[])
 {
-	Prefix[1]=0;
+	prefix[1] = 0;
 	int k=0;
 
 	for(int q=2; q<=L_SubString; q++)
 	{
-		while(k>0 && SubString[k+1]!=SubString[q])
+		while (k>0 && pattern[k + 1] != pattern[q])
 		{
-			k=Prefix[k];
+			k = prefix[k];
 		}
-		if(SubString[k+1]==SubString[q])
+		if (pattern[k + 1] == pattern[q])
 			k++;
-		Prefix[q]=k;
+		prefix[q] = k;
 	}
 }
 
 
-void buildDFA(char String[], char SubString[], int L_String, int L_SubString)
+void KMP_Matcher_DFA(char text[], char pattern[], int textLen, int patternLen)
 {
-	// Build DFA from pattern.
-
+	int i, j, offset;
+	int N = textLen;
+	int M = patternLen;
 	int dfa[256][Max_Dim];
+
 	for (int i = 0; i < 256; i++)
 		for (int j = 0; j < Max_Dim; j++)
 			dfa[i][j] = 0;
 
+	buildDFA(pattern, patternLen, dfa);
 
-	int M = L_SubString;
-	int R = 256;
-
-	dfa[SubString[0]][0] = 1;
-
-	for (int X = 0, j = 1; j < M; j++)
-	{
-		for (int c = 0; c < R; c++)
-			dfa[c][j] = dfa[c][X];		// Copy mismatch cases
-		dfa[SubString[j]][j] = j + 1;   // Set match case
-		X = dfa[SubString[j]][X];       // Update restart state
-	}
-
-	Print(String, SubString, L_String, L_SubString, dfa);
-}
-void Print(char String[], char SubString[], int L_String, int L_SubString, int dfa[256][Max_Dim])
-{
-	printf("%s\n", String);
-
-	int offset = Search(String, L_String, L_SubString, dfa);
+	// Simulate operation of DFA on txt
+	printf("%s\n", text);
+	
+	for (i = 0, j = 0; i < N && j < M; i++)
+		j = dfa[text[i]][j];
+	if (j == M)
+		offset = i - M;  // found (hit end of pattern)
+	else
+		offset =  N;     // not found (hit end of text)
 
 	for (int i = 0; i < offset; i++)
 		printf(" ");
 
-	printf("%s\n", SubString);
+	printf("%s\n", pattern);
 }
-int Search(char String[], int L_String, int L_SubString, int dfa[256][Max_Dim])
+void buildDFA(char pattern[], int patternLen, int dfa[256][Max_Dim])
 {
-	// Simulate operation of DFA on txt
+	// Build DFA from pattern.
 
-	int i,j;
-	int N = L_String;
-	int M = L_SubString;
-	for (i = 0, j = 0; i < N && j < M; i++)
-		j = dfa[String[i]][j];
-	if (j == M) 
-		return i - M; // found (hit end of pattern)
-	else 
-		return N;     // not found (hit end of text)
+	int M = patternLen;
+	int R = 256;
+
+	dfa[pattern[0]][0] = 1;
+
+	for (int X = 0, j = 1; j < M; j++)
+	{
+		for (int c = 0; c < R; c++)
+			dfa[c][j] = dfa[c][X];    // Copy mismatch cases
+		dfa[pattern[j]][j] = j + 1;   // Set match case
+		X = dfa[pattern[j]][X];       // Update restart state
+	}
 }
-
