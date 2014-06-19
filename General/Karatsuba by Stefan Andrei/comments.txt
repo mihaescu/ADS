@@ -1,1 +1,11 @@
 --comments!
+- trebuie citire din fisier
+- trebuie citire cu printf si scanf ... nu cu cin/cout
+- in definitia functiei: 
+	void karatsuba(char *N1,char *N2,int *lengthN1,int *lengthN2,char *result)
+	nu vad nimic de result! ... Unde se calculeaza??
+- de asemenea, aceasta functie este cam nemodularizata ... cred ca ar fi buna o refactorizare
+
+
+
+
