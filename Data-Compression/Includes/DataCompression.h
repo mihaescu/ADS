@@ -17,6 +17,13 @@ public:
     ~DC();
 	
 private slots:
+
+    /* App's buttons:
+    Browse - browse for a .txt file and open it
+    Huffman - calls the Huffman Encoding function
+    LZW - calls the LZW Encoding function
+    RLE - calls the  RLE Encoding function */
+    
     void on_Browse_clicked();
 
     void on_Huffman_clicked();
