@@ -185,7 +185,7 @@ void karatsuba(char *N1,char *N2,int *lengthN1,int *lengthN2,char *result)
 	
 	length_x2 = lengthRightN1 + lengthRightN2 -1;
 
-	cout<<endl;
+	printf("\n\n\n");
 
     sum(leftN1,rightN1,sumN1,&lengthLeftN1,&lengthRightN1);//sumN1
 	
