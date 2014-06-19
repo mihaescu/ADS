@@ -1,2 +1,8 @@
 --here are comments!
 --one more ...
+
+-- NU trebuie in clar dimensiunea tabloului ... adica 50
+-- ai doua headere si trebuie doar unul!
+-- am impresia ca sunt doua versiuni puse in fisiere diferite. Ideea este sa pastrezi acolo DOAR ceea ce trebuie ... adica sa scrii peste! ... iar la un moment dat sa vezi schibarile care s-au facut.
+
+
