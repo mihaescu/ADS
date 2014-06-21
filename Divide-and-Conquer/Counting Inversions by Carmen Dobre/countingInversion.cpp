@@ -68,7 +68,7 @@ int merge(int a[], int temp[], int left, int middle, int right)
   return countInversion;
 }
 
-void loadData(FILE *f,int a[50],int &n)
+void loadData(FILE *f,int a[],int &n)
 {
 
 	if(f)
