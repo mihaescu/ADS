@@ -268,7 +268,7 @@ void sum(char *leftN1,char *rightN1,char *sumN1,int *lengthLeftN1,int *lengthRig
 										 sumN1[i] = sumN1[i] % 10;
 
 		if( t )
-		sumN1[lengthSumN1++] = t;							
+			 sumN1[i + 1] = sumN1[i + 1] + t;							
 	}
 	if( sumN1[lengthSumN1] )
 		lengthSumN1++;
