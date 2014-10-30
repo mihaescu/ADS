@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include"msp.h"
 
-
+ 
 int main(){
 
 	graph *g;
