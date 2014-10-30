@@ -68,8 +68,10 @@ void findPath(graph *g, int *dist, int *pred, int source){
 	int i;
 	for (i = 1; i <= g->vertices; i++)
 	if (dist[i] != INT_MAX){
-		printf("Cost from %d to %d is %d. The path is: ", source, i, dist[i]);
+		printf("Distance from %d to %d is %d. The path is: ", source, i, dist[i]);
 		path(pred, source, i);
 		printf("\n");
 	}
+	else
+		printf("Distance from %d to %d is infinite\n", source, i);
 }
