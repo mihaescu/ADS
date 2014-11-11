@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
+#include<string.h>
+#define MAX 10001
 
 typedef struct NodeB_
 {
@@ -22,4 +24,9 @@ void DisplayTree(NodeB *node, int lever);
 void DeleteKey(NodeB **node, int key);
 int FindMinimum(NodeB *node);
 
+void Generate(FILE *f1,int n, int a, int b);
+void LoadData(FILE *f1,int n,int vect[MAX]);
+
+
 #endif
+
