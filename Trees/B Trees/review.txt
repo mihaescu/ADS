@@ -1,0 +1,28 @@
+11.11.2014
+btree.h:
+	- structura se redenumeste NodeB (nu NodeB_)
+	- NodeB *Insert(NodeB *root, int x);//x se redenumeste newKey
+	- toate variabilele trebuie sa aiba denumiri semnificative
+	- la fiecare functie (si la stuctura nodului) trebuie sa explici ce reprezinta fiecare parametru
+	- toate comentariile si denumirile se fac in engleza
+	- trebuie sa ai trei sectiuni: 
+		structure: adica structura
+		data managers: adica Generate, LoadData(), ... ce mai apare
+		main functions: 
+		util functions:
+		test functions:
+		//vezi pe github
+
+btree.c:
+	- review, trebuie numai limba engleza si variabile cu denumiri semnificative!
+	
+main.c:
+	- implementarile functiilor Generate() si LoadData() trebuie mutate in btree.c
+	- aici ai 2 lucruri:
+		1) un scenariu tipic de utilizare:
+			Load->Build->Display->Search->Insert->Display->Delete->Display
+			pentru 10-15 chei
+		2) cateva scenarii de testare pentru diferite date de intrare (100, 1000, 10k, 100k chei)
+			aici trebuie sa ai o functie care valideaza ca arborele B este ok:
+				- are toate cheile
+				- respecta toate regulile
