@@ -82,6 +82,14 @@ int main()
 
 	}
 
+	cout << "\n\nPAGE RANK SCORE:\n\n";
+	for (i = 0; i < nodes; i++)
+	{
+		cout << "PageRank Score for node " << i+1 << " is: " << r[i][0] << "\n";
+	}
+
+	cout << endl;
+
 	deallocMatrix (M, nodes);
 	deallocMatrix (r, nodes);
 	deallocMatrix (c, nodes);
