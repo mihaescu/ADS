@@ -2,96 +2,54 @@
 
 int main()
 {
-	int i, nodes, links;
+	FILE* fin = NULL;
+	char c, file[20];
 
-	//f.open ("PageRank.txt");
+	do
+	{
+		printf("If you want to generate a new test file, press 1;\n");
+		printf("If you want to load an existing test file, press 2.\n");
 
-	//f >> nodes >> links;
-	cout << "Number of webpages: ";
-	cin >> nodes;
-		
-	cout << "Number of links: ";
-	cin	>> links;
+		scanf (" %c", &c);
 
-	double **adj = new double*[nodes];
-	double **M= new double*[nodes];
-	double **B= new double*[nodes];
-	double **r= new double*[nodes];
-	double **c= new double*[nodes];
+		if (c == '1')
+		{
+			printf ("\nGenerate a new test file. Input its name:\n");
+			scanf ("%s", file);
+			graphGenerator (file);
+		}
 
-	allocMatrix (adj, nodes, nodes);
-	allocMatrix (M, nodes, nodes);
-	allocMatrix (B, nodes, nodes);
-	allocMatrix (r, nodes, 1);
-	allocMatrix (c, nodes, 1);
+		else if (c == '2')
+		{
+			printf ("\nLoad an existing test file. Input its name:\n");
+			scanf ("%s", file);
+		}
+		else
+		{
+			printf("\nThe key you pressed is not a valid option. Please press 1 or 2.\n");
+		}
+	} while ((c != '1') && (c != '2'));
 
-	readWebGraph (adj, nodes, links);
-
-	cout << "\n Adjacency Matrix:\n";
-	displayMatrix (adj, nodes, nodes);
-
-	matrixSum (M, adj, nodes);
-	deallocMatrix (adj, nodes);
+	fin = fopen (file, "r");
 	
-	createMatrix_M (M, nodes);
-
-	createMatrix_B (B, nodes);
-
-	matrixSum (M, B, nodes);
-	deallocMatrix (B, nodes);
-
-	cout << "\n Matrix A = M + B \n";
-	displayMatrix (M, nodes, nodes);
-
-	createVector_R (r, nodes);
-
-	bool ok = 0;
-	int steps = 0;
-
-	while (!ok)
+	if (fin == NULL) 
+		perror ("Error opening file");
+	else
 	{
-		matrixMultiply (M, r, c, nodes);
+		int nodes;
 
-		ok = 1;
-		for (i = 0; i < nodes; i++)
-		{
-			double x = floor(c[i][0] * eps + 0.5) / eps; 
-			double y = floor(r[i][0] * eps + 0.5) / eps;
+		double **M = loadGraph (fin, nodes);
+		M = createMatrix_M (M, nodes);
 
-			if (x != y)
-			{	
-				ok = 0;
-				i = nodes;
-			}
-		}
+		double **B = createMatrix_B (nodes);
+		M = matrixSum (M, B, nodes);
+		deallocMatrix <double> (B, nodes);
 
-		double s = 0.0;
+		printf("\n Matrix A = M + B \n");
+		displayMatrix (M, nodes, nodes);
 
-		cout << setw(2) << ++steps << ")";
-		for (i = 0; i < nodes; i++)
-		{
-			cout << setw(9) << setprecision(3) << c[i][0];
-			s += c[i][0];
-		}
-		cout << setw(9) << setprecision(3) << s << endl;
-
-		for (i = 0; i < nodes; i++)
-		{
-			r[i][0] = c[i][0];
-		}
-
+		powerIteration (M, nodes);
 	}
 
-	cout << "\n\nPAGE RANK SCORE:\n\n";
-	for (i = 0; i < nodes; i++)
-	{
-		cout << "PageRank Score for node " << i+1 << " is: " << r[i][0] << "\n";
-	}
-
-	cout << endl;
-
-	deallocMatrix (M, nodes);
-	deallocMatrix (r, nodes);
-	deallocMatrix (c, nodes);
 	return 0;
 }
