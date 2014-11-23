@@ -14,45 +14,45 @@ struct MinHeap{
 };
 
 
-void push(MinHeap& minHeap, int _distance, int _destination,int _predecesor){
+void push(deque<MinHeapNode>& minHeap, int _distance, int _destination, int _predecesor){
 	MinHeapNode node;
 	node.distance = _distance;
 	node.destination = _destination;
 	node.predecesor = _predecesor;
 
-	minHeap.MH.push_back(node);
-	int i = minHeap.MH.size() - 1;
+	minHeap.push_back(node);
+	int i = minHeap.size() - 1;
 
-	while (i >= 0 && minHeap.MH[(i - 1) / 2].distance > minHeap.MH[i].distance){
-		MinHeapNode aux = minHeap.MH[(i - 1) / 2];
-		minHeap.MH[(i - 1) / 2] = minHeap.MH[i];
-		minHeap.MH[i] = aux;
+	while (i >= 0 && minHeap[(i - 1) / 2].distance > minHeap[i].distance){
+		MinHeapNode aux = minHeap[(i - 1) / 2];
+		minHeap[(i - 1) / 2] = minHeap[i];
+		minHeap[i] = aux;
 		i = (i - 1) / 2;
 	}
 
 }
 
-MinHeapNode pop(MinHeap& minHeap){
-	MinHeapNode top = minHeap.MH[0];
-	minHeap.MH[0] = minHeap.MH[minHeap.MH.size() - 1];
-	minHeap.MH.pop_back();
+MinHeapNode pop(deque<MinHeapNode>& minHeap){
+	MinHeapNode top = minHeap[0];
+	minHeap[0] = minHeap[minHeap.size() - 1];
+	minHeap.pop_back();
 
-	int i = 0, size = minHeap.MH.size();
+	int i = 0, size = minHeap.size();
 
 	while ((2 * i + 1)<size){
-		MinHeapNode  aux = minHeap.MH[i];
+		MinHeapNode  aux = minHeap[i];
 
 		if ((2 * i + 2) < size){
-			if (minHeap.MH[2 * i + 1].distance > minHeap.MH[2 * i + 2].distance && minHeap.MH[i].distance > minHeap.MH[2 * i + 2].distance){
-				minHeap.MH[i] = minHeap.MH[2 * i + 2];
-				minHeap.MH[2 * i + 2] = aux;
+			if (minHeap[2 * i + 1].distance > minHeap[2 * i + 2].distance && minHeap[i].distance > minHeap[2 * i + 2].distance){
+				minHeap[i] = minHeap[2 * i + 2];
+				minHeap[2 * i + 2] = aux;
 				i = 2 * i + 2;
 				continue;
 			}
 		}
-		if (minHeap.MH[i].distance > minHeap.MH[2 * i + 1].distance){
-			minHeap.MH[i] = minHeap.MH[2 * i + 1];
-			minHeap.MH[2 * i + 1] = aux;
+		if (minHeap[i].distance > minHeap[2 * i + 1].distance){
+			minHeap[i] = minHeap[2 * i + 1];
+			minHeap[2 * i + 1] = aux;
 			i = 2 * i + 1;
 		}
 		else
@@ -114,7 +114,7 @@ int *createPred(graph *g){
 void MSP(graph *g, int source, int *dist, int *pred){
 	bool *set = (bool*)malloc((g->vertices + 1)*sizeof(bool));
 	int i, E = g->edges, V = g->vertices, u, j, v, distU;
-	MinHeap minHeap;
+	deque<MinHeapNode> minHeap;
 
 
 	for (i = 0; i <= V; i++){  //am schimbat aici < cu <=
@@ -145,7 +145,7 @@ void MSP(graph *g, int source, int *dist, int *pred){
 		u = top.destination;
 		set[u] = true;
 
-	} while (minHeap.MH.size() > 0);
+	} while (minHeap.size() > 0);
 
 
 
