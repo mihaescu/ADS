@@ -5,10 +5,6 @@
 using namespace std;
 
 
-struct MinHeapNode{
-	int distance, destination,predecesor;
-};
-
 struct MinHeap{
 	deque<MinHeapNode> MH;
 };
