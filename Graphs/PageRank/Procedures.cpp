@@ -2,41 +2,45 @@
 
 void graphGenerator (char *fileName)
 {
-	FILE* fin = fopen (fileName, "w");
 	srand ((unsigned int)time (NULL));
 
-	int nodes = rand() % 10 + 1;
-	int dsrdLink = nodes * nodes - 2 * nodes + 1;
-	int links = rand() % dsrdLink + (2 * nodes);
+	FILE* fin = fopen (fileName, "w");
 
-	fprintf (fin, "%d %d\n", nodes, links);
-
-	int** mat = new int*[links];
-
-	for (int i = 0; i < links; i++)
+	if (fin == NULL) 
+		perror ("\nError opening file\n");
+	else
 	{
-		mat[i] = new int[2];
-		bool exists;
+		int nodes = rand() % 9 + 2;
+		int links = rand() % (nodes * nodes - 1) + 1;
 
-		do
+		fprintf (fin, "%d %d\n", nodes, links);
+
+		int** mat = new int*[links];
+
+		for (int i = 0; i < links; i++)
 		{
-			mat[i][0] = rand() % nodes;
-			mat[i][1] = rand() % nodes;
+			mat[i] = new int[2];
+			bool exists;
 
-			exists = false;
+			do
+			{
+				mat[i][0] = rand() % nodes;
+				mat[i][1] = rand() % nodes;
 
-			for (int j = 0; j < i; j++)
-				if (mat[i][0] == mat[j][0] && mat[i][1] == mat[j][1])
-					exists = true;
-		} while (exists == true);
+				exists = false;
 
-		fprintf (fin, "%d %d\n", mat[i][0], mat[i][1]);
+				for (int j = 0; j < i; j++)
+					if (mat[i][0] == mat[j][0] && mat[i][1] == mat[j][1])
+						exists = true;
+			} while (exists == true);
+
+			fprintf (fin, "%d %d\n", mat[i][0], mat[i][1]);
+		}
+
+		fclose(fin);
+		deallocMatrix <int> (mat, links);
 	}
-
-	fclose(fin);
-	deallocMatrix <int> (mat, links);
 }
-
 
 double **loadGraph (FILE* fin, int &nodes)
 {
@@ -62,6 +66,25 @@ double **loadGraph (FILE* fin, int &nodes)
 	return M;
 }
 
+void displayGraph (FILE* fin, char* fileName)
+{
+	fin = fopen (fileName, "r");
+	printf ("\n   Loaded graph for PageRank computation:\n");
+
+	int nodes, links, x, y;
+	fscanf (fin, "%d %d", &nodes, &links);
+	printf ("\nNumber of nodes: %d\nNumber of links: %d\n\nLinks:\n", nodes, links);
+
+	for (int i = 0; i < links; i++)
+	{
+		fscanf (fin, "%d %d", &x, &y);
+		printf ("%d %d\n", x, y);
+	}
+
+	fclose(fin);
+}
+
+
 template <class T>
 void deallocMatrix (T **a, int m) 
 {
@@ -71,7 +94,7 @@ void deallocMatrix (T **a, int m)
 	delete[] a;
 }
 
-void displayMatrix (double **a, int m, int n)
+void displayMatrix (double **a, const int &m, const int &n)
 {
 	for (int i = 0; i < m; i++)
 	{
@@ -82,7 +105,7 @@ void displayMatrix (double **a, int m, int n)
 	printf("\n");
 }
 
-double **createMatrix_M (double **a, int n)
+double **createMatrix_M (double **a, const int &n)
 {
 	int i, j;
 	double aux;
@@ -113,22 +136,25 @@ double **createMatrix_M (double **a, int n)
 			if (a[j][i] && sum[i])
 				a[j][i] /= sum[i];
 
-	delete[] sum;
-
-	printf("\n Matrix M:\n");
-	displayMatrix (a, n, n);
+	/*printf("\n Matrix M:\n");
+	displayMatrix (a, n, n);*/
 
 	for (i = 0; i < n; i++)
 		for (j = 0; j < n; j++)
-			a[i][j] *= beta;
+			if (sum[i])
+				a[j][i] *= beta;
+			else
+				a[j][i] = (1.0 / n) * beta;  // in case Matrix M has dead-ends, make it stochastic
 
-	printf("\n Matrix M after random teleports (probability = %.2f):\n", beta);
-	displayMatrix (a, n, n);
+	delete[] sum;
+
+	/*printf("\n Matrix M after random teleports (probability = %.2f):\n", beta);
+	displayMatrix (a, n, n);*/
 
 	return a;
 }
 
-double** createMatrix_B (int n)          
+double** createMatrix_B (const int &n)          
 {
 	int i, j;
 
@@ -140,20 +166,20 @@ double** createMatrix_B (int n)
 		for (j = 0; j < n; j++)
 			B[i][j] = 1.0 / n;
 
-	printf("\n Matrix B:\n");
-	displayMatrix (B, n, n);
+	/*printf("\n Matrix B:\n");
+	displayMatrix (B, n, n);*/
 
 	for (i = 0; i < n; i++)
 		for (j = 0; j < n; j++)
 			B[i][j] *= 1.0 - beta;
 
-	printf("\n Matrix B after random teleports (probability = %.2f):\n", 1.0 - beta);
-	displayMatrix (B, n, n);
+	/*printf("\n Matrix B after random teleports (probability = %.2f):\n", 1.0 - beta);
+	displayMatrix (B, n, n);*/
 
 	return B;
 }
 
-double **matrixSum (double **a, double **b, int n)
+double **matrixSum (double **a, double **b, const int &n)
 {
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < n; j++)
@@ -162,7 +188,7 @@ double **matrixSum (double **a, double **b, int n)
 	return a;
 }
 
-double **createVector_R (int n)              // create the column-vector (eigenvector) R
+double **createVector_R (const int &n)              
 {
 	int i;
 
@@ -173,13 +199,13 @@ double **createVector_R (int n)              // create the column-vector (eigenv
 	for (i = 0; i < n; i++)
 		r[i][0] = 1.0 / n;
 
-	printf("\n Vector r:\n");
-	displayMatrix (r, n, 1);
+	/*printf("\n Vector r:\n");
+	displayMatrix (r, n, 1);*/
 
 	return r;
 }
 
-double **matrixMultiply (double **a, double **b, double **c, int n)
+double **matrixMultiply (double **a, double **b, double **c, const int &n)
 {
 	double s;
 	for (int i = 0; i < n; i++)
@@ -193,7 +219,7 @@ double **matrixMultiply (double **a, double **b, double **c, int n)
 	return c;
 }
 
-void powerIteration (double **M, int n)
+void powerIteration (double **M, const int &n)
 {
 	bool ok = 0;
 	int steps = 0, i;
@@ -204,7 +230,7 @@ void powerIteration (double **M, int n)
 
 	double **r = createVector_R (n);
 
-	printf ("\t Power Iteration:\n\n");
+	//printf ("\n\t Power Iteration:\n\n");
 	while (!ok)
 	{
 		c = matrixMultiply (M, r, c, n);
@@ -222,30 +248,25 @@ void powerIteration (double **M, int n)
 			}
 		}
 
-		double s = 0.0;
-
-		printf("%2d) ", ++steps);
+		steps++;
+		//printf("\n%2d) ", steps);
 
 		for (i = 0; i < n; i++)
 		{
-			printf("%.3f  ", c[i][0]);
-			s += c[i][0];
+			//printf(" %.3f ", c[i][0]);
 			r[i][0] = c[i][0];
 		}
-		
-		printf("%.3f \n", s);
 	}
 
-	printf("\n\n\t PAGE RANK SCORE:\n\n");
+	printf("\n\n\t PAGE RANK SCORE [after %d iterations]:\n\n", steps);
 	for (i = 0; i < n; i++)
 	{
 		printf("PageRank Score for node %d is: %.3f\n", i+1, r[i][0]);
 	}
 
-	deallocMatrix (M, n);
-	deallocMatrix (r, n);
-	deallocMatrix (c, n);
+	deallocMatrix <double> (M, n);
+	deallocMatrix <double> (r, n);
+	deallocMatrix <double> (c, n);
 
 	printf("\n");
 }
-
