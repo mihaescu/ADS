@@ -1,4 +1,4 @@
-Wikipedia test (http://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/PageRanks-Example.svg/758px-PageRanks-Example.svg.png):
+Wikipedia test ( http://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/PageRanks-Example.svg/758px-PageRanks-Example.svg.png ):
 {
   1 = A
   2 = D
