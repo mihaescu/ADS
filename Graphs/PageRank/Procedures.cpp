@@ -136,9 +136,6 @@ double **createMatrix_M (double **a, const int &n)
 			if (a[j][i] && sum[i])
 				a[j][i] /= sum[i];
 
-	/*printf("\n Matrix M:\n");
-	displayMatrix (a, n, n);*/
-
 	for (i = 0; i < n; i++)
 		for (j = 0; j < n; j++)
 			if (sum[i])
@@ -147,10 +144,7 @@ double **createMatrix_M (double **a, const int &n)
 				a[j][i] = (1.0 / n) * beta;  // in case Matrix M has dead-ends, make it stochastic
 
 	delete[] sum;
-
-	/*printf("\n Matrix M after random teleports (probability = %.2f):\n", beta);
-	displayMatrix (a, n, n);*/
-
+	
 	return a;
 }
 
@@ -166,15 +160,9 @@ double** createMatrix_B (const int &n)
 		for (j = 0; j < n; j++)
 			B[i][j] = 1.0 / n;
 
-	/*printf("\n Matrix B:\n");
-	displayMatrix (B, n, n);*/
-
 	for (i = 0; i < n; i++)
 		for (j = 0; j < n; j++)
 			B[i][j] *= 1.0 - beta;
-
-	/*printf("\n Matrix B after random teleports (probability = %.2f):\n", 1.0 - beta);
-	displayMatrix (B, n, n);*/
 
 	return B;
 }
@@ -198,9 +186,6 @@ double **createVector_R (const int &n)
 
 	for (i = 0; i < n; i++)
 		r[i][0] = 1.0 / n;
-
-	/*printf("\n Vector r:\n");
-	displayMatrix (r, n, 1);*/
 
 	return r;
 }
