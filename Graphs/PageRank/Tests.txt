@@ -1,4 +1,14 @@
-Wikipedia test:
+Wikipedia test (http://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/PageRanks-Example.svg/758px-PageRanks-Example.svg.png):
+{
+  1 = A
+  2 = D
+  3 to 7 = purple nodes
+  8 = F
+  9 = C
+  10 = B
+  11 = E
+}
+
 11 16
 1 0
 1 9
