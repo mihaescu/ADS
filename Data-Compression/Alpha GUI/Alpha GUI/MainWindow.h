@@ -7,13 +7,13 @@ using namespace std;
 
 namespace AlphaGUI {
 
-	
+
 	using namespace System;
-using namespace System::ComponentModel;
-using namespace System::Collections;
-using namespace System::Windows::Forms;
-using namespace System::Data;
-using namespace System::Drawing;
+	using namespace System::ComponentModel;
+	using namespace System::Collections;
+	using namespace System::Windows::Forms;
+	using namespace System::Data;
+	using namespace System::Drawing;
 	/// <summary>
 	/// Summary for MainWindow
 	/// </summary>
@@ -42,7 +42,7 @@ using namespace System::Drawing;
 	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
 	private: System::Windows::Forms::TextBox^  textBox1;
 	private: System::Windows::Forms::Button^  button1;
-	protected: 
+	protected:
 
 
 	private:
@@ -99,9 +99,19 @@ using namespace System::Drawing;
 
 		}
 #pragma endregion
-	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) 
-			 {
+	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e)
+	{
+		 this->openFileDialog1->ShowDialog();
+		 String^ path = this->openFileDialog1->FileName;
+		 textBox1->Text = path;
+		 string ox = "";
+		 for (int i = 0; i < textBox1->TextLength; i++) {
+			 ox += textBox1->Text[i];
+		 }
 
-			 }
+		 textBox1->Clear();
+	}
+
+
 	};
 }
