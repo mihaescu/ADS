@@ -69,19 +69,23 @@ double **loadGraph (FILE* fin, int &nodes)
 void displayGraph (FILE* fin, char* fileName)
 {
 	fin = fopen (fileName, "r");
-	printf ("\n   Loaded graph for PageRank computation:\n");
 
-	int nodes, links, x, y;
-	fscanf (fin, "%d %d", &nodes, &links);
-	printf ("\nNumber of nodes: %d\nNumber of links: %d\n\nLinks:\n", nodes, links);
-
-	for (int i = 0; i < links; i++)
+	if (fin != NULL) 
 	{
-		fscanf (fin, "%d %d", &x, &y);
-		printf ("%d %d\n", x, y);
-	}
+		printf ("\n   Loaded graph for PageRank computation:\n");
 
-	fclose(fin);
+		int nodes, links, x, y;
+		fscanf (fin, "%d %d", &nodes, &links);
+		printf ("\nNumber of nodes: %d\nNumber of links: %d\n\nLinks:\n", nodes, links);
+
+		for (int i = 0; i < links; i++)
+		{
+			fscanf (fin, "%d %d", &x, &y);
+			printf ("%d %d\n", x, y);
+		}
+
+		fclose(fin);
+	}
 }
 
 
@@ -158,7 +162,7 @@ double **createMatrix_M (double **a, const int& n, const double& beta)
 	return a;
 }
 
-double** createMatrix_B (const int &n, const double& beta)          
+double** createMatrix_B (const int& n, const double& beta)          
 {
 	int i, j;
 
