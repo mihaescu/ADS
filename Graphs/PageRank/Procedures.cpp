@@ -85,7 +85,7 @@ void displayGraph (FILE* fin, char* fileName)
 }
 
 
-template <class T>
+template <typename T>
 void deallocMatrix (T **a, int m) 
 {
 	for (int i = 0; i < m; i++)
@@ -105,7 +105,7 @@ void displayMatrix (double **a, const int &m, const int &n)
 	printf("\n");
 }
 
-double **createMatrix_M (double **a, const int &n)
+double **createMatrix_M (double **a, const int& n, const double& beta)
 {
 	int i, j;
 	double aux;
@@ -136,6 +136,11 @@ double **createMatrix_M (double **a, const int &n)
 			if (a[j][i] && sum[i])
 				a[j][i] /= sum[i];
 
+	//
+	printf("\n Matrix M:\n");
+	displayMatrix (a, n, n);
+	//
+
 	for (i = 0; i < n; i++)
 		for (j = 0; j < n; j++)
 			if (sum[i])
@@ -144,11 +149,16 @@ double **createMatrix_M (double **a, const int &n)
 				a[j][i] = (1.0 / n) * beta;  // in case Matrix M has dead-ends, make it stochastic
 
 	delete[] sum;
-	
+
+	//
+	printf("\n Matrix M after random teleports (probability = %.2f):\n", beta);
+	displayMatrix (a, n, n);
+	//
+
 	return a;
 }
 
-double** createMatrix_B (const int &n)          
+double** createMatrix_B (const int &n, const double& beta)          
 {
 	int i, j;
 
@@ -160,9 +170,19 @@ double** createMatrix_B (const int &n)
 		for (j = 0; j < n; j++)
 			B[i][j] = 1.0 / n;
 
+	//
+	printf("\n Matrix B:\n");
+	displayMatrix (B, n, n);
+	//
+
 	for (i = 0; i < n; i++)
 		for (j = 0; j < n; j++)
 			B[i][j] *= 1.0 - beta;
+
+	//
+	printf("\n Matrix B after random teleports (probability = %.2f):\n", 1.0 - beta);
+	displayMatrix (B, n, n);
+	//
 
 	return B;
 }
@@ -215,7 +235,10 @@ void powerIteration (double **M, const int &n)
 
 	double **r = createVector_R (n);
 
-	//printf ("\n\t Power Iteration:\n\n");
+	//
+	printf ("\n\t Power Iteration:\n\n");
+	//
+
 	while (!ok)
 	{
 		c = matrixMultiply (M, r, c, n);
@@ -234,11 +257,15 @@ void powerIteration (double **M, const int &n)
 		}
 
 		steps++;
-		//printf("\n%2d) ", steps);
+		//
+		printf("\n%2d) ", steps);
+		//
 
 		for (i = 0; i < n; i++)
 		{
-			//printf(" %.3f ", c[i][0]);
+			//
+			printf(" %.3f ", c[i][0]);
+			//
 			r[i][0] = c[i][0];
 		}
 	}
@@ -253,5 +280,5 @@ void powerIteration (double **M, const int &n)
 	deallocMatrix <double> (r, n);
 	deallocMatrix <double> (c, n);
 
-	printf("\n");
+	printf("\n-------------------------------------------------------------------------\n\n");
 }
