@@ -4,17 +4,17 @@
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
-#define beta 0.85  // damping factor (best between 0.8 and 0.9)
-#define eps 10000  // the greater the eps, the greater the precision of the pagerank score
+
+#define eps 10000   // the greater the eps, the greater the precision of the pagerank score
 
 /*---------- CORE FUNCTIONS ---------- */
 
 /* create matrix M with *beta* probability of random teleporting, based on
 the adjaceny matrix sent as parameter*/
-double **createMatrix_M (double**, const int&);
+double **createMatrix_M (double**, const int&, const double&);
 
 /* create matrix B with *beta* probability of random teleporting */
-double **createMatrix_B (const int&);
+double **createMatrix_B (const int&, const double&);
 
 /* create the column-vector (eigenvector) R */
 double **createVector_R (const int&);
@@ -26,7 +26,7 @@ void powerIteration (double**, const int&);
 /*---------- UTILITY FUNCTIONS ----------*/
 
 /* deallocate memory for a matrix */
-template <class T>
+template <typename T>
 void deallocMatrix (T**, int );   
 
 /* generate a random digraph in a file (file name given as parameter)*/
