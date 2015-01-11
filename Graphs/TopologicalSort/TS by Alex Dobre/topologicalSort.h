@@ -10,5 +10,5 @@ typedef enum method{ dfs, indegree };
 int* TopologicalSort(graph* );
 int TopSortDFS(graph*, int, color*, int*, int*);
 int* TopSortIndegree(graph*);
-
+int ValidateTopSort(graph*, const int*);
 #endif

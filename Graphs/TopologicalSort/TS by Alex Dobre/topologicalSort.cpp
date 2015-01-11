@@ -27,7 +27,7 @@ int TopSortDFS(graph *G, int n, color* state, int* list,int* stackSize)
 		}
 		else
 		{
-			// if the vertex had been visited, the this graph contains a cycle.
+			// if the vertex had been visited, then this graph contains a cycle.
 			if (state[*it] == gray)
 			{
 				return 0;	
@@ -72,21 +72,25 @@ int* TopSortIndegree(graph *G)
 	int *nodes = (int*)(calloc(n + 1, sizeof(int)));
 	int *sortedNodes = (int*)(calloc(n, sizeof(int)));
 	int index = -1;
-	int i = 1;
+	int i;
 
 	std::vector<int> adjNodes;
 	std::queue<int> indegree;
 	std::vector<int>::iterator it;
 
 	//store each vertex's indegree
-	//all vertices that have indegree = 0 are pushed into a queue
-	for (; i <= n; i++)
+	for (i = 1; i <= n; i++)
 	{
 		adjNodes = getAdjNodes(G, i);
 		for (it = adjNodes.begin(); it != adjNodes.end(); ++it)
 		{
 			nodes[*it]++;
 		}
+	}
+
+	//all vertices that have indegree = 0 are pushed into a queue
+	for (i = 1; i <= n; i++)
+	{
 		if (!nodes[i])
 		{
 			indegree.push(i);
@@ -99,13 +103,11 @@ int* TopSortIndegree(graph *G)
 		return NULL;
 	}
 
-	int cycle, size;
 	while (indegree.size()) 
 	{
-		cycle = 0;
 		int node = indegree.front();
 		indegree.pop();
-		size = indegree.size();
+		n--;
 
 		// dequeue a vertex
 		sortedNodes[++index] = node;
@@ -118,18 +120,45 @@ int* TopSortIndegree(graph *G)
 			{
 				indegree.push(*it);
 			}
-			else
-			{
-				cycle = 1;
-			}
 		}
 
 		// if there are still vertices in the graph and none of them has indegree 0, then this graph has a cycle.
-		if (size == indegree.size() && cycle)
+		if (!indegree.size() && n)
 		{
 			return NULL;
 		}
 
 	}
 	return sortedNodes;	
+}
+
+
+
+/**
+* This function tests if a graph is topological sorted.
+* g - the graph to be checked
+* p - an array with the nodes of the graph sorted in topological order
+* Returns 1 if the graph is corectly sorted, 0 otherwise
+*/
+int ValidateTopSort(graph* G, const int* p)
+{
+	if (!p)
+		return 0;
+
+	std::vector<int>  adjNodes;
+	for (int i = 0; i < G->noOfVertices; i++)
+	{
+		adjNodes = getAdjNodes(G, p[i]);
+		for (int j = i - 1; j >= 0; j--)
+		{
+			for (int k = 0; k < adjNodes.size(); k++)
+			{
+				if (p[j] == adjNodes[k])
+				{
+					return 0;
+				}
+			}
+		}
+	}
+	return 1;
 }

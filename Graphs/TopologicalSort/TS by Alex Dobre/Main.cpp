@@ -10,6 +10,7 @@ int main()
 
 	int *sortedGraphNodes = TopologicalSort(G);
 
+
 	int i = 0;
 
 	printf("DFS Topological Sort:\n");
@@ -40,6 +41,8 @@ int main()
 			printf("%d ", sortedGraphNodes[i]);
 		}
 	}
+
+	printf("\n%d\n", ValidateTopSort(G, sortedGraphNodes));
 
 	_getch();
 	return  0;
