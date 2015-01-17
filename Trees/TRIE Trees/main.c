@@ -1,5 +1,6 @@
 #include "trie.h"
 #include "error.h"
+#include "ctype.h"
 
 int main()
 {
@@ -10,9 +11,9 @@ int main()
 	char c;
 	t = new_trie();
 	while (1) {
-		printf("MENIU:\n 1. Inserare\n 2. Cautare\n 3. Stergere\n 4. Afisare\n 5. Incarcare din fisier\n X. Iesire\n");
+		printf("MENIU:\n 1. Insert\n 2. Search\n 3. Delete\n 4. Display\n 5. Load data from file\n X. Exit\n");
 		scanf("%c", &c);
-		switch (c) {
+		switch (tolower(c)) {
 		case '1': {
 					  l = (Leaf)malloc(sizeof(Leaf));
 					  scanf("%s", l);
@@ -44,7 +45,7 @@ int main()
 					  error_handling(error);
 					  break;
 		}
-		case 'x': {
+		case ('x'): {
 					  exit(0);
 		}
 		default: {
