@@ -25,10 +25,10 @@ int main()
 					  scanf("%s", aux);
 					  l=search(t, aux);
 					  if (l!=NO_LEAF) {
-						  printf("Exista!\n");
+						  printf("The word %s exist in Trie!\n",aux);
 					  }
 					  else {
-						  printf("Nu exista!\n");
+						  printf("The word %s doesn't exist in Trie!\n",aux);
 					  }
 					  break;
 		}
