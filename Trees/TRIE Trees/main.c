@@ -6,7 +6,7 @@ int main()
 {
 	int error;
 	Trie *t;
-	Leaf l;
+	Leaf l,l1;
 	char aux[20];
 	char c;
 	t = new_trie();
@@ -15,10 +15,16 @@ int main()
 		scanf("%c", &c);
 		switch (tolower(c)) {
 		case '1': {
-					  l = (Leaf)malloc(sizeof(Leaf));
-					  scanf("%s", l);
-					  insert(t, l, 0,&error);
-					  error_handling(error);
+					  scanf("%s", aux);
+					  l = (Leaf)malloc(sizeof(char)*(strlen(aux) + 1));
+					  strcpy(l, aux);
+					  if ((l1=insert(t, l, 0, &error)) != NO_LEAF)
+					  {
+						  free(l1);
+					  }
+					  else {
+						  error_handling(error);
+					  }
 					  break;
 		}
 		case '2': {
@@ -39,6 +45,7 @@ int main()
 		}
 		case '4': {
 					  display(t);
+					  break;
 		}
 		case '5': {
 					  file(t, "trie.in", &error);
@@ -54,7 +61,5 @@ int main()
 		}
 		fflush(stdin);
 	}
-
-	system("pause");
 	return 0;
 }

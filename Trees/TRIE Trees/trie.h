@@ -85,7 +85,7 @@ Leaf search(Trie *tree, Leaf leaf);
 /*
  *deleting a leaf from a previously initialised and populated tree
  */
-Leaf delete(Trie *tree, Leaf leaf);
+void delete(Trie *tree, Leaf leaf);
 /*
  *display words stored in the trie
  */

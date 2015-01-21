@@ -4,6 +4,6 @@
 #define MEM  1
 #define OKAY 0
 
-int error_handling(int error);
+void error_handling(int error);
 
 #endif

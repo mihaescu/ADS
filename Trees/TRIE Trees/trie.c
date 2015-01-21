@@ -194,14 +194,14 @@ void aux_delete(Node *node, Leaf leaf, int idx) {
 	}
 }
 
-Leaf delete(Trie *tree, Leaf leaf)
+void delete(Trie *tree, Leaf leaf)
 {
 	int i = 0, j, dir, idx = 0, n = 0, l = 0;
-	Node *traveler = NULL, *parent = NULL, *aux = NULL;
+	Node *traveler = NULL, *parent = NULL;
 	Leaf result = NO_LEAF, l_aux = NO_LEAF;
 
 	if (tree->leafcount == 0) {
-		return NO_LEAF;
+		return ;
 	}
 
 	traveler = parent = tree->root;
@@ -214,7 +214,7 @@ Leaf delete(Trie *tree, Leaf leaf)
 			traveler = traveler->child[dir].node;
 			nr_children(traveler, &n, &l);
 			if (n > 1 || l > 2 || (n > 0 && l > 0)) {                          //if actual node has at least one node and one leaf or two nodes or three leaves
-				idx = i;
+				idx = i+1;
 				parent = traveler;                                         //actual node becomes parent
 			}
 		}
@@ -225,7 +225,8 @@ Leaf delete(Trie *tree, Leaf leaf)
 					traveler->child[dir].leaf = NO_LEAF;
 					SET_NODE(traveler, dir);
 					tree->leafcount--;
-					return result;
+					free(result);
+					return;
 				}
 				else {
 					for (j = 0; j < MAX; j++) {
@@ -239,19 +240,19 @@ Leaf delete(Trie *tree, Leaf leaf)
 					parent->child[dir].leaf = l_aux;
 					SET_LEAF(parent, dir);
 					tree->leafcount--;
-					return result;
+					free(result);
+					return;
 				}
 			}
 			else {
-				return NO_LEAF;
+				return ;
 			}
 		}
 		else {
-			break;
+			return;
 		}
 		i++;
 	}
-	return NO_LEAF;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void displayN(Node *node);
