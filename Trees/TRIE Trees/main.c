@@ -15,6 +15,7 @@ int main()
 		scanf("%c", &c);
 		switch (tolower(c)) {
 		case '1': {
+					  printf("Type the word: ");
 					  scanf("%s", aux);
 					  l = (Leaf)malloc(sizeof(char)*(strlen(aux) + 1));
 					  strcpy(l, aux);
@@ -28,6 +29,7 @@ int main()
 					  break;
 		}
 		case '2': {
+					  printf("Type the word: ");
 					  scanf("%s", aux);
 					  l=search(t, aux);
 					  if (l!=NO_LEAF) {
@@ -39,6 +41,7 @@ int main()
 					  break;
 		}
 		case '3': {
+					  printf("Type the word: ");
 					  scanf("%s", aux);
 					  delete(t, aux);
 					  break;
