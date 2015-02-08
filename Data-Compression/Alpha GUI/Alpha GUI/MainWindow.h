@@ -1,7 +1,8 @@
 #pragma once
 #include <fstream>
 #include <string>
-
+#include "DataCompression.h"
+#include <msclr\marshal_cppstd.h>
 using namespace std;
 
 
@@ -39,7 +40,9 @@ using namespace System::Drawing;
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::OpenFileDialog^  openFileDialog1;
+	private: System::Windows::Forms::OpenFileDialog^  fileDialog;
+	protected: 
+
 	private: System::Windows::Forms::TextBox^  textBox1;
 	private: System::Windows::Forms::Button^  button1;
 	protected: 
@@ -58,14 +61,14 @@ using namespace System::Drawing;
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->fileDialog = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// openFileDialog1
+			// fileDialog
 			// 
-			this->openFileDialog1->FileName = L"openFileDialog1";
+			this->fileDialog->FileName = L"openFileDialog1";
 			// 
 			// textBox1
 			// 
@@ -76,7 +79,7 @@ using namespace System::Drawing;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(730, 29);
+			this->button1->Location = System::Drawing::Point(644, 30);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 1;
@@ -101,7 +104,38 @@ using namespace System::Drawing;
 #pragma endregion
 	private: System::Void button1_Click_1(System::Object^  sender, System::EventArgs^  e) 
 			 {
+				 //fileDialog->ShowDialog();
+				 //textBox1->Text = fileDialog->FileName;
 
-			 }
+				 //array<System::Byte,1> t =  IO::File::ReadAllBytes( fileDialog->FileName ); 
+					
+				 ofstream f ("text.txt");
+
+				 //f << MLZW("eu acum ma duc la masa");
+				 
+				  fileDialog->ShowDialog();
+				  
+				  String ^ str = fileDialog->FileName;
+
+				  ifstream g( msclr::interop::marshal_as<std::string>(str) );
+
+				  char c;
+
+
+					string tot;
+
+					g >> tot;
+
+					f << MLZW(tot);
+				  
+
+				  //arr[0] = stream->ReadByte();
+
+
+
+				  /*String ^ car = System::Convert::ToBase64String(arr,0,10);
+				  std::string unmanaged = msclr::interop::marshal_as<std::string>(car);
+				  f << MLZW(unmanaged);*/
+			 };
 	};
 }
