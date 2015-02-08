@@ -228,7 +228,7 @@ double **matrixMultiply (double **a, double **b, double **c, const int &n)
 	return c;
 }
 
-void powerIteration (double **M, const int &n)
+void powerIteration (double **M, const int &n, const double &beta)
 {
 	bool ok = 0;
 	int steps = 0, i;
@@ -240,6 +240,9 @@ void powerIteration (double **M, const int &n)
 	double **r = createVector_R (n);
 
 	//
+	printf (" Eigenvector r:\n");
+	displayMatrix (r, n, 1);
+
 	printf ("\n\t Power Iteration:\n\n");
 	//
 
@@ -274,15 +277,17 @@ void powerIteration (double **M, const int &n)
 		}
 	}
 
-	printf("\n\n\t PAGE RANK SCORE [after %d iterations]:\n\n", steps);
+	printf ("\n\n\n\t>>>>> Damping factor: %.3f <<<<<", beta);
+
+	printf("\n\n\tPAGE RANK SCORE [after %d iterations]:\n\n", steps);
 	for (i = 0; i < n; i++)
 	{
-		printf("PageRank Score for node %d is: %.3f\n", i+1, r[i][0]);
+		printf(" - PageRank Score for node %d is: %.3f\n", i+1, r[i][0]);
 	}
 
 	deallocMatrix <double> (M, n);
 	deallocMatrix <double> (r, n);
 	deallocMatrix <double> (c, n);
 
-	printf("\n-------------------------------------------------------------------------\n\n");
+	printf("\n-------------------------------------------------------------------------\n\n\n\n");
 }
