@@ -4,19 +4,29 @@ int main()
 {
 	FILE* fin = NULL;
 	char c, fileName[20];
+	int i;
 
 	do
 	{
-		printf ("If you want to generate a new test file AND display it, press 1;\n");
-		printf ("If you want to generate a new test file WITHOUT displaying it, press 2;\n\n");
-		printf ("If you want to load an existing test file AND display it, press 3;\n");
-		printf ("If you want to load an existing test file WITHOUT displaying it, press 4;\n\n");
-		printf ("If you want to exit the program, press 5.\n");
+		printf ("\n    <<<<<<<<<<<<<<<<<<<<<<   MENU   >>>>>>>>>>>>>>>>>>>>>>\n\n");
+		printf ("\n    1. Generate a new test file AND display it;");
+		printf ("\n    2. Generate a new test file WITHOUT displaying it;\n");
+		printf ("\n    3. Load an existing test file AND display it;");
+		printf ("\n    4. Load an existing test file WITHOUT displaying it;\n");
+		printf ("\n    5. Exit the program.\n");
 
-		printf ("\nChoose an option: ");
+		printf ("\n Choose an option ('c' to clear screen): ");
 		scanf (" %c", &c);
 
-		if (c == '1')
+		if (c == 'c')
+		{
+			for (i = 0; i < 100; i++)
+			{
+				printf ("\n");
+			}
+		}
+
+		else if (c == '1')
 		{
 			printf ("\nGenerate a new test file and display it. Input its name:\n");
 			scanf ("%s", fileName);
@@ -60,7 +70,7 @@ int main()
 
 			if (fin == NULL) 
 			{
-				perror ("\nError opening file\n");
+				perror ("\n\tError opening file\n");
 			}
 			else
 			{
@@ -82,8 +92,9 @@ int main()
 				displayMatrix (M, nodes, nodes);
 				//
 
-				printf ("\n Damping factor: %.3f \n", beta);
-				powerIteration (M, nodes);
+				powerIteration (M, nodes, beta);
+
+				fclose (fin);
 			}
 		}
 
