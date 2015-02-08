@@ -19,8 +19,9 @@ double **createMatrix_B (const int&, const double&);
 /* create the column-vector (eigenvector) R */
 double **createVector_R (const int&);
 
-/* repeatedly multiply matrix A with vector R, until R = A x R */
-void powerIteration (double**, const int&);
+/* repeatedly multiply matrix A with vector R, storing the result in R (R = A x R),
+untill the desired precision (eps) is reached */
+void powerIteration (double**, const int&, const double&);
 
 
 /*---------- UTILITY FUNCTIONS ----------*/
@@ -32,7 +33,7 @@ void deallocMatrix (T**, int );
 /* generate a random digraph in a file (file name given as parameter)*/
 void graphGenerator	(char*);		
 
-/* load graph from a given file, the integer holding the number of nodes */
+/* load graph (into adjacency matrix) from a given file, the integer holding the number of nodes */
 double **loadGraph (FILE* fin, int&);
 
 /* display graph in console */
