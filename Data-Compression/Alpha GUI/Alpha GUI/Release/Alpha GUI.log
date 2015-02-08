@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 ﻿Build started 28.11.2014 20:50:47.
      1>Project "C:\Users\magnus\Documents\GitHub\ADS\Data-Compression\Alpha GUI\Alpha GUI\Alpha GUI.vcxproj" on node 2 (Build target(s)).
+=======
+﻿Build started 2/8/2015 8:40:16 PM.
+     1>Project "C:\Users\Tangredon\Documents\GitHub\ADS\Data-Compression\Alpha GUI\Alpha GUI\Alpha GUI.vcxproj" on node 2 (Build target(s)).
+>>>>>>> origin/NewGui
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /Zi /clr /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHa /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib MainWindow.cpp
          MainWindow.cpp
+<<<<<<< HEAD
      1>c:\users\magnus\documents\github\ads\data-compression\alpha gui\alpha gui\MainWindow.h(109): warning C4244: 'argument' : conversion from 'wchar_t' to 'char', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\magnus\Documents\GitHub\ADS\Data-Compression\Alpha GUI\Release\Alpha GUI.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /ASSEMBLYRESOURCE:Release\AlphaGUI.MainWindow.resources /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\magnus\Documents\GitHub\ADS\Data-Compression\Alpha GUI\Release\Alpha GUI.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /ENTRY:"Main" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\magnus\Documents\GitHub\ADS\Data-Compression\Alpha GUI\Release\Alpha GUI.lib" /MACHINE:X86 /SAFESEH Release\MainWindow.obj
@@ -13,3 +19,19 @@
 Build succeeded.
 
 Time Elapsed 00:00:01.65
+=======
+     1>c:\users\tangredon\documents\github\ads\data-compression\alpha gui\alpha gui\DataCompression.h(22): warning C4091: 'typedef ' : ignored on left of 'LZW' when no variable is declared
+     1>c:\users\tangredon\documents\github\ads\data-compression\alpha gui\alpha gui\DataCompression.h(30): warning C4091: 'typedef ' : ignored on left of 'RLE' when no variable is declared
+     1>c:\users\tangredon\documents\github\ads\data-compression\alpha gui\alpha gui\DataCompression.h(39): warning C4091: 'typedef ' : ignored on left of 'Huffman' when no variable is declared
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Tangredon\Documents\GitHub\ADS\Data-Compression\Alpha GUI\Release\Alpha GUI.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /ASSEMBLYRESOURCE:Release\AlphaGUI.MainWindow.resources /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Tangredon\Documents\GitHub\ADS\Data-Compression\Alpha GUI\Release\Alpha GUI.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /ENTRY:"Main" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Tangredon\Documents\GitHub\ADS\Data-Compression\Alpha GUI\Release\Alpha GUI.lib" /MACHINE:X86 /SAFESEH Release\DataCompression.obj
+         Release\MainWindow.obj
+         Generating code
+         Finished generating code
+         Alpha GUI.vcxproj -> C:\Users\Tangredon\Documents\GitHub\ADS\Data-Compression\Alpha GUI\Release\Alpha GUI.exe
+     1>Done Building Project "C:\Users\Tangredon\Documents\GitHub\ADS\Data-Compression\Alpha GUI\Alpha GUI\Alpha GUI.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.26
+>>>>>>> origin/NewGui
