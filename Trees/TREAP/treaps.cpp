@@ -1,260 +1,99 @@
-//#include<conio.h>
-#include "treaps.h"
-
-//typedef struct NodeTreap NodeTreap, *pNnodeTreap;
-
-void rotate(NodeTreap *parent, NodeTreap *child)
+#include "Treap.h"
+#include<stdlib.h>
+#include<time.h>
+#include<stdio.h>
+#include<limits.h>
+#define INF INT_MAX
+Treap  *R, *nil;
+void init(Treap* & R)
 {
-	if ((*parent)->left == *child)//rot dreapta
-	{
-		(*child)->parent = (*parent)->parent;
-
-		if ((*child)->parent)
-		{
-			if ((*child)->parent->left == (*parent))			
-				(*child)->parent->left = *child;			
-			else 			
-				(*child)->parent->right = *child;			
-		}
-
-		(*parent)->parent = *child;
-		(*parent)->left = (*child)->right;
-
-		if ((*parent)->left)		
-			(*parent)->left->parent = (*parent);		
-
-		(*child)->right = *parent;
-		
-	}	
-	else//rot stanga
-	{
-		(*child)->parent = (*parent)->parent;
-
-		if ((*child)->parent)		
-			if ((*child)->parent->left == (*parent))			
-				(*child)->parent->left = *child;			
-			else 			
-				(*child)->parent->right = *child;	
-
-		(*parent)->parent = *child;
-		(*parent)->right = (*child)->left;
-
-		if ((*parent)->right)		
-			(*parent)->right->parent = (*parent);		
-
-		(*child)->left = *parent;		
-	}	
-
-	return;
+	srand(unsigned(time(0)));
+	R = nil = new Treap(0, 0, NULL, NULL);
 }
 
-void insert(NodeTreap *current, int element, float priority)
+int search(Treap* n, int key)
 {
-    NodeTreap Curent,parent;
-	int direction;
+	if (n == nil) return 0;
+	if (key == n->key) return 1;
+	if (key < n->key)
+		return search(n->left, key);
+	else
+		return search(n->right, key);
+}
 
-	if (*current == NULL)
-	{
-		*current = (NodeTreap)malloc(sizeof(NodeTreap));
-		(*current)->left = (*current)->right = (*current)->parent = NULL;
-		(*current)->element = element;
-		(*current)->priority = priority;	
 
+void rotright(Treap* &n) {
+	Treap *t = n->left;
+	n->left = t->right;
+	t->right = n;
+	n = t;
+}
+
+void rotleft(Treap* &n) {
+	Treap *t = n->right;
+	n->right = t->left;
+	t->left = n;
+	n = t;
+}
+
+void balance(Treap* &n) {
+	if (n->left->priority > n->priority)
+		rotright(n);
+	else if (n->right->priority > n->priority)
+		rotleft(n);
+}
+
+void insert(Treap* &n, int key, int priority) {
+	if (n == nil) {
+		n = new Treap(key, priority, nil, nil);
 		return;
 	}
+	if (key < n->key)
+		insert(n->left, key, priority);
+	else if (key > n->key)
+		insert(n->right, key, priority);
 
-	Curent = *current;
-	parent = NULL;
-
-	while (Curent != NULL)
-	{
-		if (element == Curent->element)		
-			return;		
-
-		parent = Curent;
-
-		if (element < Curent->element)
-		{
-			direction = LEFT;
-			Curent = Curent->left;
-		}
-		else
-		{
-			direction = RIGHT;
-			Curent = Curent->right;
-		}
-	}
-
-	Curent = (NodeTreap)malloc(sizeof(NodeTreap));
-	Curent->element = element;
-	Curent->left = Curent->right = NULL;
-	Curent->parent = parent;
-	
-	if (direction == LEFT)	
-		parent->left = Curent;	
-	else	
-		parent->right = Curent;
-	
-
-	Curent->priority = priority;
-//*
-	while (1)
-	{
-		parent = Curent->parent;
-
-		if (parent->priority < Curent->priority)		
-			break;		
-		
-		rotate(&parent,&Curent);
-
-		if (Curent->parent == NULL)
-		{
-			*current = Curent;
-			break;
-		}
-	}
-	//*/
-	return;
+	balance(n);
 }
 
-int member(NodeTreap *current, int el)
-{
-	pNnodeTreap p;
+void erase(Treap* &n, int key) {
+	if (n == nil) return;
 
-	p = *current;
-
-	while (p)
-	{
-		if (el == p->element)		
-			return 1;	
-
-		p = el < p->element ? p->left:p->right;
-	}
-
-	return 0;
-}
-
-void deleteTreap(NodeTreap *current, int el)
-{
-	pNnodeTreap p,x,y;
-
-	p = *current;
-
-	while (p)
-	{
-		if (el == p->element)		
-			break;		
-
-		p = el < p->element ? p->left:p->right;
-	}
-	if (p)
-	{
-		x = p->left;
-		y = p->right;
-
-		while ((x != NULL) && (y != NULL))
-		{
-			if (x->priority > y->priority)			
-				rotate(&p,&x);			
-			else			
-				rotate(&p,&y);			
-
-			x = p->left;
-			y = p->right;
-		}
-
-		
-
-		if ((x == NULL) && (y != NULL))
-		{
-			y->parent = p->parent;
-
-			if (p->parent)
-			{
-				if (p->parent->left == p)				
-					p->parent->left = y;				
-				else				
-					p->parent->right = y;					
-				
-			}
-			else			
-				*current = y;
-			
-		}
-		else if ((y == NULL) && (x != NULL))
-		{
-			x->parent = p->parent;
-
-			if (p->parent)
-			{
-				if (p->parent->left == p)				
-					p->parent->left = x;				
-				else				
-					p->parent->right = x;	
-
-				p = x;
-				
-			}
-			else			
-				*current = x;			
-		}
-		else 
-		{
-			if (p->parent)
-			{
-				if (p->parent->left == p)
-					p->parent->left = NULL;
-				else
-					p->parent->right = NULL;
-			}
-			else			
-				*current = NULL;
-			
+	if (key < n->key)
+		erase(n->left, key);
+	else if (key > n->key)
+		erase(n->right, key);
+	else {
+		if (n->left == nil && n->right == nil)
+			delete n, n = nil;
+		else {
+			(n->left->priority > n->right->priority) ? rotleft(n) : rotright(n);
+			erase(n, key);
 		}
 	}
 }
 
-void displayTreap(NodeTreap parent, int k)
-{
-	int i;
-
-	if (parent != NULL)
-	{
-		displayTreap(parent->right,k+5);
-
-		for (i = 0; i < k; i++)		
-			printf(" ");		
-
-		printf("%d:%1.2f\n",parent->element,parent->priority);
-
-		displayTreap(parent->left,k+5);
-	}
+void split(Treap* &R, Treap* &Ts, Treap* &Tg, int key) {
+	insert(R, key, INF);
+	Ts = R->left, Tg = R->right;
+	delete R, R = nil;
 }
 
-
-void splitTreap(NodeTreap *current,int el)
-{
-	pNnodeTreap tLess,tLarge;
-	insert(current,el,MINUS_INFINIT);
-	tLess = (*current)->left;
-	tLarge = (*current)->right;
+void join(Treap* &R, Treap* Ts, Treap* Tg, int key) {
+	R = new Treap(key, 0, Ts, Tg);
+	erase(R, R->key);
 }
 
-void mergeTreaps(NodeTreap* current, NodeTreap* tLess, NodeTreap* tLarge)
+void displayTreap(Treap* &R, int i)
 {
-
-	if((*tLess)->priority < (*tLarge)->priority)
+	if (R != NULL)
 	{
-		*current = *tLess;
-		(*current)->right = *tLarge;	
-		(*current)->right->parent = *current;
+		displayTreap(R->right, i + 1);
+		for (int j = 1; j <= i; j++)
+		{
+			printf("	");
+		}
+		printf("%d %d	\n", R->key, R->priority);
+		displayTreap(R->left, i + 1);
 	}
-	else
-	{
-		*current = *tLarge;
-		(*current)->left = *tLess;
-		(*current)->left->parent = *current;
-	}
-
-	(*current)->parent = NULL;
 }
