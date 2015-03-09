@@ -1,23 +1,23 @@
-#include<stdio.h>
-//#include<conio.h>
-#include<time.h>
-#include<stdlib.h>
+#pragma once
 
-#define LEFT 0
-#define RIGHT 1
-#define PLUS_INFINTI INT_MAX
-#define MINUS_INFINIT -INT_MAX
+struct Treap {
+	int key, priority;
+	Treap *left, *right;
+	Treap() {}
+	Treap(int key, int priority, Treap* left, Treap* right) {
+		this->key = key;
+		this->priority = priority;
+		this->left = left, this->right = right;
+	}
+}; // nil indica un nod 'gol'
 
-struct NodeTreap
-{
-	NodeTreap *left, *right, *parent;
-	int element;
-	float priority;
-};
-
-void insert(NodeTreap *current, int element, float pr);
-int member(NodeTreap *current, int element);
-void deleteTreap(NodeTreap *current, int element);
-void displayTreap(NodeTreap parent, int k);
-void splitTreap(NodeTreap *current,int element);
-void mergeTreaps(NodeTreap* current, NodeTreap* tle, NodeTreap* tla);
+void init(Treap* &R);
+int search(Treap* n, int key);
+void rotleft(Treap* &n);
+void rotright(Treap* &n);
+void balance(Treap* &n);
+void insert(Treap* &n, int key, int priority);
+void erase(Treap* &n, int key);
+void split(Treap* &R, Treap* &Ts, Treap* &Tg, int key);
+void join(Treap* &R, Treap* Ts, Treap* Tg, int key);
+void displayTreap(Treap* &R, int i);
