@@ -17,18 +17,13 @@ struct ctreenode
 extern ctree nullnode, root;
 
 /*
-* Treap Class Declaration
+* Treap Functions' Declaration
 */
-struct CTree
-{
-	void initialize();
-	void sigrotl(ctree &);
-	void sigrotr(ctree &);
-	void insert(ctree &, int);
-	void remove(ctree &, int);
-	void display(ctree, int);
-	void inorder(ctree);    
-	bool find(ctree, int);	
-	CTree()
-	{}
-};
+void initialize();
+void rotLeft(ctree &);
+void rotRight(ctree &);
+void insert(ctree &, int);
+void remove(ctree &, int);
+void display(ctree, int);
+void inorder(ctree);    
+bool find(ctree, int);	
