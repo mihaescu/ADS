@@ -1,0 +1,11 @@
+Core:
+-- cin and cout should be printf and scanf
+- graph[V][V] should be read from a file
+- maxFlow-FordFulkerson-BFS.h for function prototypes
+- maxFlow-FordFulkerson-BFS.cpp for function definitions
+- mainMaxFlow-FordFulkerson-BFS.cpp for function calls
+
+Testing:
+- more input graphs
+- automated testing
+
