@@ -22,4 +22,6 @@
 	- Unger() function should return the assignment
 	- the assignment must be printed by a function
 	
+-- How a testing procedure should check optimality of the solution?
+	
 	
