@@ -1,1 +1,25 @@
 ---comments
+-- Hungarian.h 
+	- document parameter's meaning
+	- is conio.h necessary?
+	- should have: core fuunctions and utils function
+	- core functions:
+			loadInputGraph();// is this implemented in core?? "ADS\Graphs\core" NOT YET! :)
+							// this function loads a weighted directed graph (and also bipartite!!!);
+							// tricky question: Where should be placed testing whether a digraph graph is bipartite or not?
+			Unger ();// takes as input the graph and computes the assignments
+			diplayAssignments ();//prints the solution
+	- utility functions:
+			step1 ... step 6 ... etc...
+	
+--  Hugarian.cpp
+	- Unger(); function does not take any parameter
+	- place on top core functions and below utility functions
+
+-- Main.cpp
+	- input matrix should be read from an input file
+	- the matrix should be given as input to Unger() function
+	- Unger() function should return the assignment
+	- the assignment must be printed by a function
+	
+	
