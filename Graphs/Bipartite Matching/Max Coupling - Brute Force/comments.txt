@@ -1,0 +1,12 @@
+---comments
+-- split in max-Coupling.h, .cpp and mainMaxCoupling
+-- read input from file
+-- provide core and utility functions:
+	-- core: load, buildMaxCoupling(), displaySolution
+	-- utility: all other
+-- check for bipartiteness!!!;//this should be in Graphs/core ... as well as loading data and printing solutions!
+-- provide a optimality testing of the provided solution
+
+ 
+	
+	
