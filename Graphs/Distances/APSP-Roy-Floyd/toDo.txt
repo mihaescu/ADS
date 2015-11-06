@@ -1,0 +1,15 @@
+roy-floyd.h
+- get rid of conio.h
+- rename functions: displayMatrix(), runRoyFloyd(), ...etc...
+- the dimensin of the matrix should not be hard-coded
+
+roy-floyd.cpp
+- reading the input should not be here
+
+main.cpp
+- input file name should be set here
+- input file may also contain the pairs of points for which the path is computed
+
+There should be documented:
+- the structure of the input 
+- the function signatures;//in roy-floyd.h
