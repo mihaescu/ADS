@@ -1,0 +1,5 @@
+- Upload one PDF file for each problem statement
+- Name your solution, explanation, ppt.,  properly:
+	- "sol-<Last Name>-<First-Name>.cpp"
+	- "expl-<Last Name>-<First-Name>.txt"
+	- "presentation-<Last Name>-<First-Name>.ppt"
