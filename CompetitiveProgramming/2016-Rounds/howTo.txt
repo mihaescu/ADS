@@ -1,5 +1,0 @@
-How to name the round:
-CF - CodeForces
-IA - Infoarena
-TJU - 
-...
