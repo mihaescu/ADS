@@ -209,3 +209,20 @@ NodeAVL* deleteAVLNode( NodeAVL *node, int value)
 
 	return node;   
 }
+//function that builds an input file with size keys between min and max
+void buildInput (int size, int min, int max, char file[]){
+
+}
+
+int test_insertAVLNode(char file[]){
+	//open an input file passed as parameter
+	//call insert all keys into an AVL tree
+	//search all keys from the file into AVL tree
+	//verify if it is an AVL tree
+	
+	
+	
+	
+}
+int test_deleteAVLNode(){
+}

@@ -1,0 +1,3 @@
+- In main trebuie sa avem doua lucruri distincte:
+1) operatii de la tastatura
+2) rulare automata de teste
