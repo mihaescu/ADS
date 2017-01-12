@@ -1,0 +1,59 @@
+# depslib dependency file v1.0
+1476279559 source:c:\users\paul\desktop\cursuri_fac\an2\sem1\avl\avl.cpp
+	"AVL.h"
+
+1476279581 c:\users\paul\desktop\cursuri_fac\an2\sem1\avl\avl.h
+	<stdio.h>
+	<stdlib.h>
+
+1477502260 source:c:\users\paul\desktop\cursuri_fac\an2\sem1\avl\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	<time.h>
+	"AVL.h"
+
+1479557774 source:c:\users\paul\desktop\cursuri_fac\an2\sem1\oop\avl\avl.cpp
+	"AVL.h"
+
+1479551444 c:\users\paul\desktop\cursuri_fac\an2\sem1\oop\avl\avl.h
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	<fstream>
+	<math.h>
+	<time.h>
+
+1479554709 source:c:\users\paul\desktop\cursuri_fac\an2\sem1\oop\avl\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	<time.h>
+	"AVL.h"
+
+1482406633 source:c:\users\paul\desktop\cursuri_fac\an2\sem1\oop\lab&ds\avl\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	<time.h>
+	"AVL.h"
+	"AVL_Test.h"
+
+1482405874 c:\users\paul\desktop\cursuri_fac\an2\sem1\oop\lab&ds\avl\avl.h
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	<fstream>
+	<math.h>
+	<time.h>
+
+1482405789 source:c:\users\paul\desktop\cursuri_fac\an2\sem1\oop\lab&ds\avl\avl.cpp
+	"AVL.h"
+
+1482405835 c:\users\paul\desktop\cursuri_fac\an2\sem1\oop\lab&ds\avl\avl_test.h
+	"AVL.h"
+
+1482405780 source:c:\users\paul\desktop\cursuri_fac\an2\sem1\oop\lab&ds\avl\avl_test.cpp
+	"AVL_Test.h"
+	"AVL.h"
+
