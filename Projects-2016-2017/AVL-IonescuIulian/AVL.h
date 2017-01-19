@@ -3,19 +3,18 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include<iostream>
+#include<fstream>
+#include<math.h>
+#include<time.h>
 
+using namespace std;
 struct NodeAVL{
 	int key;
 	int echi;
 	NodeAVL *left, *right;
 };
 
-//core functions
-NodeAVL* insertAVLNode (NodeAVL *p, int x);
-NodeAVL* deleteAVLNode (NodeAVL *p, int x);
-void displayAVLTree (NodeAVL *p, int level);
-
-//helper frunctions
 int max( int a, int b);
 int maxPathLength(NodeAVL *p);
 void computeBalanceFactor (NodeAVL *p);
@@ -24,16 +23,13 @@ NodeAVL* rightRot (NodeAVL *p);
 NodeAVL* doubleLeftRot (NodeAVL *p);
 NodeAVL* doubleRightRot (NodeAVL *p);
 NodeAVL* balance (NodeAVL *p);
-
-//build input functions
-void buildInput (int size, int min, int max, char file[]);
-
-//test functions
-//returns 1 if tree rooted at p is AVL or -1 otherwise
-int test_insertAVLNode();
-int test_deleteAVLNode();
-
-//helper test functions
-int isAVLTree(NodeAVL *p);
+NodeAVL* insertAVLNode (NodeAVL *p, int x);
+NodeAVL* deleteAVLNode (NodeAVL *p, int x);
+void displayAVLTree( NodeAVL *node, int level);
+void print_menu(NodeAVL *root);
+void search_node(NodeAVL *node, int value,int *found);
+NodeAVL* findmin(NodeAVL* node);
+NodeAVL* removemin(NodeAVL* node);
+NodeAVL* remove(NodeAVL* node, int k);
 
 #endif
