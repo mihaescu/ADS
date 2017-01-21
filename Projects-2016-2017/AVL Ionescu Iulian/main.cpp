@@ -1,72 +1,70 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<iostream>
-#include<time.h>
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<iostream>
+//#include<time.h>
 
 #include"AVL.h"
-#include "AVL_Test.h"
 int main()
 {
-	int aux;
+	int found;
 	int key;
-	char option;
-
 	NodeAVL *root = NULL;
-    printf("meniu(m) , input(i) , testare(t)?\n");
-    scanf("%c",&option);
-    FILE *fp = fopen ( "input.txt", "r" );
 
+    FILE *fp = fopen ( "input.txt", "r" );
 	if (!fp)
 	{
 		perror ( "Unable to open file" );
 		exit(0);
 	}
-    if(option=='m')
-      print_menu(root);
+	//secventa de apeluri
+	while(fscanf(fp,"%d",&key) == 1)//while(!feof(fp))
+    {
+        root = insertAVLNode( root, key );
+    }
+    displayAVLTree(root, 10);
+    printf("\nDelete value 8\n");
+    root = deleteAVLNode(root , 8);
+    displayAVLTree(root, 10);
+    root = deleteAVLNode(root , 9);
+    root = insertAVLNode( root, 10 );
+    root = insertAVLNode( root, 11 );
+    displayAVLTree(root, 10);
+    search_node(root,11,&found);
+    if (found == 1)
+        printf("Value %d found\n",11);
     else
-        if(option=='i')
-            {
-                while(!feof(fp))
-                {
-                fscanf(fp, "%c", &option);
+        printf("Value %d not found\n",11);
+    search_node(root,20,&found);
+    if (found == 1)
+        printf("Value %d found\n",12);
+    else
+        printf("Value %d not found\n",12);
 
-                    if( option == 'I' )
-                    {
-                        fscanf(fp, "%d", &key);
-                        root = insertAVLNode( root, key );
-                    }
-                    else if( option == 'D' )
-                    {
-                        fscanf(fp, "%d", &key);
-                        root = deleteAVLNode( root, key );
-                    }
-                }
-                    fclose(fp);
 
-                    displayAVLTree(root,10);
+    //afisare meniu
+    //print_menu(root);
 
-            }
-                else if(option == 't')
-                {
-                    buildInput(10,1,30,"date.txt");
-                        if(test_insertAVLNode("date.txt",0))
-                            {
-                                cout<<"Inserarea functioneaza!"<<endl;
-                                if(cout<<"Afisare arbore? Da-1 Nu-0 " && cin>>aux && aux)
-                                    cout<<test_insertAVLNode("date.txt",aux);
-                            }
-                        else
-                            cout<<"Inserarea NU functioneaza!";
+    //testare functii
+    /*buildInput(10,1,30,"date.txt");
+    if(test_insertAVLNode("date.txt",0))
+        {
+            cout<<"Inserarea functioneaza!"<<endl;
+            if(cout<<"Afisare arbore? Da-1 Nu-0 " && cin>>key && key)
+                cout<<test_insertAVLNode("date.txt",1);
+        }
+    else
+        cout<<"Inserarea NU functioneaza!";
 
-                        if(test_deleteAVLNode("date.txt",0))
-                            {
-                                cout<<endl<<"Stergerea functioneaza!"<<endl;
-                                if( cout<<"Afisare pasi stergere? Da-1 Nu-0 " && cin>>aux && aux)
-                                    test_deleteAVLNode("date.txt",1);
-                            }
-                        else
-                            cout<<"Stergerea NU functioneaza!"<<endl;
-                }
+    if(test_deleteAVLNode("date.txt",0))
+        {
+            cout<<endl<<"Stergerea functioneaza!"<<endl;
+            if( cout<<"Afisare pasi stergere? Da-1 Nu-0 " && cin>>key && key)
+                test_deleteAVLNode("date.txt",1);
+        }
+    else
+        cout<<"Stergerea NU functioneaza!"<<endl;
+    */
+
 
 	return 0;
 }
