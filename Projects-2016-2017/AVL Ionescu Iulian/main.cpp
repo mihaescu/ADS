@@ -17,7 +17,7 @@ int main()
 		exit(0);
 	}
 	//secventa de apeluri
-	while(fscanf(fp,"%d",&key) == 1)//while(!feof(fp))
+	while(fscanf(fp,"%d",&key) == 1)
     {
         root = insertAVLNode( root, key );
     }
