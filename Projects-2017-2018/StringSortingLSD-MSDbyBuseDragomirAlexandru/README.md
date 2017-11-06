@@ -1,6 +1,9 @@
-<i><b>Metoda radix sort este un algoritm de sortare care nu implică compararea de valori, ci acționează prin gruparea elementelor în funcție de chei. </i></b></br>
+<dl>
+  <dt>String sorting LSD and MSD</dt></br></br>
+<i>Radix sort este un algoritm de sortare care nu implică compararea de valori, ci acționează prin gruparea elementelor în funcție de chei. </i></br>
 
-![alt tag](https://github.com/mihaescu/ADS/blob/master/Projects-2017-2018/StringSortingLSD-MSDbyBuseDragomirAlexandru/Pseudocode-Source-Wikipedia.png)
+Mai jos adaug o implementare în pseudocod preluată de pe site-ul wikipedia pentru a face conceptul mai ușor de înțeles: </br></br>
+![alt text](https://github.com/Islaya/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Pseudocode-Source-Wikipedia.png)
 
 În cazul de față, proiectul va prezenta sortările numite LSD (Least Significant Digit) și MSD (Most Significant Digit).
 
@@ -10,7 +13,7 @@ LSD operează de la coadă la începutul stringului       <------------------
 
 MSD operează de la începutul stringului spre coada sa  ------------------>
 
-<u>Rezumarea algoritmilor:</u>
+✍ <b>Rezumarea algoritmilor:<b>
 
 <b>LEAST SIGNIFICANT DIGIT SORT</b>
 
