@@ -33,7 +33,7 @@ MSD operează de la începutul stringului spre coada sa  ------------------>
 <i>Ce este o metodă de sortare stabilă?</i> </br>
 Să luăm un exemplu (pentru a fi mai ușor de înțeles, le vom atașa cuvintelor niște chei aleatoare): </br>
 </br>
-Avem stringurile   ------>  carte(3) carmin(2) buchet(1) bancă(1) cravata(2) carte(5)</br>
+Avem stringurile   ------>  carte(3) -> carmin(2) -> buchet(1) -> bancă(1) -> cravata(2) -> carte(5)</br>
 </br>
 Dacă facem sortarea neținând cont de chei, ci doar de valoarea stringurilor avem 2 tipuri de algoritmi:
 
