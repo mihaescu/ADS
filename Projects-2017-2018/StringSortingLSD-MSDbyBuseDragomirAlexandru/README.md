@@ -3,6 +3,7 @@
 <i>Radix sort este un algoritm de sortare care nu implică compararea de valori, ci acționează prin gruparea elementelor în funcție de chei. </i></br>
 
 Mai jos adaug o implementare în pseudocod preluată de pe site-ul wikipedia pentru a face conceptul mai ușor de înțeles: </br></br>
+
 ![alt text](https://github.com/Islaya/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Pseudocode-Source-Wikipedia.png)
 
 În cazul de față, proiectul va prezenta sortările numite LSD (Least Significant Digit) și MSD (Most Significant Digit).
@@ -13,6 +14,10 @@ LSD operează de la coadă la începutul stringului       <------------------
 
 MSD operează de la începutul stringului spre coada sa  ------------------>
 
+
+![alt text](https://github.com/Islaya/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Exemplu%20prelucrat%20LSD-MSD%20(Taken%20and%20modified%20from%20Code%20Worm).png)
+
+
 ✍ **Rezumarea algoritmilor:**
 
 **LEAST SIGNIFICANT DIGIT SORT**
@@ -22,18 +27,21 @@ MSD operează de la începutul stringului spre coada sa  ------------------>
 **LSD.3** Se repetă procesul de sortare pentru litere din ce în ce mai semnificante până la obținerea ordonării
 
 
+![alt_text](https://github.com/Islaya/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Algorithms-4th-edition-Robert-Sedgewick-and-Kevin-Wayne%20LSD.png)
+
+
 <b>MOST SIGNIFICANT DIGIT SORT</b>
  
 **MSD.1** Se ia cea mai semnificantă literă de la fiecare element </br>
 **MSD.2** Se sortează lista de stringuri pe baza acelei litere. Elementele care prezintă aceeași literă se grupează separat. </br>
 **MSD.3** Se sortează recursiv fiecare grup, plecându-se de la următoarea cea mai semnificantă literă. </br>
 **MDS.4** Se concatenează la loc textul original (se pun laolaltă stringurile sortate)
-</br></br>
+</br>
 
-![alt text](https://github.com/Islaya/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Exemplu%20prelucrat%20LSD-MSD%20(Taken%20and%20modified%20from%20Code%20Worm).png)
+![alt_text](https://github.com/Islaya/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Algorithms-4th-edition-Robert-Sedgewick-and-Kevin-Wayne%20MSD.png)
 
 </br></br>
-_**Ce este o metodă de sortare stabilă?**_ </br>
+***_**Ce este o metodă de sortare stabilă?**_ </br>
 ###### Să luăm un exemplu (pentru a fi mai ușor de înțeles, le vom atașa cuvintelor niște chei aleatoare): </br>
 ###### Avem stringurile   ------>  carte(3) -> carmin(2) -> buchet(1) -> bancă(1) -> cravata(2) -> carte(5)</br>
 ###### Dacă facem sortarea neținând cont de chei, ci doar de valoarea stringurilor, avem 2 tipuri de algoritmi:
