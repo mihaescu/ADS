@@ -43,18 +43,18 @@ MSD operează de la începutul stringului spre coada sa  ------------------>
 </br></br>
 ***_**Ce este o metodă de sortare stabilă?**_ </br>
 ###### Să luăm un exemplu (pentru a fi mai ușor de înțeles, le vom atașa cuvintelor niște chei aleatoare): </br>
-###### Avem stringurile   ------>  carte(3) -> carmin(2) -> buchet(1) -> bancă(1) -> cravata(2) -> carte(5)</br>
+###### Avem stringurile   ------>  carte(3) -> cavaler(2) -> dans(1) -> excavator(1) -> cravata(2) -> carte(5)</br>
 ###### Dacă facem sortarea neținând cont de chei, ci doar de valoarea stringurilor, avem 2 tipuri de algoritmi:
 
 ###### 1. Stabili </br>
-###### ------>  carte(3) -> carte(5) -> carmin(2) -> cravată(2) -> bancă(1) -> buchet(1) </br>
+###### ------>  carte(3) -> carte(5) -> cavaler(2) -> cravată(2) -> dans(1) -> excavator(1) </br>
 ###### Se observă cum cuvântul carte(3) rămâne înainte cuvântului carte(5), păstrându-se ordinea relativă
 
 
 ###### 2. Instabili </br>
-###### ------>  carte(3) -> carte(5) -> carmin(2) -> cravată(2) -> bancă(1) -> buchet(1) </br>
+###### ------>  carte(3) -> carte(5) -> cavaler(2) -> cravată(2) -> dans(1) -> excavator(1) </br>
 ######                                          SAU </br>
-###### ------>  carte(5) -> carte(3) -> carmin(2) -> cravată(2) -> bancă(1) -> buchet(1) </br>
+###### ------>  carte(5) -> carte(3) -> cavaler(2) -> cravată(2) -> dans(1) -> excavator(1) </br>
 ###### Se observă faptul că nu avem certitudinea păstrării ordinii relative.
 
 ###### Exemplu preluat de pe Stackexchange : </br></br>
