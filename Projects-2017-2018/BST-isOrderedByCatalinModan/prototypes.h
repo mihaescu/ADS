@@ -9,12 +9,17 @@
 
 
 
+
+
+
 typedef struct _Node {
         int data;
         struct _Node *left;
         struct _Node *right;
 }
 Node;
+
+
 
 void Display( Node *root, int nivel );
 Node *Add_Node( Node *root, int data );
@@ -27,6 +32,7 @@ Node *Delete( Node *root, int data );
 int getMin( Node *node );
 int getMax( Node *node );
 int randomNumberGenerator();
+bool checkValues( Node *node, int minimum, int maximum );
 
 
 
