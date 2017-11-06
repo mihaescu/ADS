@@ -1,6 +1,7 @@
 #ifndef PROTOTYPES_H_INCLUDED
 #define PROTOTYPES_H_INCLUDED
 
+//Libraries definitions
 #include<stdio.h>
 #include<stdlib.h>
 #include<iostream>
@@ -11,7 +12,7 @@
 
 
 
-
+//Structure definition
 typedef struct _Node {
         int data;
         struct _Node *left;
@@ -20,7 +21,7 @@ typedef struct _Node {
 Node;
 
 
-
+//Prototypes definitions
 void Display( Node *root, int nivel );
 Node *Add_Node( Node *root, int data );
 void preorder( Node *root );
