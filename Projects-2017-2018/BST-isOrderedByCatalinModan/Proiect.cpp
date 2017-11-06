@@ -176,7 +176,7 @@ int main()
 
                                     //Read the boundedness values from file
                                     fscanf(fp,"%d %d ",&minimum,&maximum);
-                                    rewind(fp);
+                                    //rewind(fp);
 
                                     printf("\nBoundedness values set to : %d %d",minimum,maximum);
 
@@ -191,12 +191,13 @@ int main()
                                         printf( "NO!\n" );
                                     }
 
-                                    break;
+
                                 //Else the BST is empty, warn the user
                                 } else {
                                     printf( "\nEmpty tree!\n" );
-                                    break;
+
                                 }
+
                             }
                         }
                         printf("\nClosing file...\n");
@@ -220,5 +221,3 @@ int main()
 
     } while( choice );
 }
-
-
