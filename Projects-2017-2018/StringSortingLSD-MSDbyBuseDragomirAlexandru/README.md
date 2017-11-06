@@ -1,5 +1,5 @@
 <dl>
-  <dt>String sorting LSD and MSD</dt></br></br>
+  <dt>### String sorting LSD and MSD ###</dt></br></br>
 <i>Radix sort este un algoritm de sortare care nu implică compararea de valori, ci acționează prin gruparea elementelor în funcție de chei. </i></br>
 
 Mai jos adaug o implementare în pseudocod preluată de pe site-ul wikipedia pentru a face conceptul mai ușor de înțeles: </br></br>
@@ -28,6 +28,9 @@ MSD operează de la începutul stringului spre coada sa  ------------------>
 **MSD.2** Se sortează lista de stringuri pe baza acelei litere. Elementele care prezintă aceeași literă se grupează separat. </br>
 **MSD.3** Se sortează recursiv fiecare grup, plecându-se de la următoarea cea mai semnificantă literă. </br>
 **MDS.4** Se concatenează la loc textul original (se pun laolaltă stringurile sortate)
+</br></br>
+
+![alt text](https://github.com/Islaya/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Exemplu%20prelucrat%20LSD-MSD%20(Taken%20and%20modified%20from%20Code%20Worm).png)
 
 </br></br>
 _**Ce este o metodă de sortare stabilă?**_ </br>
@@ -45,3 +48,6 @@ _**Ce este o metodă de sortare stabilă?**_ </br>
 ######                                          SAU </br>
 ###### ------>  carte(5) -> carte(3) -> carmin(2) -> cravată(2) -> bancă(1) -> buchet(1) </br>
 ###### Se observă faptul că nu avem certitudinea păstrării ordinii relative.
+
+###### Exemplu preluat de pe Stackexchange : </br></br>
+![alt text](https://github.com/Islaya/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Stack_exchange%20example%20on%20Stable%20Sort.png)
