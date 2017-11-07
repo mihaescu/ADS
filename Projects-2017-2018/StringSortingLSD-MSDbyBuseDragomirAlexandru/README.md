@@ -2,7 +2,7 @@
   <dt>### String sorting LSD and MSD ###</dt></br></br>
 <i>Radix sort este un algoritm de sortare care nu implică compararea de valori, ci acționează prin gruparea elementelor în funcție de chei. </i></br>
 
-Mai jos adaug o implementare în pseudocod preluată de pe site-ul wikipedia pentru a face conceptul mai ușor de înțeles: </br></br>
+Mai jos adaug o implementare simplificată în Python preluată de pe site-ul wikipedia pentru a face conceptul mai ușor de înțeles: </br></br>
 
 ![alt text](https://github.com/Islaya/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Pseudocode-Source-Wikipedia.png)
 
