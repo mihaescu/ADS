@@ -22,16 +22,22 @@ Node;
 
 
 //Prototypes definitions
-void Display( Node *root, int nivel );
+
 Node *Add_Node( Node *root, int data );
+Node *Delete( Node *root, int data );
+
 void preorder( Node *root );
 void inorder( Node *root );
 void postorder( Node *root );
+
+void Display( Node *root, int nivel );
+
 Node *FindMin( Node *root );
 Node *FindMax( Node *root );
-Node *Delete( Node *root, int data );
+
 int getMin( Node *node );
 int getMax( Node *node );
+
 int randomNumberGenerator();
 bool checkValues( Node *node, int minimum, int maximum );
 

@@ -1,0 +1,18 @@
+-- to do list, based on code review
+- rename "prototypes.h", a better name may be "bst.h"
+- rename "implementation.cpp" with bst.cpp
+
+- bst.h;// former prototypes.h
+	- use only english for G_plaja_valori, nivel, etc. with better names
+	- have a better order in function prototypes
+	- why parameter name is root and later node? this is confusing
+	- some coments about dunctions would help
+
+-bst.cpp
+		- variable names ... do not use root
+		- english names ... not nivel
+		
+- Think about generating an input
+- Think about running tests without reading data from stdin
+	
+	
