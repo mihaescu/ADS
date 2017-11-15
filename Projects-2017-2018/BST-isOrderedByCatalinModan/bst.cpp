@@ -223,3 +223,95 @@ bool checkValues( Node *node, int minimum, int maximum )
         return false;
     }
 }
+
+//The function will delete the entire BST
+//The call will be made upon the root's address
+void deleteBST(Node **node)
+{
+    //Checking if the current node is NULL
+    if(*node == NULL){
+        //If true exit
+        return;
+    }
+
+    //Else delete the node's children
+    deleteBST(&(*node)->left);
+    deleteBST(&(*node)->right);
+
+    //Check if both children are different from NULL
+    if(!(*node)->left && !(*node)->right){
+        //Delete the parent
+        delete *node;
+        //Set the parent to NULL
+        *node = NULL;
+    }
+
+}
+
+//A function which checks if the BST is empty.
+//It will return true if the BST is empty
+//The call will be made upon the root
+bool isEmpty( Node *node )
+{
+    //Checking if the node (root) is empty
+    if ( node == NULL ) {
+        //IF true return true
+         printf( "\nEmpty tree!\n" );
+        return true;
+    }
+    //If not return false
+    return false;
+}
+
+
+//A function used to test the program "numberOfTests" times
+void makeTests(Node *node, int numberOfTests)
+{
+    //Setting up some local variables
+    int bound = 0;
+    int global_minimum = 0;
+    int global_maximum = 0;
+    int minimum = 0;
+    int maximum = 0;
+    bool status = false;
+
+    //Iterating "numberOfTests" times
+    for(int iterator1 = 0; iterator1 <numberOfTests ; iterator1++){
+        //Setting the bound for inserting a random number of values
+        bound = rand()%(G_values_limit);
+
+        //Inserting "bound" number of values
+        for (int iterator2 = 0; iterator2 < bound ; iterator2++){
+            node = Add_Node(node,randomNumberGenerator());
+        }
+
+
+        //Setting up the BST's minimum and maximum;
+        global_minimum = getMin(node);
+        global_maximum = getMax(node);
+
+        //Setting up the boundedness values
+        minimum = rand()%((numberOfTests));
+        maximum = rand()%((numberOfTests*100));
+
+        //Printing them
+        printf("\nBST's minimum and maximum are: %d %d ",global_minimum,global_maximum);
+        printf("\nBoundedness values set to %d %d",minimum, maximum);
+
+        //Setting up the status
+        status = checkValues(node,minimum,maximum);
+
+        //Printing the result
+        if(status){
+            printf("\nResult -> PASSED! <-------------------------------------------------------------\n");
+        }else{
+            printf("\nResult -> FAILED\n");
+        }
+
+        deleteBST(&node);
+
+
+    }
+}
+
+

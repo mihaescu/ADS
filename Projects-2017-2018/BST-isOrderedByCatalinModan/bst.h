@@ -45,6 +45,14 @@ int getMax( Node *node );
 int randomNumberGenerator();
 //A function which checks if our BST is bounded by two values
 bool checkValues( Node *node, int minimum, int maximum );
+//A function to delete the entire BST
+void deleteBST(Node **node);
+//A function which checks if the BST is empty
+bool isEmpty(Node *node);
+//A function used for testing
+void makeTests(Node *node, int numberOfTests);
+
+
 
 
 
