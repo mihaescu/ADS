@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1511126090 source:c:\users\alex\desktop\key-indexed counting\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+
