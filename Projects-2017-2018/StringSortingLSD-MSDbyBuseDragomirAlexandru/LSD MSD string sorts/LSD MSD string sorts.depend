@@ -1,0 +1,55 @@
+# depslib dependency file v1.0
+1511182318 source:c:\users\alex\desktop\element.cpp
+	<iostream>
+	<string>
+	"Element.h"
+
+1511167270 c:\users\alex\desktop\element.h
+	<iostream>
+
+1511182526 source:c:\users\alex\desktop\key_indexed_counting.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+	<string.h>
+	"Element.h"
+
+1511211235 source:c:\users\alex\desktop\lsd msd string sorts\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+	<string.h>
+	"Element.h"
+	"LSD_MSD.h"
+
+1511215019 source:c:\users\alex\desktop\lsd msd string sorts\element.cpp
+	<string>
+	"Element.h"
+
+1511215021 c:\users\alex\desktop\lsd msd string sorts\element.h
+
+1511205413 source:c:\users\alex\desktop\lsd msd string sorts\key_indexed_counting.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+	<string.h>
+	"Element.h"
+	"key_indexed_counting.h"
+
+1511183135 c:\users\alex\desktop\lsd msd string sorts\key_indexed_counting.h
+	<iostream>
+	<vector>
+	<algorithm>
+	<string.h>
+
+1511215021 c:\users\alex\desktop\lsd msd string sorts\lsd_msd.h
+	<vector>
+
+1511215156 source:c:\users\alex\desktop\lsd msd string sorts\lsd_msd.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+	<string.h>
+	"Element.h"
+	"LSD_MSD.h"
+
