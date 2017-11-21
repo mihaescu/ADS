@@ -5,7 +5,8 @@
 #include "Element.h"
 #include "LSD_MSD.h"
 
-void key_indexed_counting(vector<Element> &my_array, int alphabet_size)
+
+void key_indexed_counting(vector<Element> &my_array, int alphabet_size = 256)
 {
     int counter[alphabet_size + 1] = {0};
 
@@ -26,13 +27,13 @@ void key_indexed_counting(vector<Element> &my_array, int alphabet_size)
     for(unsigned int index = 0; index < my_array.size(); index ++)
     {
         string current_word = my_array[index].getWord();
-        int current_key = my_array[index].getKey();
-        int current_position = counter[current_key];
+        char current_key = my_array[index].getKey();
+        int current_position = counter[int(current_key)];
 
         auxiliary_array[current_position].setWord(current_word);
         auxiliary_array[current_position].setKey(current_key);
 
-        counter[current_key] ++;
+        counter[int(current_key)] ++;
     }
 
     for(int i = 0; i < dimension; i ++)
@@ -42,4 +43,19 @@ void key_indexed_counting(vector<Element> &my_array, int alphabet_size)
     }
 
     delete[] auxiliary_array;
+}
+
+
+void LSD_sort(vector<Element> &my_array, int strings_size, int alphabet_size = 256)
+{
+    for(int i = strings_size - 1; i >= 0; i --)
+    {
+        for(auto it = my_array.begin(); it != my_array.end(); it ++)
+        {
+            string my_word = it -> getWord();
+            it -> setKey(my_word[i]);
+        }
+
+        key_indexed_counting(my_array, alphabet_size);
+    }
 }

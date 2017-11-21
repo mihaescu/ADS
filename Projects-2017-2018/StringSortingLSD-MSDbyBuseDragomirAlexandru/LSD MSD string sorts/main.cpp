@@ -9,7 +9,9 @@ using namespace std;
 
 int main()
 {
-    vector<Element> students;
+
+    ///TEST FOR KEY INDEXED COUNTING SORT
+    /*vector<Element> students;
 
     Element *student1 = new Element("Andreson", '2');
     Element *student2 = new Element("Brown", '3');
@@ -57,9 +59,51 @@ int main()
 
     for(auto it = students.begin(); it != students.end(); it ++)
     {
-        cout << it -> getWord() << " " << char(it -> getKey());
+        cout << it -> getWord() << " " << it -> getKey();
         cout << '\n';
     }
+
+    return 0;*/
+
+
+    ///TEST FOR LSD STRING SORT
+    /*vector<Element> license_plates;
+
+    Element *plate1 = new Element("4PGC938");
+    Element *plate2 = new Element("2IYE230");
+    Element *plate3 = new Element("3CIO720");
+    Element *plate4 = new Element("1ICK750");
+    Element *plate5 = new Element("1OHV845");
+    Element *plate6 = new Element("4JZY524");
+    Element *plate7 = new Element("1ICK750");
+    Element *plate8 = new Element("3CIO720");
+    Element *plate9 = new Element("1OHV845");
+    Element *plate10 = new Element("1OHV845");
+    Element *plate11 = new Element("2RLA629");
+    Element *plate12 = new Element("2RLA629");
+    Element *plate13 = new Element("3ATW723");
+
+    license_plates.push_back(*plate1);
+    license_plates.push_back(*plate2);
+    license_plates.push_back(*plate3);
+    license_plates.push_back(*plate4);
+    license_plates.push_back(*plate5);
+    license_plates.push_back(*plate6);
+    license_plates.push_back(*plate7);
+    license_plates.push_back(*plate8);
+    license_plates.push_back(*plate9);
+    license_plates.push_back(*plate10);
+    license_plates.push_back(*plate11);
+    license_plates.push_back(*plate12);
+    license_plates.push_back(*plate13);
+
+    LSD_sort(license_plates, 7, 256);
+
+    for(auto it = license_plates.begin(); it != license_plates.end(); it ++)
+    {
+        cout << it -> getWord();
+        cout << '\n';
+    }*/
 
     return 0;
 }

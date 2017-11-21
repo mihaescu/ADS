@@ -5,17 +5,18 @@ class Element
     private :
 
         string word;
-        int key;
+        char key;
 
     public :
 
         Element();
-        Element(string word, int key);
+        Element(string word);
+        Element(string word, char key);
         ~Element();
 
         void setWord(string word);
-        void setKey(int key);
+        void setKey(char key);
 
         string getWord();
-        int getKey();
+        char getKey();
 };

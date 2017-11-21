@@ -14,7 +14,7 @@
 	<string.h>
 	"Element.h"
 
-1511211235 source:c:\users\alex\desktop\lsd msd string sorts\main.cpp
+1511298929 source:c:\users\alex\desktop\lsd msd string sorts\main.cpp
 	<iostream>
 	<vector>
 	<algorithm>
@@ -22,11 +22,11 @@
 	"Element.h"
 	"LSD_MSD.h"
 
-1511215019 source:c:\users\alex\desktop\lsd msd string sorts\element.cpp
+1511297936 source:c:\users\alex\desktop\lsd msd string sorts\element.cpp
 	<string>
 	"Element.h"
 
-1511215021 c:\users\alex\desktop\lsd msd string sorts\element.h
+1511297936 c:\users\alex\desktop\lsd msd string sorts\element.h
 
 1511205413 source:c:\users\alex\desktop\lsd msd string sorts\key_indexed_counting.cpp
 	<iostream>
@@ -42,10 +42,10 @@
 	<algorithm>
 	<string.h>
 
-1511215021 c:\users\alex\desktop\lsd msd string sorts\lsd_msd.h
+1511296676 c:\users\alex\desktop\lsd msd string sorts\lsd_msd.h
 	<vector>
 
-1511215156 source:c:\users\alex\desktop\lsd msd string sorts\lsd_msd.cpp
+1511299147 source:c:\users\alex\desktop\lsd msd string sorts\lsd_msd.cpp
 	<iostream>
 	<vector>
 	<algorithm>

@@ -9,7 +9,13 @@ Element :: Element()
     this -> key = 0;
 }
 
-Element :: Element(string word, int key)
+Element :: Element(string word)
+{
+    this -> word = word;
+    this -> key = '?';
+}
+
+Element :: Element(string word, char key = '!')
 {
     this -> word = word;
     this -> key = key;
@@ -25,7 +31,7 @@ void Element :: setWord(string word)
     this -> word = word;
 }
 
-void Element :: setKey(int key)
+void Element :: setKey(char key)
 {
     this -> key = key;
 }
@@ -35,7 +41,7 @@ string Element :: getWord()
     return this -> word;
 }
 
-int Element :: getKey()
+char Element :: getKey()
 {
     return this -> key;
 }
