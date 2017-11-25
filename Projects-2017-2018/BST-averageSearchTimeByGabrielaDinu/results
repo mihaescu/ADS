@@ -1,0 +1,8 @@
+ average path length for bst with 100 nodes is 7.45545
+ average path length for bst with 200 nodes is 8.89552
+ average path length for bst with 400 nodes is 10.217
+ average path length for bst with 800 nodes is 11.5268
+ average path length for bst with 1600 nodes is 12.9001
+ average path length for bst with 3200 nodes is 14.3943
+ average path length for bst with 6400 nodes is 15.7997
+ average path length for bst with 12800 nodes is 17.1769
