@@ -1,7 +1,9 @@
 #include <ctime>
+#include <iostream>
 #include <cstdlib>
+#include <algorithm>
 #include "mergesort.h"
-
+using namespace std;
 
 void merges(int arr[100], int perm[100], int left, int mid, int right)
 {
@@ -56,3 +58,32 @@ int rand_number(int min_val, int max_val)
     return rand()%(max_val - min_val + 1) + min_val;
 }
 
+bool is_valid(int arr[100], int perm[100], int n)
+{
+    int i, sorted[100];
+    copy(arr, arr+n, sorted);
+    sort(sorted, sorted + n);
+    for (i = 0; i < n; i++) {
+        if (sorted[i] != arr[perm[i]]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void output(int arr[100], int perm[100], int n)
+{
+    int i;
+    for (i = 0; i < n; i++) {
+        cout<<perm[i]<<" ";
+    }
+    cout<<endl;
+    for (i = 0; i < 2*n; i++) {
+        cout<<"-";
+    }
+    cout<<endl;
+    for (i = 0; i < n; i++) {
+        cout<<arr[perm[i]]<<" ";
+    }
+    cout<<endl;
+}
