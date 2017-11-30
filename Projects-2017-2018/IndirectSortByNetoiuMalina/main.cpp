@@ -1,28 +1,29 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <fstream>
 #include "mergesort.h"
 using namespace std;
 
 int main()
 {
-    srand(time(NULL));
+    ifstream f("mergesort.txt");
     int arr[100], perm[100];
     int n, i;
-    n = rand_number(10, 30);
+    f>>n;
 
-    cout<<"The array is: "<<endl;
     for (i = 0; i < n; i++) {
-        arr[i] = rand_number(-200, 200);
-        cout<<i<<": "<<arr[i]<<endl;
+        f>>arr[i];
         perm[i] = i;
     }
-
+    
+    cout<<endl<<"The index array (before Mergesort) is:"<<endl;
+    output(arr, perm, n);
+    
     *perm = index_array(arr, perm, n);
-    cout<<"The index array is: "<<endl;
-    for (i = 0; i < n; i++){
-        cout<<perm[i]<<" ";
-    }
-
+    
+    cout<<endl<<"The index array (after Mergesort) is: "<<endl;
+    output(arr, perm, n);
+    is_valid(arr, perm, n)? cout<<"It is correct."<<endl: cout<<"It is not correct."<<endl;
     return 0;
 }
