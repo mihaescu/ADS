@@ -74,6 +74,9 @@ int randomNumberGenerator();
 
 //A function used for testing
 void makeTests(Node *node, int numberOfTests);
+void buildFile( FILE *f, int numberOfItems);
+void readFile(FILE *f,Node *node);
+
 
 
 

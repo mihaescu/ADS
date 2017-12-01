@@ -195,8 +195,6 @@ int getMax( Node *node )
 //A function which returns a random value
 int randomNumberGenerator()
 {
-
-
     //Using the built-in rand function
     return rand() % G_values_limit;
 }
@@ -247,6 +245,7 @@ void deleteBST(Node **node)
         //Set the parent to NULL
         *node = NULL;
     }
+
 
 }
 
@@ -346,4 +345,215 @@ bool search(Node *node, int target)
 }
 
 
+//A function which will write parameter and values to a file
+void buildFile( FILE *f, int nuberOfItems)
+{
+	//Checking if the file opened correctly
+	if(f == NULL){
+		printf("\nError opening file! \n");
+	}else{
+		//Flag variable used to check if the file has been already built
+		int flag = 0;
+		//Scan the first line
+		fscanf(f, "B %d", &flag);
 
+		//IF true, the file has been alrady built
+		if(flag){
+			printf("\nError! File already built! Skipping to testing.... \n");
+		}else{
+			//Else start writing values to file ( I stand for input, later used to insert the values)
+			fprintf(f, "B %d\n", 1);
+			int iterator;
+
+			for (iterator = 0; iterator<nuberOfItems; iterator++) {
+				fprintf(f, "I %d\n", randomNumberGenerator());
+			}
+
+			for(iterator=0;iterator<nuberOfItems/6;iterator++){
+				fprintf(f,"D %d\n",randomNumberGenerator());
+			}
+
+			for (iterator = 0; iterator<nuberOfItems; iterator++) {
+				fprintf(f, "V %d %d\n", randomNumberGenerator(), randomNumberGenerator());
+			}
+
+			for (iterator = 0; iterator<nuberOfItems / 4; iterator++) {
+				fprintf(f, "S %d\n", randomNumberGenerator());
+			}
+
+			//M-min and max
+			fprintf(f, "M\n", randomNumberGenerator());
+			//P-preorder
+			fprintf(f, "P\n", randomNumberGenerator());
+			//i-inorder
+			fprintf(f, "i\n", randomNumberGenerator());
+			//p-postorder
+			fprintf(f, "Post\n", randomNumberGenerator());
+			//d-display
+			fprintf(f, "d\n", randomNumberGenerator());
+			//B-delete BST
+			fprintf(f, "B\n", randomNumberGenerator());
+			//E- is empty?
+			fprintf(f, "E\n", randomNumberGenerator());
+
+		}	
+	}
+}
+
+void readFile(FILE *fp, Node *node)
+{
+	//Define the key to be inserted
+	int key;
+
+	int g_minimum, g_maximum;
+	int minimum, maximum;
+	//Define the task selection
+	char option;
+	//Open the input file
+	printf("\nAttempting to open file...\n");
+
+	//Check if the file was successfully opened
+	if (!fp) {
+		//If not, warn the user and exit the program
+		perror("Unable to open file");
+		exit(0);
+		//Else start the tasks
+	}
+	else {
+		printf("Success!\n");
+		//Continue reading while there is something to read
+		while (!feof(fp)) {
+
+			//Red each line and check the task selection
+			fscanf(fp, "%c", &option);
+
+			// "I" is for inserting
+			if (option == 'I') {
+				//Read the value
+				fscanf(fp, "%d", &key);
+
+				//Checking if the values already exists in the BST
+				if (!search(node, key)) {
+					//Insert it in the BSt
+					node = Add_Node(node, key);
+				}
+				else {
+					printf("%d already exists in the tree! \n", key);
+				}
+
+				//"D" is for deleting
+			}
+			else if (option == 'D') {
+				//Read the value
+				fscanf(fp, "%d", &key);
+
+				//Checking if the value exists in the BST, if so we can delete it
+				if (search(node, key)) {
+					//Delete it
+					node = Delete(node, key);
+				}
+				else {
+					printf("%d does not exist in the BST! \n", key);
+				}
+
+
+				//"M" is for maximum and minimum
+			}
+			else if (option == 'M') {
+
+				//Retrieve the minimum and maximum, then print them
+				g_maximum = getMax(node);
+				g_minimum = getMin(node);
+				printf("\n The GLOBAL minimum and maximum are :%d %d", g_minimum, g_maximum);
+
+				//"V" checks boundedness
+			}
+			else if (option == 'V') {
+				//Check if the BST is empty
+				if (!isEmpty(node)) {
+					//Retrieve the BSTS's minimum and maximum
+					g_minimum = getMin(node);
+					g_maximum = getMax(node);
+					printf("\nMinimum and maximum of the current BST are: %d %d", g_minimum, g_maximum);
+
+					//Read the boundedness values from file
+					fscanf(fp, "%d %d ", &minimum, &maximum);
+
+					printf("\nBoundedness values set to : %d %d", minimum, maximum);
+
+					//Check if all the values are bounded
+					bool status = checkValues(node, minimum, maximum);
+
+					printf("\nBoundedness result : ");
+					//IF the function returns true, then all the values are bounded, false otherwise
+					if (true == status) {
+						printf("PASSED!\n");
+					}
+					else {
+						printf("FAILED!\n");
+					}
+				}
+			}
+			else if (option == 'P') {
+				//Checking if the BST is empty
+				if (isEmpty(node)) {
+					//If true, exit from the procedure
+				}
+				else {
+					//Else print it
+					preorder(node);
+					printf("\n");
+				}
+			}
+			else if (option == 'p') {
+				//Checking if the BST is empty
+				if (isEmpty(node)) {
+					//If true, exit from the procedure
+
+				}
+				else {
+					//Else print it
+					postorder(node);
+					printf("\n");
+				}
+			}
+			else if (option == 'i') {
+				//Checking if the BST is empty
+				if (isEmpty(node)) {
+					//If true, exit from the procedure
+				}
+				else {
+					inorder(node);
+					printf("\n");
+				}
+			}
+			else if (option == 'd') {
+				if (isEmpty(node)) {
+					//If true, exit from the procedure
+				}
+				else {
+					//Else print it
+					Display(node, 0);
+				}
+			}
+			else if (option == 'B') {
+				//Check if the BSt is empty
+				if (isEmpty(node)) {
+					//IF true, exit
+				}
+				else {
+					//Else delete it
+					deleteBST(&node);
+					printf("\nFinished deleting the BST! \n");
+				}
+			}
+			else if (option == 'E') {
+				if (isEmpty(node)) {
+				}
+				else {
+					printf("The BST is not empty! \n");
+				}
+			}
+		}
+	}
+}

@@ -38,9 +38,10 @@ int main()
 
 		//TESTING
 		printf( "\n--->Testing functions:");
-        printf( "\n13. Make tests:" );
+        printf( "\n13.Live input generation&testing:" );
 		printf( "\n14.Read tasks from file:");
-        printf( "\n15.Exit:\n" );
+		printf( "\n15.Build file and test:");
+        printf( "\n16.Exit:\n" );
 	
 
 		//printf( "\n8.Random insertion of n values:" );
@@ -108,7 +109,7 @@ int main()
 						if(search(root,target)){
 							printf("Found %d ! \n", target);
 						}else{
-							printf("%d does not exist in the BST! \n");
+							printf("%d does not exist in the BST! \n",target);
 						}
 					}
 					//Finish
@@ -286,103 +287,39 @@ int main()
 					//Open the input file
 					printf("\nAttempting to open file...\n");
 					FILE *fp = fopen("input.txt", "r");
-
-					//Check if the file was successfully opened
-					if (!fp) {
-						//If not, warn the user and exit the program
-						perror("Unable to open file");
-						exit(0);
-						//Else start the tasks
-					}
-					else {
-						printf("Success!\n");
-						//Continue reading while there is something to read
-						while (!feof(fp)) {
-							//Red each line and check the task selection
-							fscanf(fp, "%c", &option);
-
-							// "I" is for inserting
-							if (option == 'I') {
-								//Read the value
-								fscanf(fp, "%d", &key);
-
-								//Checking if the values already exists in the BST
-								if (!search(root, key)) {
-									//Insert it in the BSt
-									root = Add_Node(root, key);
-								}
-								else {
-									printf("%d already exists in the tree! \n", key);
-								}
-
-								//"D" is for deleting
-							}
-							else if (option == 'D') {
-								//Read the value
-								fscanf(fp, "%d", &key);
-
-								//Checking if the value exists in the BST, if so we can delete it
-								if (search(root, key)) {
-									//Delete it
-									root = Delete(root, key);
-								}
-								else {
-									printf("%d does not exist in the BST! \n", key);
-								}
-
-
-								//"M" is for maximum and minimum
-							}
-							else if (option == 'M') {
-								//Retrieve the minimum and maximum, then print them
-								g_maximum = getMax(root);
-								g_minimum = getMin(root);
-								printf("\n The GLOBAL minimum and maximum are :%d %d", g_minimum, g_maximum);
-
-								//"V" checks boundedness
-							}
-							else if (option == 'V') {
-								//Check if the BST is empty
-								if (!isEmpty(root)) {
-									//Retrieve the BSTS's minimum and maximum
-									g_minimum = getMin(root);
-									g_maximum = getMax(root);
-									printf("\nMinimum and maximum of the current BST are: %d %d", g_minimum, g_maximum);
-
-									//Read the boundedness values from file
-									fscanf(fp, "%d %d ", &minimum, &maximum);
-
-									printf("\nBoundedness values set to : %d %d", minimum, maximum);
-
-									//Check if all the values are bounded
-									bool status = checkValues(root, minimum, maximum);
-
-									printf("\nBoundedness result : ");
-									//IF the function returns true, then all the values are bounded, false otherwise
-									if (true == status) {
-										printf("PASSED!\n");
-									}
-									else {
-										printf("FAILED!\n");
-									}
-								}
-							}
-						}
-						printf("\nClosing file...\n");
-						printf("Success!\n");
-						//Close the file
-						fclose(fp);
-
-					}//end else
+					readFile(fp, root);
+					fclose(fp);
 					break;
+
+					
 				}//end case 14
+
+			case 15:{
+					printf("\nAttempting to build file....\n");
+					int iterator1;
+					FILE *f = fopen("output.txt","r+");
+
+					srand((unsigned)time(NULL));
+					buildFile(f,1000);
+					fclose(f);
+
+					FILE *p = fopen("output.txt", "r");
+
+					readFile(p, root);
+
+					fclose(p);
+
+
+
+					break;
+				}
 
 
             //Exit
-            case 15:{
+            case 16:{
                 printf( "\nExiting...." );
                 exit( 0 );
-            }//end case 15
+            }//end case 16
 
         }//end switch
 
