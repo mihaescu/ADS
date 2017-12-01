@@ -195,6 +195,8 @@ int getMax( Node *node )
 //A function which returns a random value
 int randomNumberGenerator()
 {
+
+
     //Using the built-in rand function
     return rand() % G_values_limit;
 }
@@ -248,6 +250,7 @@ void deleteBST(Node **node)
 
 }
 
+
 //A function which checks if the BST is empty.
 //It will return true if the BST is empty
 //The call will be made upon the root
@@ -278,21 +281,21 @@ void makeTests(Node *node, int numberOfTests)
     //Iterating "numberOfTests" times
     for(int iterator1 = 0; iterator1 <numberOfTests ; iterator1++){
         //Setting the bound for inserting a random number of values
-        bound = rand()%(G_values_limit);
+        bound = rand()%(G_values_limit+iterator1);
 
         //Inserting "bound" number of values
         for (int iterator2 = 0; iterator2 < bound ; iterator2++){
             node = Add_Node(node,randomNumberGenerator());
         }
 
-
+	
         //Setting up the BST's minimum and maximum;
         global_minimum = getMin(node);
         global_maximum = getMax(node);
 
         //Setting up the boundedness values
-        minimum = rand()%((numberOfTests));
-        maximum = rand()%((numberOfTests*100));
+        minimum = rand()%(numberOfTests/100);
+        maximum = rand()%((numberOfTests*5));
 
         //Printing them
         printf("\nBST's minimum and maximum are: %d %d ",global_minimum,global_maximum);
@@ -302,7 +305,7 @@ void makeTests(Node *node, int numberOfTests)
         status = checkValues(node,minimum,maximum);
 
         //Printing the result
-        if(status){
+        if(status==true){
             printf("\nResult -> PASSED! <-------------------------------------------------------------\n");
         }else{
             printf("\nResult -> FAILED\n");
@@ -310,8 +313,37 @@ void makeTests(Node *node, int numberOfTests)
 
         deleteBST(&node);
 
-
     }
 }
+
+
+//A function used to check if a value already exists in the BST
+bool search(Node *node, int target)
+{
+	//Checking if the BST is empty
+	if (node == NULL) {
+		//If so return false
+		return false;
+	//Else see if we can find the value 
+	} else {
+		//If the current node stores the value, return true
+		if (node->data == target) {
+			return true;
+		//Else recur on the right subtree
+		} else {
+			//IF the value is smaller than the node's, recur to the left
+			if (target < node->data) {
+				return search(node->left, target);
+
+			//Else recur to the right
+			} else {
+				return search(node->right, target);
+			}
+		}
+	}
+	//If the above code executed, it means the value does not exists i the BST, return false
+	return false;
+}
+
 
 
