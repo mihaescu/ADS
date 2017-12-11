@@ -1,0 +1,29 @@
+[2017-12-11 19:45:44] [info] Start Program:
+Path:"C:\Users\modan\Documents\GitHub\MyCode\Proiect\x64\Debug\Test.exe"
+Arguments:
+Working directory: "C:\Users\modan\Documents\GitHub\MyCode\Proiect\"
+Modules: Selected: C:\Users\modan\Documents\GitHub\MyCode\Proiect\x64\Debug\Test.exe Excluded: 
+Sources: Selected: C:\Users\modan\Documents\GitHub\MyCode\Proiect Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: Binary C:\Users\modan\AppData\Local\Temp\wlckgs3i.ach 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+
+[2017-12-11 19:45:45] [info] Module: C:\Users\modan\Documents\GitHub\MyCode\Proiect\x64\Debug\Test.exe is selected because it matches selected pattern: C:\Users\modan\Documents\GitHub\MyCode\Proiect\x64\Debug\Test.exe
+[2017-12-11 19:45:45] [info] Module: C:\Windows\System32\ntdll.dll is skipped because it matches no selected patterns
+[2017-12-11 19:45:45] [info] Module: C:\Windows\System32\kernel32.dll is skipped because it matches no selected patterns
+[2017-12-11 19:45:45] [info] Module: C:\Windows\System32\KernelBase.dll is skipped because it matches no selected patterns
+[2017-12-11 19:45:45] [info] Module: C:\Windows\System32\vcruntime140d.dll is skipped because it matches no selected patterns
+[2017-12-11 19:45:45] [info] Module: C:\Windows\System32\ucrtbased.dll is skipped because it matches no selected patterns
+[2017-12-11 19:45:45] [info] Module: C:\Windows\System32\ucrtbased.dll is skipped because it matches no selected patterns
+[2017-12-11 19:45:49] [info] Module: C:\Windows\System32\kernel.appcore.dll is skipped because it matches no selected patterns
+[2017-12-11 19:45:49] [info] Module: C:\Windows\System32\msvcrt.dll is skipped because it matches no selected patterns
+[2017-12-11 19:45:49] [info] Module: C:\Windows\System32\rpcrt4.dll is skipped because it matches no selected patterns
+[2017-12-11 19:45:49] [info] ----------------------------------------------------
+[2017-12-11 19:45:49] [info] Coverage binary generated in file: C:\Users\modan\AppData\Local\Temp\wlckgs3i.ach
+[2017-12-11 19:45:49] [info] ----------------------------------------------------

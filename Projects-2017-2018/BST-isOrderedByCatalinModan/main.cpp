@@ -221,7 +221,7 @@ int main()
 			case 10:{
 					//Check if the BSt is empty
 					if(isEmpty(root)){
-						//IF tru, exit
+						//IF true, exit
 						break;
 					}else{
 						//Else delete it
