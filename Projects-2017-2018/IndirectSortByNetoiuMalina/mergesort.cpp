@@ -1,12 +1,19 @@
-#include <ctime>
-#include <iostream>
-#include <cstdlib>
 #include <algorithm>
 #include "mergesort.h"
-using namespace std;
 
-void merges(int arr[100], int perm[100], int left, int mid, int right)
-{
+void create_file(string filename) { //Generate input file.
+        srand(time(0));
+        ofstream file(filename);
+        int val;
+
+        for (int i = 0; i < n; i++){
+                val = rand_number(-1000, 1000);
+                file << val << "\n";
+        }
+        file.close();
+}
+
+void merges(int arr[100], int perm[100], int left, int mid, int right) {
     int temp[100], i, j, k;
 
     i = left;
@@ -20,8 +27,8 @@ void merges(int arr[100], int perm[100], int left, int mid, int right)
             temp[k++] = perm[j++];
         }
     }
-    //The values at indexes perm[i] and perm[j] are compared.
-    //The index of the smallest value is stored in temp.
+    // The values at indexes perm[i] and perm[j] are compared.
+    // The index of the smaller value is stored in temp.
 
     while (i <= mid) {
         temp[k++] = perm[i++];
@@ -33,11 +40,9 @@ void merges(int arr[100], int perm[100], int left, int mid, int right)
     for (i = left; i <= right; i++) {
         perm[i] = temp[i];
     }
-
 }
 
-void mergesort(int arr[100], int perm[100], int left, int right)
-{
+void mergesort(int arr[100], int perm[100], int left, int right) {
     if (right > left) {
         int mid = (left + right) / 2;
         mergesort(arr, perm, left, mid);
@@ -47,43 +52,36 @@ void mergesort(int arr[100], int perm[100], int left, int right)
 
 }
 
-int index_array(int arr[100], int perm[100], int n)
-{
+int index_array(int arr[100], int perm[100], int n) { // Return the array of indexes after Merge Sort.
     mergesort(arr, perm, 0, n - 1);
     return *perm;
 }
 
-int rand_number(int min_val, int max_val)
-{
+int rand_number(int min_val, int max_val) { // Return a random number between min_val and max_val.
+
     return rand()%(max_val - min_val + 1) + min_val;
 }
 
-bool is_valid(int arr[100], int perm[100], int n)
-{
+bool is_valid(int arr[100], int perm[100], int n) { //Check if the array of indexes (perm) has been sorted correctly.
+
     int i, sorted[100];
-    copy(arr, arr+n, sorted);
-    sort(sorted, sorted + n);
+    copy(arr, arr+n, sorted); // Copy the original array into a new array.
+    sort(sorted, sorted + n); // Sort the new array.
     for (i = 0; i < n; i++) {
         if (sorted[i] != arr[perm[i]]) {
+        // If there is at least one value from arr at index perm[i] which is not equal to the value
+        // in the sorted array, then it is incorrect.
             return false;
         }
     }
     return true;
 }
 
-void output(int arr[100], int perm[100], int n)
-{
+void output(int arr[100], int perm[100], int n){
     int i;
+    cout<<"index: value"<<endl;
     for (i = 0; i < n; i++) {
-        cout<<perm[i]<<" ";
-    }
-    cout<<endl;
-    for (i = 0; i < 2*n; i++) {
-        cout<<"-";
-    }
-    cout<<endl;
-    for (i = 0; i < n; i++) {
-        cout<<arr[perm[i]]<<" ";
+        cout<<"  "<<perm[i]<<"    "<<arr[perm[i]]<<endl;
     }
     cout<<endl;
 }
