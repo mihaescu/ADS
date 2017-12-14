@@ -221,7 +221,7 @@ int main()
 			case 10:{
 					//Check if the BSt is empty
 					if(isEmpty(root)){
-						//IF true, exit
+						//IF tru, exit
 						break;
 					}else{
 						//Else delete it
@@ -280,10 +280,6 @@ int main()
 
 			//Testing file
 			case 14: {
-					//Define the key to be inserted
-					int key;
-					//Define the task selection
-					char option;
 					//Open the input file
 					printf("\nAttempting to open file...\n");
 					FILE *fp = fopen("input.txt", "r");
@@ -296,7 +292,6 @@ int main()
 
 			case 15:{
 					printf("\nAttempting to build file....\n");
-					int iterator1;
 					FILE *f = fopen("output.txt","r+");
 
 					srand((unsigned)time(NULL));
