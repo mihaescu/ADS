@@ -19,4 +19,5 @@ class Element
 
         string getWord();
         char getKey();
+        int getCharIndexAt(int position);
 };

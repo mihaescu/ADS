@@ -97,13 +97,58 @@ int main()
     license_plates.push_back(*plate12);
     license_plates.push_back(*plate13);
 
-    LSD_sort(license_plates, 7, 256);
+    LSD_sort(license_plates, 256);
 
     for(auto it = license_plates.begin(); it != license_plates.end(); it ++)
     {
         cout << it -> getWord();
         cout << '\n';
-    }*/
+    }
 
+
+/*
+    ///TEST FOR MSD STRING SORT
+    vector<Element> words;
+
+    Element *word1 = new Element("she");
+    Element *word2 = new Element("sells");
+    Element *word3 = new Element("seashells");
+    Element *word4 = new Element("by");
+    Element *word5 = new Element("the");
+    Element *word6 = new Element("sea");
+    Element *word7 = new Element("shore");
+    Element *word8 = new Element("the");
+    Element *word9 = new Element("shells");
+    Element *word10 = new Element("she");
+    Element *word11 = new Element("sells");
+    Element *word12 = new Element("are");
+    Element *word13 = new Element("surely");
+    Element *word14 = new Element("seashells");
+
+
+
+    words.push_back(*word1);
+    words.push_back(*word2);
+    words.push_back(*word3);
+    words.push_back(*word4);
+    words.push_back(*word5);
+    words.push_back(*word6);
+    words.push_back(*word7);
+    words.push_back(*word8);
+    words.push_back(*word9);
+    words.push_back(*word10);
+    words.push_back(*word11);
+    words.push_back(*word12);
+    words.push_back(*word13);
+    words.push_back(*word14);
+
+    MSD_sort(words, 0, 13, 0, 256);
+
+    for(auto it = words.begin(); it != words.end(); it ++)
+    {
+        cout << it -> getWord();
+        cout << '\n';
+    }
+*/
     return 0;
 }
