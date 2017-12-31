@@ -1,3 +1,13 @@
+/**
+* @file Element.h
+* @brief This file will contain the Element class declaration
+*
+* @author Bușe-Dragomir Alexandru
+*
+* @date 31/12/2017
+*/
+
+
 using namespace std;
 
 class Element
