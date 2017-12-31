@@ -1,0 +1,217 @@
+\section{Element Class Reference}
+\label{class_element}\index{Element@{Element}}
+
+
+{\ttfamily \#include $<$Element.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Element} ()
+\item 
+\textbf{ Element} (string word)
+\item 
+\textbf{ Element} (string word, char key)
+\item 
+\textbf{ $\sim$\+Element} ()
+\item 
+void \textbf{ set\+Word} (string word)
+\item 
+void \textbf{ set\+Key} (char key)
+\item 
+string \textbf{ get\+Word} ()
+\item 
+char \textbf{ get\+Key} ()
+\item 
+int \textbf{ get\+Char\+Index\+At} (int position)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 13 of file Element.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_element_ab0d0e20be9a36ae676202db753faeec9}} 
+\index{Element@{Element}!Element@{Element}}
+\index{Element@{Element}!Element@{Element}}
+\subsubsection{Element()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Element\+::\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This is the class default constructor (initialises the word) \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+Definition at line 21 of file Element.\+cpp.
+
+\mbox{\label{class_element_aaeda5e748b541be88f4313c38f7f76bd}} 
+\index{Element@{Element}!Element@{Element}}
+\index{Element@{Element}!Element@{Element}}
+\subsubsection{Element()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Element\+::\+Element (\begin{DoxyParamCaption}\item[{string}]{word }\end{DoxyParamCaption})}
+
+This is the second class constructor (initialises the key) \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em word} & The string member of the class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+Definition at line 33 of file Element.\+cpp.
+
+\mbox{\label{class_element_a15b7c83e7db430194800bc528644e373}} 
+\index{Element@{Element}!Element@{Element}}
+\index{Element@{Element}!Element@{Element}}
+\subsubsection{Element()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Element\+::\+Element (\begin{DoxyParamCaption}\item[{string}]{word,  }\item[{char}]{key = {\ttfamily \textquotesingle{}!\textquotesingle{}} }\end{DoxyParamCaption})}
+
+This is the third class constructor (initialises the word and the key) \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em word} & The string member of the class \\
+\hline
+{\em key} & The char member of the class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+Definition at line 46 of file Element.\+cpp.
+
+\mbox{\label{class_element_a13d54ba9c08b6bec651402f1c2bb002c}} 
+\index{Element@{Element}!````~Element@{$\sim$\+Element}}
+\index{````~Element@{$\sim$\+Element}!Element@{Element}}
+\subsubsection{$\sim$\+Element()}
+{\footnotesize\ttfamily Element\+::$\sim$\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This is the class destructor (destroys an \doxyref{Element}{p.}{class_element} object) \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+cout $<$$<$ \char`\"{}\+Destructor\char`\"{}; 
+
+Definition at line 57 of file Element.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_element_a8c0dbf761c59c001209020aecc841db5}} 
+\index{Element@{Element}!get\+Char\+Index\+At@{get\+Char\+Index\+At}}
+\index{get\+Char\+Index\+At@{get\+Char\+Index\+At}!Element@{Element}}
+\subsubsection{get\+Char\+Index\+At()}
+{\footnotesize\ttfamily int Element\+::get\+Char\+Index\+At (\begin{DoxyParamCaption}\item[{int}]{position }\end{DoxyParamCaption})}
+
+This is a method that returns word[position] or -\/1 if there is no char \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em position} & This is the position in which we search for a char (in the word) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+Definition at line 110 of file Element.\+cpp.
+
+\mbox{\label{class_element_a590632f7d7c892d2c3f11eb3829568b4}} 
+\index{Element@{Element}!get\+Key@{get\+Key}}
+\index{get\+Key@{get\+Key}!Element@{Element}}
+\subsubsection{get\+Key()}
+{\footnotesize\ttfamily char Element\+::get\+Key (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This is the second getter of the class (gets the key) \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+Definition at line 99 of file Element.\+cpp.
+
+\mbox{\label{class_element_a54c3ac71f217accf29a6b9e0cc9f869f}} 
+\index{Element@{Element}!get\+Word@{get\+Word}}
+\index{get\+Word@{get\+Word}!Element@{Element}}
+\subsubsection{get\+Word()}
+{\footnotesize\ttfamily string Element\+::get\+Word (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+This is the first getter of the class (gets the word) \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+Definition at line 89 of file Element.\+cpp.
+
+\mbox{\label{class_element_ad93abd0441293a4f81845f02c39da07b}} 
+\index{Element@{Element}!set\+Key@{set\+Key}}
+\index{set\+Key@{set\+Key}!Element@{Element}}
+\subsubsection{set\+Key()}
+{\footnotesize\ttfamily void Element\+::set\+Key (\begin{DoxyParamCaption}\item[{char}]{key }\end{DoxyParamCaption})}
+
+This is the second setter of the class (sets the key) \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The char member of the class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+Definition at line 79 of file Element.\+cpp.
+
+\mbox{\label{class_element_abd2ad75f60251179664d879117eb303c}} 
+\index{Element@{Element}!set\+Word@{set\+Word}}
+\index{set\+Word@{set\+Word}!Element@{Element}}
+\subsubsection{set\+Word()}
+{\footnotesize\ttfamily void Element\+::set\+Word (\begin{DoxyParamCaption}\item[{string}]{word }\end{DoxyParamCaption})}
+
+This is the first setter of the class (sets the word) \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em word} & The string member of the class \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+Definition at line 68 of file Element.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/alexa/\+Desktop/\+L\+S\+D M\+S\+D string sorts/\textbf{ Element.\+h}\item 
+C\+:/\+Users/alexa/\+Desktop/\+L\+S\+D M\+S\+D string sorts/\textbf{ Element.\+cpp}\end{DoxyCompactItemize}
