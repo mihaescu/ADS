@@ -2,9 +2,9 @@
   <dt>### String sorting LSD and MSD ###</dt></br></br>
 <i>Radix sort este un algoritm de sortare care nu implică compararea de valori, ci acționează prin gruparea elementelor în funcție de chei. </i></br>
 
-Mai jos adaug o implementare simplificată în Python preluată de pe site-ul wikipedia pentru a face conceptul mai ușor de înțeles: </br></br>
+Mai jos adaug implementarea funcției key indexed counting sort, fundamentul celor două metode de sortare (LSD și MSD) : </br></br>
 
-![alt text](https://github.com/Islaya/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Pseudocode-Source-Wikipedia.png)
+![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Key%20indexed%20counting%20implementation.png)
 
 În cazul de față, proiectul va prezenta sortările numite LSD (Least Significant Digit) și MSD (Most Significant Digit).
 
@@ -15,7 +15,7 @@ LSD operează de la coadă la începutul stringului       <------------------
 MSD operează de la începutul stringului spre coada sa  ------------------>
 
 
-![alt text](https://github.com/Islaya/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Exemplu%20prelucrat%20LSD-MSD%20(Taken%20and%20modified%20from%20Code%20Worm).png)
+![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Exemplu%20prelucrat%20LSD-MSD%20(Taken%20and%20modified%20from%20Code%20Worm).png)
 
 
 ✍ **Rezumarea algoritmilor:**
@@ -27,7 +27,7 @@ MSD operează de la începutul stringului spre coada sa  ------------------>
 **LSD.3** Se repetă procesul de sortare pentru litere din ce în ce mai semnificante până la obținerea ordonării
 
 
-![alt_text](https://github.com/Islaya/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Algorithms-4th-edition-Robert-Sedgewick-and-Kevin-Wayne%20LSD.png)
+![alt_text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Algorithms-4th-edition-Robert-Sedgewick-and-Kevin-Wayne%20LSD.png)
 
 
 <b>MOST SIGNIFICANT DIGIT SORT</b>
@@ -38,7 +38,7 @@ MSD operează de la începutul stringului spre coada sa  ------------------>
 **MDS.4** Se concatenează la loc textul original (se pun laolaltă stringurile sortate)
 </br>
 
-![alt_text](https://github.com/Islaya/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Algorithms-4th-edition-Robert-Sedgewick-and-Kevin-Wayne%20MSD.png)
+![alt_text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Algorithms-4th-edition-Robert-Sedgewick-and-Kevin-Wayne%20MSD.png)
 
 </br></br>
 ***_**Ce este o metodă de sortare stabilă?**_ </br>
@@ -58,4 +58,11 @@ MSD operează de la începutul stringului spre coada sa  ------------------>
 ###### Se observă faptul că nu avem certitudinea păstrării ordinii relative.
 
 ###### Exemplu preluat de pe Stackexchange : </br></br>
-![alt text](https://github.com/Islaya/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Stack_exchange%20example%20on%20Stable%20Sort.png)
+![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Stack_exchange%20example%20on%20Stable%20Sort.png)
+
+###### Exemplu preluat din cartea Algorithms 4th edition privind complexitatea mai multor algoritmi, inclusiv LSD, MSD : </br></br>
+![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Complexity%20comparison.png)
+
+###### În încheiere voi prezenta implementarea metodei radix sort în Python preluată de pe site-ul Wikipedia pentru a demonstra o altă metodă de abordare, specifică unui alt limbaj de programare: </br>
+
+![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Pseudocode-Source-Wikipedia.png)
