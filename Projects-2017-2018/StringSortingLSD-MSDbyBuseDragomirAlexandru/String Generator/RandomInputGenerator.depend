@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1514731101 source:c:\users\alexa\desktop\randominputgenerator\main.cpp
+	<iostream>
+	<string>
+	"header.h"
+
+1514730349 c:\users\alexa\desktop\randominputgenerator\header.h
+	<iostream>
+	<stdlib.h>
+	<time.h>
+	<string>
+	<fstream>
+
+1514731101 source:c:\users\alexa\desktop\string generator\main.cpp
+	<iostream>
+	<string>
+	"header.h"
+
+1514730349 c:\users\alexa\desktop\string generator\header.h
+	<iostream>
+	<stdlib.h>
+	<time.h>
+	<string>
+	<fstream>
+

@@ -34,8 +34,12 @@
 		</Compiler>
 		<Unit filename="Element.cpp" />
 		<Unit filename="Element.h" />
+		<Unit filename="LSD input.in" />
+		<Unit filename="LSD output.out" />
 		<Unit filename="LSD_MSD.cpp" />
 		<Unit filename="LSD_MSD.h" />
+		<Unit filename="MSD input.in" />
+		<Unit filename="MSD output.out" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

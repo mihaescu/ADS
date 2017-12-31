@@ -1,3 +1,13 @@
+/**
+* @file LSD_MSD.cpp
+* @brief This file will contain LSD and MSD sort implementations
+*
+* @author Bușe-Dragomir Alexandru
+*
+* @date 31/12/2017
+*/
+
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -5,19 +15,37 @@
 #include "Element.h"
 #include "LSD_MSD.h"
 
-
+/**
+* This is a predicate used in order to implement a STL sort on a vector<Element>
+* @author Bușe-Dragomir Alexandru
+* @param element1 The reference to the first Element object
+* @param element2 The reference to the second Element object
+* @date 31/12/2017
+*/
 bool compare(Element &element1, Element &element2)
 {
     return (element1.getWord() < element2.getWord());
 }
 
-
+/**
+* This is a STL sort implemented on a vector<Element> ////  O(n*log(n))
+* @author Bușe-Dragomir Alexandru
+* @param my_array The reference to a vector<Element> (a vector of Element objects)
+* @param alphabet_size The size of the alphabet we are working on
+* @date 31/12/2017
+*/
 void stl_quick_sort(vector<Element> &my_array, int alphabet_size)
 {
     sort(my_array.begin(), my_array.end(), compare);
 }
 
-
+/**
+* This is a selection sort implemented on a vector<Element> //// O(n^2)
+* @author Bușe-Dragomir Alexandru
+* @param my_array The reference to a vector<Element> (a vector of Element objects)
+* @param alphabet_size The size of the alphabet we are working on
+* @date 31/12/2017
+*/
 void selection_sort(vector<Element> &my_array, int alphabet_size)
 {
     for(unsigned int i = 0; i < my_array.size() - 1; i ++)
@@ -32,7 +60,13 @@ void selection_sort(vector<Element> &my_array, int alphabet_size)
     }
 }
 
-
+/**
+* This is a key indexed counting sort implemented on a vector<Element> //// O(n + k), where k = alphabet_size
+* @author Bușe-Dragomir Alexandru
+* @param my_array The reference to a vector<Element> (a vector of Element objects)
+* @param alphabet_size The size of the alphabet we are working on
+* @date 31/12/2017
+*/
 void key_indexed_counting(vector<Element> &my_array, int alphabet_size)
 {
     int dimension = my_array.size();
@@ -72,7 +106,13 @@ void key_indexed_counting(vector<Element> &my_array, int alphabet_size)
     }
 }
 
-
+/**
+* This is a least significant digit sort implemented on a vector<Element> //// O(n * k), where k = alphabet_size
+* @author Bușe-Dragomir Alexandru
+* @param my_array The reference to a vector<Element> (a vector of Element objects)
+* @param alphabet_size The size of the alphabet we are working on
+* @date 31/12/2017
+*/
 void LSD_sort(vector<Element> &my_array, int alphabet_size)
 {
     string my_string = my_array.begin() -> getWord();
@@ -91,6 +131,16 @@ void LSD_sort(vector<Element> &my_array, int alphabet_size)
 }
 
 
+/**
+* This is a most significant digit sort implemented on a vector<Element> //// between O(n) and O(n * k), where k = alphabet_size
+* @author Bușe-Dragomir Alexandru
+* @param my_array The reference to a vector<Element> (a vector of Element objects)
+* @param low This is the position in the vector of strings from which we sort
+* @param high This is the position in the vector of strings up to which we sort (inclusive)
+* @param position This is the position of the character from which we start our sort (0 is the first char, 1 is the second etc.)
+* @param alphabet_size The size of the alphabet we are working on
+* @date 31/12/2017
+*/
 void MSD_sort(vector<Element> &my_array, int low, int high, int position, int alphabet_size)
 {
 
@@ -137,25 +187,3 @@ void MSD_sort(vector<Element> &my_array, int low, int high, int position, int al
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

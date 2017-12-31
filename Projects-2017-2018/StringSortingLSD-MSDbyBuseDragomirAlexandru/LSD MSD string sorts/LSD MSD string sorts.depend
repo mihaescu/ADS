@@ -53,13 +53,13 @@
 	"Element.h"
 	"LSD_MSD.h"
 
-1514641459 source:c:\users\alexa\desktop\lsd msd string sorts\element.cpp
+1514685143 source:c:\users\alexa\desktop\lsd msd string sorts\element.cpp
 	<string>
 	"Element.h"
 
-1514580189 c:\users\alexa\desktop\lsd msd string sorts\element.h
+1514681241 c:\users\alexa\desktop\lsd msd string sorts\element.h
 
-1514652766 source:c:\users\alexa\desktop\lsd msd string sorts\lsd_msd.cpp
+1514685143 source:c:\users\alexa\desktop\lsd msd string sorts\lsd_msd.cpp
 	<iostream>
 	<vector>
 	<algorithm>
@@ -67,14 +67,15 @@
 	"Element.h"
 	"LSD_MSD.h"
 
-1514633242 c:\users\alexa\desktop\lsd msd string sorts\lsd_msd.h
+1514685143 c:\users\alexa\desktop\lsd msd string sorts\lsd_msd.h
 	<vector>
 
-1514652712 source:c:\users\alexa\desktop\lsd msd string sorts\main.cpp
+1514742394 source:c:\users\alexa\desktop\lsd msd string sorts\main.cpp
 	<iostream>
 	<vector>
 	<algorithm>
 	<string.h>
+	<fstream>
 	"Element.h"
 	"LSD_MSD.h"
 
