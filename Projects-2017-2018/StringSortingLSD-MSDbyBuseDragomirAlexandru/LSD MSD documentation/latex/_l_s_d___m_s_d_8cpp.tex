@@ -1,0 +1,186 @@
+\section{C\+:/\+Users/alexa/\+Desktop/\+L\+SD M\+SD string sorts/\+L\+S\+D\+\_\+\+M\+SD.cpp File Reference}
+\label{_l_s_d___m_s_d_8cpp}\index{C\+:/\+Users/alexa/\+Desktop/\+L\+S\+D M\+S\+D string sorts/\+L\+S\+D\+\_\+\+M\+S\+D.\+cpp@{C\+:/\+Users/alexa/\+Desktop/\+L\+S\+D M\+S\+D string sorts/\+L\+S\+D\+\_\+\+M\+S\+D.\+cpp}}
+
+
+This file will contain L\+SD and M\+SD sort implementations.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include \char`\"{}Element.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}L\+S\+D\+\_\+\+M\+S\+D.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ compare} (\textbf{ Element} \&element1, \textbf{ Element} \&element2)
+\item 
+void \textbf{ stl\+\_\+quick\+\_\+sort} (vector$<$ \textbf{ Element} $>$ \&my\+\_\+array, int alphabet\+\_\+size)
+\item 
+void \textbf{ selection\+\_\+sort} (vector$<$ \textbf{ Element} $>$ \&my\+\_\+array, int alphabet\+\_\+size)
+\item 
+void \textbf{ key\+\_\+indexed\+\_\+counting} (vector$<$ \textbf{ Element} $>$ \&my\+\_\+array, int alphabet\+\_\+size)
+\item 
+void \textbf{ L\+S\+D\+\_\+sort} (vector$<$ \textbf{ Element} $>$ \&my\+\_\+array, int alphabet\+\_\+size)
+\item 
+void \textbf{ M\+S\+D\+\_\+sort} (vector$<$ \textbf{ Element} $>$ \&my\+\_\+array, int low, int high, int position, int alphabet\+\_\+size)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file will contain L\+SD and M\+SD sort implementations. 
+
+\begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\label{_l_s_d___m_s_d_8cpp_ab5c84757eab22d3b22ca46d15ff37b5e}} 
+\index{L\+S\+D\+\_\+\+M\+S\+D.\+cpp@{L\+S\+D\+\_\+\+M\+S\+D.\+cpp}!compare@{compare}}
+\index{compare@{compare}!L\+S\+D\+\_\+\+M\+S\+D.\+cpp@{L\+S\+D\+\_\+\+M\+S\+D.\+cpp}}
+\subsubsection{compare()}
+{\footnotesize\ttfamily bool compare (\begin{DoxyParamCaption}\item[{\textbf{ Element} \&}]{element1,  }\item[{\textbf{ Element} \&}]{element2 }\end{DoxyParamCaption})}
+
+This is a predicate used in order to implement a S\+TL sort on a vector$<$\+Element$>$ \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em element1} & The reference to the first \doxyref{Element}{p.}{class_element} object \\
+\hline
+{\em element2} & The reference to the second \doxyref{Element}{p.}{class_element} object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+Definition at line 25 of file L\+S\+D\+\_\+\+M\+S\+D.\+cpp.
+
+\mbox{\label{_l_s_d___m_s_d_8cpp_a347072756f141bbd8967b71ffd2060fe}} 
+\index{L\+S\+D\+\_\+\+M\+S\+D.\+cpp@{L\+S\+D\+\_\+\+M\+S\+D.\+cpp}!key\+\_\+indexed\+\_\+counting@{key\+\_\+indexed\+\_\+counting}}
+\index{key\+\_\+indexed\+\_\+counting@{key\+\_\+indexed\+\_\+counting}!L\+S\+D\+\_\+\+M\+S\+D.\+cpp@{L\+S\+D\+\_\+\+M\+S\+D.\+cpp}}
+\subsubsection{key\+\_\+indexed\+\_\+counting()}
+{\footnotesize\ttfamily void key\+\_\+indexed\+\_\+counting (\begin{DoxyParamCaption}\item[{vector$<$ \textbf{ Element} $>$ \&}]{my\+\_\+array,  }\item[{int}]{alphabet\+\_\+size }\end{DoxyParamCaption})}
+
+This is a key indexed counting sort implemented on a vector$<$\+Element$>$ //// O(n + k), where k = alphabet\+\_\+size \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em my\+\_\+array} & The reference to a vector$<$\+Element$>$ (a vector of \doxyref{Element}{p.}{class_element} objects) \\
+\hline
+{\em alphabet\+\_\+size} & The size of the alphabet we are working on \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+Definition at line 70 of file L\+S\+D\+\_\+\+M\+S\+D.\+cpp.
+
+\mbox{\label{_l_s_d___m_s_d_8cpp_a99a50fe8e62ce721896b354cdcfbd4c8}} 
+\index{L\+S\+D\+\_\+\+M\+S\+D.\+cpp@{L\+S\+D\+\_\+\+M\+S\+D.\+cpp}!L\+S\+D\+\_\+sort@{L\+S\+D\+\_\+sort}}
+\index{L\+S\+D\+\_\+sort@{L\+S\+D\+\_\+sort}!L\+S\+D\+\_\+\+M\+S\+D.\+cpp@{L\+S\+D\+\_\+\+M\+S\+D.\+cpp}}
+\subsubsection{L\+S\+D\+\_\+sort()}
+{\footnotesize\ttfamily void L\+S\+D\+\_\+sort (\begin{DoxyParamCaption}\item[{vector$<$ \textbf{ Element} $>$ \&}]{my\+\_\+array,  }\item[{int}]{alphabet\+\_\+size }\end{DoxyParamCaption})}
+
+This is a least significant digit sort implemented on a vector$<$\+Element$>$ //// O(n $\ast$ k), where k = alphabet\+\_\+size \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em my\+\_\+array} & The reference to a vector$<$\+Element$>$ (a vector of \doxyref{Element}{p.}{class_element} objects) \\
+\hline
+{\em alphabet\+\_\+size} & The size of the alphabet we are working on \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+Definition at line 116 of file L\+S\+D\+\_\+\+M\+S\+D.\+cpp.
+
+\mbox{\label{_l_s_d___m_s_d_8cpp_a6a3a2dab82f62faf193bf1f8be429cd8}} 
+\index{L\+S\+D\+\_\+\+M\+S\+D.\+cpp@{L\+S\+D\+\_\+\+M\+S\+D.\+cpp}!M\+S\+D\+\_\+sort@{M\+S\+D\+\_\+sort}}
+\index{M\+S\+D\+\_\+sort@{M\+S\+D\+\_\+sort}!L\+S\+D\+\_\+\+M\+S\+D.\+cpp@{L\+S\+D\+\_\+\+M\+S\+D.\+cpp}}
+\subsubsection{M\+S\+D\+\_\+sort()}
+{\footnotesize\ttfamily void M\+S\+D\+\_\+sort (\begin{DoxyParamCaption}\item[{vector$<$ \textbf{ Element} $>$ \&}]{my\+\_\+array,  }\item[{int}]{low,  }\item[{int}]{high,  }\item[{int}]{position,  }\item[{int}]{alphabet\+\_\+size }\end{DoxyParamCaption})}
+
+This is a most significant digit sort implemented on a vector$<$\+Element$>$ //// between O(n) and O(n $\ast$ k), where k = alphabet\+\_\+size \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em my\+\_\+array} & The reference to a vector$<$\+Element$>$ (a vector of \doxyref{Element}{p.}{class_element} objects) \\
+\hline
+{\em low} & This is the position in the vector of strings from which we sort \\
+\hline
+{\em high} & This is the position in the vector of strings up to which we sort (inclusive) \\
+\hline
+{\em position} & This is the position of the character from which we start our sort (0 is the first char, 1 is the second etc.) \\
+\hline
+{\em alphabet\+\_\+size} & The size of the alphabet we are working on \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+Definition at line 144 of file L\+S\+D\+\_\+\+M\+S\+D.\+cpp.
+
+\mbox{\label{_l_s_d___m_s_d_8cpp_addff2dfaf2887c240cc54cce25808b90}} 
+\index{L\+S\+D\+\_\+\+M\+S\+D.\+cpp@{L\+S\+D\+\_\+\+M\+S\+D.\+cpp}!selection\+\_\+sort@{selection\+\_\+sort}}
+\index{selection\+\_\+sort@{selection\+\_\+sort}!L\+S\+D\+\_\+\+M\+S\+D.\+cpp@{L\+S\+D\+\_\+\+M\+S\+D.\+cpp}}
+\subsubsection{selection\+\_\+sort()}
+{\footnotesize\ttfamily void selection\+\_\+sort (\begin{DoxyParamCaption}\item[{vector$<$ \textbf{ Element} $>$ \&}]{my\+\_\+array,  }\item[{int}]{alphabet\+\_\+size }\end{DoxyParamCaption})}
+
+This is a selection sort implemented on a vector$<$\+Element$>$ //// O(n$^\wedge$2) \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em my\+\_\+array} & The reference to a vector$<$\+Element$>$ (a vector of \doxyref{Element}{p.}{class_element} objects) \\
+\hline
+{\em alphabet\+\_\+size} & The size of the alphabet we are working on \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+Definition at line 49 of file L\+S\+D\+\_\+\+M\+S\+D.\+cpp.
+
+\mbox{\label{_l_s_d___m_s_d_8cpp_a6daf9538813027ac47231c41ee9f788d}} 
+\index{L\+S\+D\+\_\+\+M\+S\+D.\+cpp@{L\+S\+D\+\_\+\+M\+S\+D.\+cpp}!stl\+\_\+quick\+\_\+sort@{stl\+\_\+quick\+\_\+sort}}
+\index{stl\+\_\+quick\+\_\+sort@{stl\+\_\+quick\+\_\+sort}!L\+S\+D\+\_\+\+M\+S\+D.\+cpp@{L\+S\+D\+\_\+\+M\+S\+D.\+cpp}}
+\subsubsection{stl\+\_\+quick\+\_\+sort()}
+{\footnotesize\ttfamily void stl\+\_\+quick\+\_\+sort (\begin{DoxyParamCaption}\item[{vector$<$ \textbf{ Element} $>$ \&}]{my\+\_\+array,  }\item[{int}]{alphabet\+\_\+size }\end{DoxyParamCaption})}
+
+This is a S\+TL sort implemented on a vector$<$\+Element$>$ //// O(n$\ast$log(n)) \begin{DoxyAuthor}{Author}
+Bușe-\/\+Dragomir Alexandru 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em my\+\_\+array} & The reference to a vector$<$\+Element$>$ (a vector of \doxyref{Element}{p.}{class_element} objects) \\
+\hline
+{\em alphabet\+\_\+size} & The size of the alphabet we are working on \\
+\hline
+\end{DoxyParams}
+\begin{DoxyDate}{Date}
+31/12/2017 
+\end{DoxyDate}
+
+
+Definition at line 37 of file L\+S\+D\+\_\+\+M\+S\+D.\+cpp.
+
