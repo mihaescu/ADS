@@ -1,10 +1,18 @@
-<dl>
-  <dt>### String sorting LSD and MSD ###</dt></br></br>
+![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Logo%20LSD%20MSD.png)
+
 <i>Radix sort este un algoritm de sortare care nu implică compararea de valori, ci acționează prin gruparea elementelor în funcție de chei. </i></br>
 
-Mai jos adaug implementarea funcției key indexed counting sort, fundamentul celor două metode de sortare (LSD și MSD) : </br></br>
+Mai jos adaug pașii schematici și implementarea funcției key indexed counting sort, fundamentul celor două metode de sortare (LSD și MSD) : </br></br>
 
-![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Key%20indexed%20counting%20implementation.png)
+![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Counting%20sort%201.png)
+
+![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Counting%20sort%202.png)
+
+![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Counting%20sort%203.png)
+
+![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Counting%20sort%204.png)
+
+![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Key%20indexed%20counting%20code.png)
 
 În cazul de față, proiectul va prezenta sortările numite LSD (Least Significant Digit) și MSD (Most Significant Digit).
 
@@ -63,6 +71,9 @@ MSD operează de la începutul stringului spre coada sa  ------------------>
 ###### Exemplu preluat din cartea Algorithms 4th edition privind complexitatea mai multor algoritmi, inclusiv LSD, MSD : </br></br>
 ![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Complexity%20comparison.png)
 
-###### În încheiere voi prezenta implementarea metodei radix sort în Python preluată de pe site-ul Wikipedia pentru a demonstra o altă metodă de abordare, specifică unui alt limbaj de programare: </br>
+###### Un grafic ce ne indică eficiența metodei de sortare radix sort ca timp de execuție:
+![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/RadixSortComplexity.jpg)
 
-![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Pseudocode-Source-Wikipedia.png)
+###### În încheiere voi prezenta alte câteva informații comparative legate de algoritmii de sortare (Algorithms 4th edition) : </br>
+
+![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Space%20and%20time%20comparison.png)
