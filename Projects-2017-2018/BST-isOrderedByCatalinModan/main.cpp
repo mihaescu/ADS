@@ -1,7 +1,45 @@
+
 #include "bst.h"
 
 //Set the root of the BST to NULL (Empty tree)
 Node *root = NULL;
+
+
+int testing()
+{
+
+    bool status = false;
+
+    root = Add_Node ( root, 1 );
+    root = Add_Node ( root, 2 );
+    root = Add_Node ( root, 0 );
+    root = Add_Node ( root, 4 );
+    root = Add_Node ( root, 7 );
+    root = Add_Node ( root, 5 );
+
+    Display ( root, 0 );
+    printf ( "\n Min/Max: %d %d \n", getMin ( root ), getMax ( root ) );
+    status = checkValues ( root, 5, 10 );
+
+    if ( root == NULL ) {
+        printf ( "\nEmpty root!\n" );
+    }
+
+    if ( status ) {
+        printf ( "\nOK\n" );
+    } else {
+        printf ( "\nFALSE\n" );
+    }
+
+
+
+
+
+
+    system ( "pause" );
+    return 0;
+}
+
 
 
 int main()
@@ -13,57 +51,54 @@ int main()
     //Keep the program open and select its tasks
     do {
         //CORE FUNCTIONS
-		printf( "\n--->Core BST functions:");
-        printf( "\n1.Insert value:" );
-        printf( "\n2.Delete value:" );
-		printf( "\n3.Search for a value:\n");
+        printf ( "\n--->Core BST functions:" );
+        printf ( "\n1.Insert value:" );
+        printf ( "\n2.Delete value:" );
+        printf ( "\n3.Search for a value:\n" );
 
-		//TRAVERSALS AND DISPLAYING
-		printf( "\n--->Traversals and displaying:");
-        printf( "\n4.Preorder:" );
-        printf( "\n5.Inorder:" );
-        printf( "\n6.Postorder:" );
-        printf( "\n7.Print BST:\n" );
+        //TRAVERSALS AND DISPLAYING
+        printf ( "\n--->Traversals and displaying:" );
+        printf ( "\n4.Preorder:" );
+        printf ( "\n5.Inorder:" );
+        printf ( "\n6.Postorder:" );
+        printf ( "\n7.Print BST:\n" );
 
-		//PROJECT RELATED
-		printf( "\n--->Project-Related:");
-        printf( "\n8.Minimum and Maximum:" );
-        printf( "\n9.Check boundedness:\n" );
+        //PROJECT RELATED
+        printf ( "\n--->Project-Related:" );
+        printf ( "\n8.Minimum and Maximum:" );
+        printf ( "\n9.Check boundedness:\n" );
 
-		//UTILITIES
-		printf( "\n--->Utility functions:");
-        printf( "\n10.Delete the entire BST:" );
-		printf( "\n11.Check if the BST is empty:");
-		printf( "\n12.Insert n random values: \n");
+        //UTILITIES
+        printf ( "\n--->Utility functions:" );
+        printf ( "\n10.Delete the entire BST:" );
+        printf ( "\n11.Check if the BST is empty:" );
+        printf ( "\n12.Insert n random values: \n" );
 
-		//TESTING
-		printf( "\n--->Testing functions:");
-        printf( "\n13.Live input generation&testing:" );
-		printf( "\n14.Read tasks from file:");
-		printf( "\n15.Build file and test:");
-        printf( "\n16.Exit:\n" );
-	
+        //TESTING
+        printf ( "\n--->Testing functions:" );
+        printf ( "\n13.Read tasks from file:" );
+        printf ( "\n14.Build file and test:" );
+        printf ( "\n15.Exit:\n" );
 
-		//printf( "\n8.Random insertion of n values:" );
-        printf( "\nYour choice: " );
-        scanf( "%d", &choice );
+        printf ( "\nYour choice: " );
+        scanf ( "%d", &choice );
 
         //The switch statement determines which task will be fulfilled
         switch ( choice ) {
             //Add a node
             case 1: {
-                    printf( "\nNew value: " );
+                    printf ( "\nNew value: " );
                     //Read the node's value
-                    scanf( "%d", &new_value );
+                    scanf ( "%d", &new_value );
 
-					//Checking if the values already exits in the tree, no duplicates allowed
-					if(!search(root,new_value)){
-						//Insert the new value into the BST
-						root = Add_Node(root, new_value);
-					}else{
-						printf("%d already exists in the tree ! \n", new_value);
-					}
-                   
+                    //Checking if the values already exits in the tree, no duplicates allowed
+                    if ( !search ( root, new_value ) ) {
+                        //Insert the new value into the BST
+                        root = Add_Node ( root, new_value );
+                    } else {
+                        printf ( "%d already exists in the tree ! \n", new_value );
+                    }
+
                     //Finish the task
                     break;
                 }//end case 1
@@ -72,60 +107,61 @@ int main()
             //Delete a node
             case 2: {
                     //Checking if the BST is empty
-                    if ( isEmpty( root ) ) {
+                    if ( isEmpty ( root ) ) {
                         break;
                     } else {
                         //Else begin the deletion procedure
-                        printf("\nValue to be deleted:" );
+                        printf ( "\nValue to be deleted:" );
                         //Read the value
-                        scanf( "%d", &del_value );
+                        scanf ( "%d", &del_value );
 
-						//Checking if the value exists in the BST, if so we can delete it
-						if(search(root,del_value)){
-							//Delete the node
-							root = Delete(root, del_value);
-						}else{
-							printf("%d does not exist in the BST! \n",del_value);
-						}
-                       
+                        //Checking if the value exists in the BST, if so we can delete it
+                        if ( search ( root, del_value ) ) {
+                            //Delete the node
+                            root = Delete ( root, del_value );
+                        } else {
+                            printf ( "%d does not exist in the BST! \n", del_value );
+                        }
+
                         //Finish the task
                         break;
                     }
                 }//end case 2
 
-			//Search for a value
-			case 3: {
-					//Checing if the BST is empty
-					if(isEmpty(root)){
-						//If true exit
-						break;
-					}else{
-						//Else ask the user for  a value
-						int target = 0;
-						printf("\nTarget value: ");
-						scanf("%d", &target);
+            //Search for a value
+            case 3: {
+                    //Checking if the BST is empty
+                    if ( isEmpty ( root ) ) {
+                        //If true, exit
+                        break;
+                    } else {
+                        //Else ask the user for  a value
+                        int target = 0;
+                        printf ( "\nTarget value: " );
+                        scanf ( "%d", &target );
 
-						//Search for it
-						if(search(root,target)){
-							printf("Found %d ! \n", target);
-						}else{
-							printf("%d does not exist in the BST! \n",target);
-						}
-					}
-					//Finish
-					break;
-				}//end case 3
+                        //Search for it
+                        if ( search ( root, target ) ) {
+                            printf ( "Found %d ! \n", target );
+                        } else {
+                            printf ( "%d does not exist in the BST! \n", target );
+                        }
+                    }
+
+                    //Finish
+                    break;
+                }//end case 3
 
             //Pre-order printing
             case 4: {
                     //Checking if the BST is empty
-                    if ( isEmpty( root ) ) {
+                    if ( isEmpty ( root ) ) {
                         //If true, exit from the procedure
                         break;
                     } else {
                         //Else print it
-                        preorder( root );
-						printf("\n");
+                        preorder ( root );
+                        printf ( "\n" );
                         break;
                     }
                 }//end case 4
@@ -134,12 +170,12 @@ int main()
             //In-order printing
             case 5: {
                     //Checking if the BST is empty
-                    if ( isEmpty( root ) ) {
+                    if ( isEmpty ( root ) ) {
                         //If true, exit from the procedure
                         break;
                     } else {
-                        inorder( root );
-						printf("\n");
+                        inorder ( root );
+                        printf ( "\n" );
                         break;
                     }
                 }//end case 5
@@ -148,13 +184,13 @@ int main()
             //Post-order printing
             case 6: {
                     //Checking if the BST is empty
-                    if ( isEmpty( root ) ) {
+                    if ( isEmpty ( root ) ) {
                         //If true, exit from the procedure
                         break;
                     } else {
                         //Else print it
-                        postorder( root );
-						printf("\n");
+                        postorder ( root );
+                        printf ( "\n" );
                         break;
                     }
                 }//end case 6
@@ -162,12 +198,12 @@ int main()
 
             //Printing the BST tree-like
             case 7: {
-                    if ( isEmpty( root ) ) {
+                    if ( isEmpty ( root ) ) {
                         //If true, exit from the procedure
                         break;
                     } else {
                         //Else print it
-                        Display( root, 0 );
+                        Display ( root, 0 );
                         break;
                     }
                 }//end case 7
@@ -176,151 +212,150 @@ int main()
             //Determine and print the minimum and maximum of the BST
             case 8: {
                     //Check if the tree is empty (the call is made upon the root)
-                    if ( !isEmpty( root ) ) {
-                        //If not retrieve the maximum and minimum
-                        g_minimum = getMin( root );
-                        g_maximum = getMax( root );
+                    if ( !isEmpty ( root ) ) {
+                        //If not, retrieve the maximum and minimum
+                        g_minimum = getMin ( root );
+                        g_maximum = getMax ( root );
                         //Print them
-                        printf( "\nMinimum: %d \nMaximum %d\n", g_minimum, g_maximum );
+                        printf ( "\nMinimum: %d \nMaximum %d\n", g_minimum, g_maximum );
 
                     }
+
                     break;
                 }//end case 8
 
 
-			 //Check if the BST's values are bounded
-			case 9: {
-					//Check if the tree is empty
-					if (!isEmpty(root)) {
-						printf("\nBoundedness values:");
-						//Read the desired boundedness values
-						scanf("%d %d", &minimum, &maximum);
-
-						//Retrieve the BST minimum and maximum
-						g_maximum = getMax(root);
-						g_minimum = getMin(root);
-
-						//Check if all the values are bounded
-						bool status = checkValues(root, minimum, maximum);
-
-						printf("Result: ");
-						//IF the function returns true, then all the values are bounded, false otherwise
-						if (true == status) {
-							printf("PASSED!\n");
-						}
-						else {
-							printf("FAILED!\n");
-						}
-
-					}
-
-					break;
-				}//end case 9
-
-			//Delete the entire BST
-			case 10:{
-					//Check if the BSt is empty
-					if(isEmpty(root)){
-						//IF tru, exit
-						break;
-					}else{
-						//Else delete it
-						deleteBST(&root);
-					}
-				}//end case 10
+            //Check if the BST's values are bounded
+            case 9: {
+                    //Check if the tree is empty
+                    if ( !isEmpty ( root ) ) {
+                        printf ( "\nBoundedness values:" );
+                        //Read the desired boundedness values
+                        scanf ( "%d %d", &minimum, &maximum );
 
 
-			//Checking if the BST is empty
-			case 11:{
-					if(isEmpty(root)){
-						break;
-					}else{
-						printf("The BST is not empty! \n");
-					}
-				}//end case 11
+                        //Check if all the values are bounded
+                        bool status = checkValues ( root, minimum, maximum );
+
+                        printf ( "Result: " );
+
+                        //IF the function returns true, then all the values are bounded, false otherwise
+                        if ( true == status ) {
+                            printf ( "PASSED!\n" );
+                        } else {
+                            printf ( "FAILED!\n" );
+                        }
+
+                    } else {
+                        printf ( "\nAborting...Empty tree!\n" );
+                    }
+
+                    break;
+                }//end case 9
+
+            //Delete the entire BST
+            case 10: {
+                    //Check if the BSt is empty
+                    if ( isEmpty ( root ) ) {
+                        //IF true, exit
+                        break;
+                    } else {
+                        //Else delete it
+                        deleteBST ( &root );
+                    }
+                }//end case 10
 
 
-			//Randomly insert a number of values in the BST
-			case 12: {
-					//Define an iterator and a number of values and temporary item
-					int iterator1 = 0, no_values = 0, new_value = 0;
-					printf("\nHow many values would you like to insert? Value: ");
-					//Read the number of values
-					scanf("%d", &no_values);
-					//Setting a random seed for the rand function
-					srand((unsigned)time(NULL));
-
-					//Insert a number of values
-					for (iterator1 = 0; iterator1 < no_values; iterator1++) {
-
-						//Generating the new value
-						new_value = randomNumberGenerator();
-
-						//CHecking if the value already exists in the BST
-						if (!search(root, new_value)) {
-							//Insert the new value into the BST
-							root = Add_Node(root, new_value);
-						}
-						else {
-							printf("%d already exists in the tree ! \n", new_value);
-						}
-					}
-
-					break;
-				}//end case 12
-			
-
-			case 13: {
-					//testing
-					srand((unsigned)time(NULL));
-					makeTests(root, 1000);
-					break;
-				}//end case 13
+            //Checking if the BST is empty
+            case 11: {
+                    if ( isEmpty ( root ) ) {
+                        break;
+                    } else {
+                        printf ( "The BST is not empty! \n" );
+                    }
+                }//end case 11
 
 
-			//Testing file
-			case 14: {
-					//Open the input file
-					printf("\nAttempting to open file...\n");
-					FILE *fp = fopen("input.txt", "r");
-					readFile(fp, root);
-					fclose(fp);
-					break;
+            //Randomly insert a number of values in the BST
+            case 12: {
+                    //Define an iterator and a number of values and temporary item
+                    int iterator1 = 0, no_values = 0, new_value = 0;
+                    printf ( "\nHow many values would you like to insert? Value: " );
+                    //Read the number of values
+                    scanf ( "%d", &no_values );
+                    //Setting a random seed for the rand function
+                    srand ( ( unsigned ) time ( NULL ) );
 
-					
-				}//end case 14
+                    //Insert a number of values
+                    for ( iterator1 = 0; iterator1 < no_values; iterator1++ ) {
 
-			case 15:{
-					printf("\nAttempting to build file....\n");
-					FILE *f = fopen("output.txt","r+");
+                        //Generating the new value
+                        new_value = randomNumberGenerator();
 
-					srand((unsigned)time(NULL));
-					buildFile(f,1000);
-					fclose(f);
+                        //CHecking if the value already exists in the BST
+                        if ( !search ( root, new_value ) ) {
+                            //Insert the new value into the BST
+                            root = Add_Node ( root, new_value );
+                        } else {
+                            printf ( "%d already exists in the tree ! \n", new_value );
+                        }
+                    }
 
-					FILE *p = fopen("output.txt", "r");
+                    break;
+                }//end case 12
 
-					readFile(p, root);
 
-					fclose(p);
+            //Testing file
+            case 13: {
+                    //Open the input file
+                    printf ( "\nAttempting to open file...\n" );
+                    FILE *fp = fopen ( "input.txt", "r" );
+
+                    if ( !fp ) {
+                        perror ( "error" );
+                        system ( "pause" );
+                    }
+
+                    readFile ( fp, root );
+                    fclose ( fp );
+                    break;
+
+
+                }//end case 14
+
+            case 14: {
+                    printf ( "\nAttempting to build file....\n" );
+                    int iterator1;
+                    FILE *f = fopen ( "output.txt", "r+" );
+
+                    srand ( ( unsigned ) time ( NULL ) );
+                    buildFile ( f, 1000 );
+                    fclose ( f );
+
+                    FILE *p = fopen ( "output.txt", "r" );
+
+                    readFile ( p, root );
+
+                    fclose ( p );
 
 
 
-					break;
-				}
+                    break;
+                }
 
 
             //Exit
-            case 16:{
-                printf( "\nExiting...." );
-                exit( 0 );
-            }//end case 16
+            case 15: {
+                    printf ( "\nExiting...." );
+                    exit ( 0 );
+                }//end case 16
 
         }//end switch
 
 
     } while ( choice );
 
+    system ( "pause" );
     return 0;
 
 }//end main

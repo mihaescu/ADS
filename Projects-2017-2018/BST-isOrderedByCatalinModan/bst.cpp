@@ -1,5 +1,10 @@
 #include "bst.h"
 
+int global_minimum = 0 ;
+int global_maximum = 0 ;
+
+
+
 //The function prints the BST like a tree
 void Display ( Node *node, int level )
 {
@@ -165,6 +170,11 @@ Node *Add_Node ( Node *node, int data )
 //The function determines the smallest value in the BST
 int getMin ( Node *node )
 {
+    ////Exception-proofing code
+    //if ( node == NULL ) {
+    //    return INT_MIN;
+    //}
+
     //Create a temporary node and initialize it to root. (that's how me make the function call)
     Node *node_iterator = node;
 
@@ -180,6 +190,11 @@ int getMin ( Node *node )
 //The function determines the greatest value in the BST
 int getMax ( Node *node )
 {
+    ////Exception-proofing code
+    //if ( node == NULL ) {
+    //    return INT_MIN;
+    //}
+
     //Create a temporary node and initialize it to root. (that's how me make the function call)
     Node *node_iterator = node;
 
@@ -202,28 +217,46 @@ int randomNumberGenerator()
 //The function determines if all the BST's values are bounded by 2 values
 bool checkValues ( Node *node, int minimum, int maximum )
 {
-    //Get the global minimum and maximum of the BST
-    int global_minimum = getMin ( node );
-    int global_maximum = getMax ( node );
-
-    //Check if the BST minimum and maximum are bounded by the 2 values
-    if ( global_minimum >= minimum && global_maximum <= maximum ) {
-        //If true, proceed to check all the node's values are bounded by those 2 values
-        //Check if the current node's data is bounded and recur left and right
-        if ( node->data < global_maximum && node->data > global_minimum ) {
-            //Check the left child's data
-            return checkValues ( node->left, minimum, maximum );
-            //Check the right child's data
-            return checkValues ( node->right, minimum, maximum );
-        }
-
-        //Return true if all the values are bounded
-        return true;
-    } else {
-        //Return false otherwise
+    //If the node is NULL or tree is empty return false
+    if ( node == NULL ) {
         return false;
     }
+
+    //Else check if the min/max of the current subtree are bounded
+    if ( minimum <= getMin ( node ) && maximum >= getMax ( node ) && node != NULL ) {
+
+        //If true, start recurring
+        Node *current = node;
+
+        //While the current node is not null, check the boundedness of its subtree
+        while ( current != NULL ) {
+
+            //Uncomment to preview the visited nodes
+            //printf ( "\nvisiting %d\n", current->data );
+
+            //Node with two children. Recur both ways. (left+right)
+            if ( current->data >= minimum && current->data <= maximum && current->left != NULL &&  current->right != NULL ) {
+                return checkValues ( current->right, minimum, maximum ), checkValues ( current->left, minimum, maximum ) ;
+
+                //Node with a child on the right, recur right
+            } else if ( current->data >= minimum && current->data <= maximum && current->left == NULL &&  current->right != NULL ) {
+                return checkValues ( current->right, minimum, maximum );
+
+                //Node with a child on the left, recur left
+            } else if ( current->data >= minimum && current->data <= maximum && current->left != NULL &&  current->right == NULL ) {
+                return  checkValues ( current->left, minimum, maximum );
+
+                //Else, we're done, return true (the BST is bounded)
+            } else {
+                return true;
+            }
+        }
+    }
+
+    //Return false if not bounded
+    return false;
 }
+
 
 //The function will delete the entire BST
 //The call will be made upon the root's address
@@ -267,55 +300,6 @@ bool isEmpty ( Node *node )
     return false;
 }
 
-
-//A function used to test the program "numberOfTests" times
-void makeTests ( Node *node, int numberOfTests )
-{
-    //Setting up some local variables
-    int bound = 0;
-    int global_minimum = 0;
-    int global_maximum = 0;
-    int minimum = 0;
-    int maximum = 0;
-    bool status = false;
-
-    //Iterating "numberOfTests" times
-    for ( int iterator1 = 0; iterator1 < numberOfTests ; iterator1++ ) {
-        //Setting the bound for inserting a random number of values
-        bound = rand() % ( G_values_limit + iterator1 );
-
-        //Inserting "bound" number of values
-        for ( int iterator2 = 0; iterator2 < bound ; iterator2++ ) {
-            node = Add_Node ( node, randomNumberGenerator() );
-        }
-
-
-        //Setting up the BST's minimum and maximum;
-        global_minimum = getMin ( node );
-        global_maximum = getMax ( node );
-
-        //Setting up the boundedness values
-        minimum = rand() % ( numberOfTests / 100 );
-        maximum = rand() % ( ( numberOfTests * 5 ) );
-
-        //Printing them
-        printf ( "\nBST's minimum and maximum are: %d %d ", global_minimum, global_maximum );
-        printf ( "\nBoundedness values set to %d %d", minimum, maximum );
-
-        //Setting up the status
-        status = checkValues ( node, minimum, maximum );
-
-        //Printing the result
-        if ( status == true ) {
-            printf ( "\nResult -> PASSED! <-------------------------------------------------------------\n" );
-        } else {
-            printf ( "\nResult -> FAILED\n" );
-        }
-
-        //deleteBST ( &node );
-
-    }
-}
 
 
 //A function used to check if a value already exists in the BST
@@ -364,12 +348,10 @@ void buildFile ( FILE *f, int nuberOfItems )
         if ( flag ) {
             printf ( "\nError! File already built! Skipping to testing.... \n" );
         } else {
-		//Else start writing to file
+            //Else start writing to file and marking the file as already built ( B = 1)
             fprintf ( f, "B %d\n", 1 );
-            int iterator=0;
+            int iterator = 0;
 
-			//"m" - manual tests
-			fprintf(f, "m\n");
 
             for ( iterator = 0; iterator < nuberOfItems; iterator++ ) {
                 fprintf ( f, "I %d\n", randomNumberGenerator() );
@@ -380,13 +362,15 @@ void buildFile ( FILE *f, int nuberOfItems )
             }
 
             for ( iterator = 0; iterator < nuberOfItems; iterator++ ) {
-                fprintf ( f, "V %d %d\n", randomNumberGenerator(), randomNumberGenerator() );
+                fprintf ( f, "V %d %d\n", iterator, randomNumberGenerator() );
             }
 
             for ( iterator = 0; iterator < nuberOfItems / 4; iterator++ ) {
                 fprintf ( f, "S %d\n", randomNumberGenerator() );
             }
 
+            //Added a special case, so we can get boundedness result as true
+            fprintf ( f, "V 0 10000\n" );
             //M-min and max
             fprintf ( f, "M\n" );
             //P-preorder
@@ -401,8 +385,10 @@ void buildFile ( FILE *f, int nuberOfItems )
             fprintf ( f, "B\n" );
             //E- is empty?
             fprintf ( f, "E\n" );
-			
-			
+
+
+
+
 
         }
     }
@@ -413,11 +399,11 @@ void buildFile ( FILE *f, int nuberOfItems )
 void readFile ( FILE *fp, Node *node )
 {
     //Define the key to be inserted
-    int key=0;
+    int key = 0;
 
-	//Define variables used in minimum and maximum determination
-    int g_minimum=0, g_maximum=0;
-    int minimum=0, maximum=0;
+    //Define variables used in minimum and maximum determination
+    int g_minimum = 0, g_maximum = 0;
+    int minimum = 0, maximum = 0;
     //Define the task selection
     char option;
     //Open the input file
@@ -427,7 +413,7 @@ void readFile ( FILE *fp, Node *node )
     if ( !fp ) {
         //If not, warn the user and exit the program
         perror ( "Unable to open file" );
-        exit ( 0 );
+        exit ( -1 );
         //Else start the tasks
     } else {
         printf ( "Success!\n" );
@@ -499,7 +485,8 @@ void readFile ( FILE *fp, Node *node )
                         printf ( "FAILED!\n" );
                     }
                 }
-				//"P" preorder
+
+                //"P" preorder
             } else if ( option == 'P' ) {
                 //Checking if the BST is empty
                 if ( isEmpty ( node ) ) {
@@ -509,7 +496,8 @@ void readFile ( FILE *fp, Node *node )
                     preorder ( node );
                     printf ( "\n" );
                 }
-				//"p" postorder
+
+                //"p" postorder
             } else if ( option == 'p' ) {
                 //Checking if the BST is empty
                 if ( isEmpty ( node ) ) {
@@ -520,7 +508,8 @@ void readFile ( FILE *fp, Node *node )
                     postorder ( node );
                     printf ( "\n" );
                 }
-				//"i" inorder
+
+                //"i" inorder
             } else if ( option == 'i' ) {
                 //Checking if the BST is empty
                 if ( isEmpty ( node ) ) {
@@ -529,7 +518,8 @@ void readFile ( FILE *fp, Node *node )
                     inorder ( node );
                     printf ( "\n" );
                 }
-				//"d" display
+
+                //"d" display
             } else if ( option == 'd' ) {
                 if ( isEmpty ( node ) ) {
                     //If true, exit from the procedure
@@ -537,7 +527,8 @@ void readFile ( FILE *fp, Node *node )
                     //Else print it
                     Display ( node, 0 );
                 }
-				//"B" delete BST
+
+                //"B" delete BST
             } else if ( option == 'B' ) {
                 //Check if the BSt is empty
                 if ( isEmpty ( node ) ) {
@@ -547,30 +538,31 @@ void readFile ( FILE *fp, Node *node )
                     deleteBST ( &node );
                     printf ( "\nFinished deleting the BST! \n" );
                 }
-				//"E" is empty
+
+                //"E" is empty
             } else if ( option == 'E' ) {
-				//Check if the BSt is empty
+                //Check if the BSt is empty
                 if ( isEmpty ( node ) ) {
                 } else {
                     printf ( "The BST is not empty! \n" );
                 }
-			}
-			//"S" is for searching
-			else if (option == 'S') {
-				//Check if the BSt is empty
-				if (isEmpty(node)) {
-				}
-				else {
-					//Else perform the search
-					search(node, randomNumberGenerator());
-				}
-			}
-			//"m" is for manual testing 
-			else if (option == 'm') {
-					//Else perform the tests
-					makeTests(node, 300);
-				
-			}
+            }
+            //"S" is for searching
+            else if ( option == 'S' ) {
+                //Check if the BSt is empty
+                if ( isEmpty ( node ) ) {
+                } else {
+                    //Else perform the search
+                    search ( node, randomNumberGenerator() );
+                }
+            }
+
+            ////"m" is for manual testing
+            //else if ( option == 'm' ) {
+            //    //Else perform the tests
+            //    makeTests ( node, 300 );
+
+            //}
         }
     }
 }

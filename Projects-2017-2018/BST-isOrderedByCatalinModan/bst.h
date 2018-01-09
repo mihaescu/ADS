@@ -5,8 +5,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <limits.h>
 //Defining the maximum value for our random generator
-#define G_values_limit 1000
+#define G_values_limit 9999
 
 
 
@@ -25,58 +26,57 @@ typedef struct _Node {
 //Prototypes definitions
 
 
-	//CORE BST FUNCTIONS
+//CORE BST FUNCTIONS
 
 //A function which adds a new node to the BST
-Node *Add_Node(Node *node, int data);
+Node *Add_Node ( Node *node, int data );
 //A function which deletes a node from the BST
-Node *Delete(Node *node, int data);
+Node *Delete ( Node *node, int data );
 //A function which determines the successor value of a node ( used when deleting the root )
-Node *FindMin(Node *node);
+Node *FindMin ( Node *node );
 //A function which is used to search for a value in the BST
-bool search(Node *node, int target);
+bool search ( Node *node, int target );
 
 
-	//BST TRAVERSALS AND DISPLAYING
+//BST TRAVERSALS AND DISPLAYING
 
 //Pre-order traversal of the BST ( it will print current node, left, right )
-void preorder(Node *node);
+void preorder ( Node *node );
 //In-order traversal of the BST ( it will print left, current node,  right )
-void inorder(Node *node);
+void inorder ( Node *node );
 //In-order traversal of the BST ( it will print left, right, current node, )
-void postorder(Node *node);
+void postorder ( Node *node );
 //A function to display the BST in a tree-like manner ( from root to branches )
-void Display(Node *node, int level);
+void Display ( Node *node, int level );
 
 
-	
-	//PROJECT-RELATED FUNCTIONS
+
+//PROJECT-RELATED FUNCTIONS
 
 //A function to retrieve the minimum value of the BST
-int getMin(Node *node);
+int getMin ( Node *node );
 //A function to retrieve the maximum value of the BST
-int getMax(Node *node);
+int getMax ( Node *node );
 //A function which checks if our BST is bounded by two values
-bool checkValues(Node *node, int minimum, int maximum);
+bool checkValues ( Node *node, int minimum, int maximum );
 
 
-	//UTILITY FUNCTIONS
+//UTILITY FUNCTIONS
 
 //A function to delete the entire BST
-void deleteBST(Node **node);
+void deleteBST ( Node **node );
 //A function which checks if the BST is empty
-bool isEmpty(Node *node);
+bool isEmpty ( Node *node );
 //A functions which returns random numbers
 int randomNumberGenerator();
 
 
-	//TESTING FUNCTIONS
+//TESTING FUNCTIONS
 
 //A function used for testing
-void makeTests(Node *node, int numberOfTests);
-void buildFile( FILE *f, int numberOfItems);
-void readFile(FILE *f,Node *node);
-
+void buildFile ( FILE *f, int numberOfItems );
+void readFile ( FILE *f, Node *node );
+extern int global_minimum, global_maximum;
 
 
 
