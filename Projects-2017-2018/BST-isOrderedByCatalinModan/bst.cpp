@@ -217,10 +217,6 @@ int randomNumberGenerator()
 //The function determines if all the BST's values are bounded by 2 values
 bool checkValues ( Node *node, int minimum, int maximum )
 {
-    //If the node is NULL or tree is empty return false
-    if ( node == NULL ) {
-        return false;
-    }
 
     //Else check if the min/max of the current subtree are bounded
     if ( minimum <= getMin ( node ) && maximum >= getMax ( node ) && node != NULL ) {
@@ -556,13 +552,6 @@ void readFile ( FILE *fp, Node *node )
                     search ( node, randomNumberGenerator() );
                 }
             }
-
-            ////"m" is for manual testing
-            //else if ( option == 'm' ) {
-            //    //Else perform the tests
-            //    makeTests ( node, 300 );
-
-            //}
         }
     }
 }
