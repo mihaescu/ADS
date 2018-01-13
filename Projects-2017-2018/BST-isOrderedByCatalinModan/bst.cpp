@@ -217,6 +217,10 @@ int randomNumberGenerator()
 //The function determines if all the BST's values are bounded by 2 values
 bool checkValues ( Node *node, int minimum, int maximum )
 {
+    //Special case, null node
+    if ( node == NULL ) {
+        return false;
+    }
 
     //Else check if the min/max of the current subtree are bounded
     if ( minimum <= getMin ( node ) && maximum >= getMax ( node ) && node != NULL ) {
@@ -242,14 +246,16 @@ bool checkValues ( Node *node, int minimum, int maximum )
             } else if ( current->data >= minimum && current->data <= maximum && current->left != NULL &&  current->right == NULL ) {
                 return  checkValues ( current->left, minimum, maximum );
 
-                //Else, we're done, return true (the BST is bounded)
-            } else {
+                //When reaching a bounded leaf, return true
+            } else if ( current->data >= minimum && current->data <= maximum && current->left == NULL && current->right == NULL ) {
                 return true;
+            } else {
+                return false;
             }
         }
     }
 
-    //Return false if not bounded
+    //Return false if the node is NULL
     return false;
 }
 
