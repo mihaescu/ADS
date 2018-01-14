@@ -1,43 +1,28 @@
 #include "functions.h"
-#include <fstream>
-#include <time.h>
-using namespace std;
 
-int count_nodes (Node *node)
-{
-    int counter=1;
-
-    if (node ==NULL)
-        return 0;
-
-    else
-    {
-        counter =counter + count_nodes(node->left);
-        counter =counter + count_nodes(node->right);
-        return counter;
-    }
-}
-
-Node *Add_Node(Node *root,int data)
+//function to add nodes in a BST
+Node *Add_Node(Node *node,int data)
 {//first we check if the tree has been created(if it's not empty)
 
-    if(root==NULL)
-    {   root=(Node *)malloc(sizeof(Node));
-        root->data=data;
-        root->left=root->right=NULL;
-    }
-    else if(data <= root->data)
+    if(node==NULL)
     {
-        root->left=Add_Node(root->left,data);//the node is the left child if its value is smaller than his parent's value
+        node=(Node *)malloc(sizeof(Node));
+        node->data=data;
+        node->left=NULL;
+        node->right=NULL;
+    }
+    else if(data <= node->data)
+    {
+        node->left=Add_Node(node->left,data);//the node is the left child if its value is smaller than his parent's value
     }
     else {
-        root->right=Add_Node(root->right,data);//the node is the right child if its value is greater than his parent's value
+
+        node->right=Add_Node(node->right,data);//the node is the right child if its value is greater than his parent's value
         }
-    return root;
+    return node;
 }
 
-
-
+//Function to randomly generate input in files
 void buildInput(ofstream &outputFile, int minValue, int MaxValue, int nrOfValues){
     int random_node;
     time_t t;
@@ -48,18 +33,60 @@ void buildInput(ofstream &outputFile, int minValue, int MaxValue, int nrOfValues
     }
 }
 
-int computeIPL(Node *root, int value){
+//function that counts the number of nodes in a BST
+int countNodes (Node *node)
+{
+    int counter=1;
 
-if(root == NULL)
-    {
+    if (node ==NULL) //if there are no nodes in a tree/subtree return 0
         return 0;
+
+    else
+    {
+        counter =counter + countNodes(node->left);
+        counter =counter + countNodes(node->right);
+        return counter;
     }
-return (value+computeIPL(root->right,value+1)+computeIPL(root->left,value+1));
 }
 
-float computeAveragePathLength(Node *root){
-    int ipl = computeIPL(root,0);
-    int nr_nodes = count_nodes(root);
+
+//function to compute the internal path length
+int computeIPL(Node *node, int value){
+
+    if(node == NULL)
+        {
+            return 0;
+        }
+    return (value+computeIPL(node->right,value+1)+computeIPL(node->left,value+1));
+}
+
+//a second function to compute the internal path length
+int internalPathLength(Node *node, int &count1){
+        if(node == NULL) {
+            count1 = 0;
+            return 0;
+        }
+        else if(node->left == NULL && node->right == NULL){
+            count1 = 1;
+            return 0;
+        }
+        else {
+            count1 = 1;
+            int leftCount;
+            int rightCount;
+            int sum = internalPathLength(node->left, leftCount) + internalPathLength(node->right, rightCount);
+
+            count1 += leftCount + rightCount;
+
+            return sum + count1 - 1;
+        }
+}
+
+//function to compute the average path length as the internal path length divided by tree size, plus 1
+
+float computeAveragePathLength(Node *node){
+    int ipl = computeIPL(node,0);
+    int nr_nodes = countNodes(node);
     float apl = (float)ipl/nr_nodes+1;
     return apl;
 }
