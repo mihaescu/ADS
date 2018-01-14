@@ -1,9 +1,10 @@
 #include "functions.h"
 #include<string.h>
 
-int path_length(int x) {
+
+int computeOutDegree(int x) {
     int length = 0;
-    struct node *p = adj_list[x];
+    struct node *p = adjList[x];
     while(p != NULL) {
         length++;
         p = p -> next;
@@ -11,10 +12,10 @@ int path_length(int x) {
     return length;
 }
 
-int value_in_path(int nod_initial, int nod_final) {
-    struct node *p = adj_list[nod_initial];
+int valueAlreadyExists(int nodInitial, int nodFinal) {
+    struct node *p = adjList[nodInitial];
     while(p != NULL) {
-        if(p -> vertex == nod_final) {
+        if(p -> vertex == nodFinal) {
             return 1;
         } else {
             p = p -> next;
@@ -23,7 +24,7 @@ int value_in_path(int nod_initial, int nod_final) {
     return 0;
 }
 
-void create_graph ( struct node *adj_list[MAX_NODES], int nodes, int vertices) {
+void createGraph ( struct node *adjList[MAX_NODES], int nodes, int vertices) {
 
     int x, y;
     struct node *p, *c;
@@ -36,9 +37,9 @@ void create_graph ( struct node *adj_list[MAX_NODES], int nodes, int vertices) {
         }
         //printf("x = ");
         //scanf("%d", &x);
-        if(path_length(x) < nodes - 1) {
+        if(computeOutDegree(x) < nodes - 1) {
             y = rand() % (nodes + 1);
-            while(y == 0 || x == y || value_in_path(x,y) == 1) {
+            while(y == 0 || x == y || valueAlreadyExists(x,y) == 1) {
                 y = rand() % (nodes + 1);
             }
 
@@ -49,10 +50,10 @@ void create_graph ( struct node *adj_list[MAX_NODES], int nodes, int vertices) {
             c = new_node;
             c -> vertex = y;
             c -> next = NULL;
-            if ( adj_list[x] == NULL ) {
-                adj_list[x] = c;
+            if ( adjList[x] == NULL ) {
+                adjList[x] = c;
             } else {
-                p = adj_list[x];
+                p = adjList[x];
                 while ( p -> next != NULL )
                     p = p -> next;
                 p -> next = c;
@@ -62,7 +63,7 @@ void create_graph ( struct node *adj_list[MAX_NODES], int nodes, int vertices) {
     }
 }
 
-void create_file_name(char filename[20]) {
+void createFileName(char filename[20]) {
     char aux[10];
     strcpy(filename, "dg_");
     itoa(nodes, aux, 10);
@@ -74,9 +75,9 @@ void create_file_name(char filename[20]) {
     strcat(filename, ".txt");
 }
 
-void print_graph(struct node *adj_list[MAX_NODES], int nodes) {
+void printGraph(struct node *adjList[MAX_NODES], int nodes) {
     char filename[10];
-    create_file_name(filename);
+    createFileName(filename);
     //printf("%s ", filename);
 
     FILE *out = fopen(filename, "w");
@@ -85,7 +86,7 @@ void print_graph(struct node *adj_list[MAX_NODES], int nodes) {
     int i;
     struct node *p;
     for(i = 1; i <= nodes; i++) {
-        p = adj_list[i];
+        p = adjList[i];
         while(p != NULL) {
             fprintf(out, "%d %d \n", i, p->vertex);
             p = p->next;
