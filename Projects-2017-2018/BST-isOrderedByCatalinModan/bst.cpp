@@ -1,8 +1,5 @@
 #include "bst.h"
 
-int global_minimum = 0 ;
-int global_maximum = 0 ;
-
 
 
 //The function prints the BST like a tree
@@ -481,7 +478,7 @@ void readFile ( FILE *fp, Node *node )
                     printf ( "\nBoundedness result : " );
 
                     //IF the function returns true, then all the values are bounded, false otherwise
-                    if ( true == status ) {
+                    if ( status ) {
                         printf ( "PASSED!\n" );
                     } else {
                         printf ( "FAILED!\n" );
