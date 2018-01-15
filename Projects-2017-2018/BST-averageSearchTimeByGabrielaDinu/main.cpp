@@ -19,31 +19,6 @@ int main()
     Node *root7 = NULL;
     Node *root8 = NULL;
 
-    root1=(Node *)malloc(sizeof(Node));
-    root1->data=1;
-    root1->left=root1->right=NULL;
-    root2=(Node *)malloc(sizeof(Node));
-    root2->data=2;
-    root2->left=root2->right=NULL;
-    root3=(Node *)malloc(sizeof(Node));
-    root3->data=3;
-    root3->left=root3->right=NULL;
-    root4=(Node *)malloc(sizeof(Node));
-    root4->data=4;
-    root4->left=root4->right=NULL;
-    root5=(Node *)malloc(sizeof(Node));
-    root5->data=5;
-    root5->left=root5->right=NULL;
-    root6=(Node *)malloc(sizeof(Node));
-    root6->data=6;
-    root6->left=root6->right=NULL;
-    root7=(Node *)malloc(sizeof(Node));
-    root7->data=7;
-    root7->left=root7->right=NULL;
-    root8=(Node *)malloc(sizeof(Node));
-    root8->data=8;
-    root8->left=root8->right=NULL;
-
 
 
     cout<<"What do you want to do?"<<endl;
@@ -102,35 +77,35 @@ int main()
 //we add all the read elements in BSTs
         while (outputFile1>>element)
         {
-            Add_Node(root1,element);
+            root1 = Add_Node(root1,element);
         }
         while (outputFile2>>element)
             {
-            Add_Node(root2,element);
+            root2 = Add_Node(root2,element);
             }
         while (outputFile3>>element)
             {
-            Add_Node(root3,element);
+            root3 = Add_Node(root3,element);
             }
         while (outputFile4>>element)
             {
-            Add_Node(root4,element);
+            root4 =Add_Node(root4,element);
             }
         while (outputFile5>>element)
             {
-            Add_Node(root5,element);
+            root5 = Add_Node(root5,element);
             }
         while (outputFile6>>element)
             {
-            Add_Node(root6,element);
+            root6 = Add_Node(root6,element);
             }
         while (outputFile7>>element)
             {
-            Add_Node(root7,element);
+            root7 = Add_Node(root7,element);
             }
         while (outputFile8>>element)
             {
-            Add_Node(root8,element);
+            root8 = Add_Node(root8,element);
             }
 //compute the internal path length for each BST in two ways...
         ok11 = computeIPL(root1,0);
