@@ -58,7 +58,19 @@ void createGraph ( struct node *adjList[MAX_NODES], int nodes, int vertices) {
                     p = p -> next;
                 p -> next = c;
             }
-            k++;
+            //printf("%d %d\n" , x, y);
+
+            //verificam daca graful ramane aciclic
+            if(isGraphAcyclic(nodes, x) == 1) {
+                if(adjList[x] -> next == NULL) {
+                    adjList[x] = NULL;
+                } else {
+                    p -> next = NULL;
+                }
+                //printf("Erase %d %d\n" , x, y);
+            } else  {
+                k++;
+            }
         }
     }
 }
@@ -94,4 +106,31 @@ void printGraph(struct node *adjList[MAX_NODES], int nodes) {
     }
 }
 
+
+void DFS(int startNode) {
+    struct node *p;
+    p = adjList[startNode];
+    visited[startNode] = 1;
+    while(p != NULL) {
+        if(visited[p->vertex] == 0) {
+            DFS(p->vertex);
+        }
+        p = p->next;
+    }
+    //printf("\n");
+}
+
+int isGraphAcyclic(int nodes, int startNode) {
+    int i;
+    for(i = 1; i <= nodes; i++) {
+        visited[i] = 0;
+    }
+    DFS(startNode);
+    for(i = 1; i <= nodes; i++) {
+        if(visited[i] == 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
 

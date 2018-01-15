@@ -1,0 +1,1 @@
+Cannot create an acyclic Digraph with 70 percent vertices!!!
