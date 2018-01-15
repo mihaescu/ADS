@@ -1,7 +1,8 @@
 #include "prototypes.h"
 
-int internalPathLength(Node *t, int &count1){
-        if(t == NULL) {
+
+int internalPathLength(Node *r, int value){
+  /*      if(t == NULL) {
             count1 = 0;
             return 0;
         }
@@ -18,8 +19,14 @@ int internalPathLength(Node *t, int &count1){
             count1 += leftCount + rightCount;
 
             return sum + count1 - 1;
+        }*/
+
+    if(r == NULL)
+        {
+            return 0;
         }
-    }
+    return (value+internalPathLength(r->right,value+1)+internalPathLength(r->left,value+1));
+}
 
 void Display(Node* root, int nivel)
 {
@@ -103,7 +110,7 @@ Node* Delete(Node *root, int data) {
 
 
 bool Search(Node *root, int data)
-{
+{// search for a value in the tree
     if(root == NULL){
         return false;
     }else{
@@ -120,4 +127,14 @@ bool Search(Node *root, int data)
         }
     }
     return false;
+}
+
+void insert_in_file(fstream &f, Node *root)//RSD
+{//uses the preorder code to insert in file the data from the nodes
+    if(root!=NULL)
+    {
+        f<<root->data<<endl;
+        insert_in_file(f, root->left);
+        insert_in_file(f, root->right);
+    }
 }
