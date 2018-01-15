@@ -1,7 +1,7 @@
 #include <algorithm>
 #include "mergesort.h"
 
-void create_file(string filename) { //Generate input file.
+void create_file(string filename){ //Generate input file.
         srand(time(0));
         ofstream file(filename);
         int val;
@@ -13,8 +13,8 @@ void create_file(string filename) { //Generate input file.
         file.close();
 }
 
-void merges(int arr[100], int perm[100], int left, int mid, int right) {
-    int temp[100], i, j, k;
+void merges(int arr[n], int perm[n], int left, int mid, int right){
+    int temp[n], i, j, k;
 
     i = left;
     j = mid + 1;
@@ -42,7 +42,7 @@ void merges(int arr[100], int perm[100], int left, int mid, int right) {
     }
 }
 
-void mergesort(int arr[100], int perm[100], int left, int right) {
+void mergesort(int arr[n], int perm[n], int left, int right){
     if (right > left) {
         int mid = (left + right) / 2;
         mergesort(arr, perm, left, mid);
@@ -52,19 +52,19 @@ void mergesort(int arr[100], int perm[100], int left, int right) {
 
 }
 
-int index_array(int arr[100], int perm[100], int n) { // Return the array of indexes after Merge Sort.
+int index_array(int arr[n], int perm[n], int n){ // Return the array of indexes after Merge Sort.
     mergesort(arr, perm, 0, n - 1);
     return *perm;
 }
 
-int rand_number(int min_val, int max_val) { // Return a random number between min_val and max_val.
+int rand_number(int min_val, int max_val){ // Return a random number between min_val and max_val.
 
     return rand()%(max_val - min_val + 1) + min_val;
 }
 
-bool is_valid(int arr[100], int perm[100], int n) { //Check if the array of indexes (perm) has been sorted correctly.
+bool is_valid(int arr[n], int perm[n], int n){ //Check if the array of indexes (perm) has been sorted correctly.
 
-    int i, sorted[100];
+    int i, sorted[n];
     copy(arr, arr+n, sorted); // Copy the original array into a new array.
     sort(sorted, sorted + n); // Sort the new array.
     for (i = 0; i < n; i++) {
@@ -77,11 +77,13 @@ bool is_valid(int arr[100], int perm[100], int n) { //Check if the array of inde
     return true;
 }
 
-void output(int arr[100], int perm[100], int n){
+void output(string filename, int arr[n], int perm[n], int n){
     int i;
-    cout<<"index: value"<<endl;
+    ofstream out(filename);
+    out<<"index: value"<<"\n";
     for (i = 0; i < n; i++) {
-        cout<<"  "<<perm[i]<<"    "<<arr[perm[i]]<<endl;
+        out<<"  "<<perm[i]<<"    "<<arr[perm[i]]<<"\n";
     }
-    cout<<endl;
+    out<<"\n";
+    out.close();
 }

@@ -12,14 +12,14 @@ struct node
     struct node *next;
 };
 
-struct node *adj_list[MAX_NODES];
+struct node *adjList[MAX_NODES];
 int nodes, vertices;
 int percent;
 
-int path_length(int x);
-int value_in_path(int nod_initial, int nod_final);
-void create_graph ( struct node *adj_list[MAX_NODES], int nodes, int vertices);
-void print_graph(struct node *adj_list[MAX_NODES], int nodes);
+int computeOutDegree(int x);
+int valueAlreadyExists(int nodInitial, int nodFinal);
+void createGraph ( struct node *adjList[MAX_NODES], int nodes, int vertices);
+void printGraph(struct node *adjList[MAX_NODES], int nodes);
 
 
 

@@ -4,20 +4,20 @@ int main()
 {
     srand(time(NULL));
 
-    int no_graphs, g;
+    int noGraphs, g;
     FILE *in = fopen("input.txt", "r");
-    fscanf(in, "%d", &no_graphs);
+    fscanf(in, "%d", &noGraphs);
 
-    for(g = 1; g <= no_graphs; g++) {
+    for(g = 1; g <= noGraphs; g++) {
         fscanf(in, "%d %d", &nodes, &percent);
         vertices = percent * nodes * (nodes - 1) / 100;
 
         int i;
         for( i = 1 ; i <= nodes ; i++ )
-            adj_list[i] = NULL;
-        create_graph(adj_list, nodes, vertices);
+            adjList[i] = NULL;
+        createGraph(adjList, nodes, vertices);
 
-        print_graph(adj_list, nodes);
+        printGraph(adjList, nodes);
     }
 
     return 0;

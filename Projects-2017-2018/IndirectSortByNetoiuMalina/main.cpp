@@ -1,7 +1,8 @@
 #include "mergesort.h"
 
-int main() {
-    int arr[100], perm[100];
+int main()
+{
+    int arr[n], perm[n];
     create_file("mergesort.in");
     ifstream f("mergesort.in");
 
@@ -11,14 +12,11 @@ int main() {
         }
 
     f.close();
-    cout<<endl<<"Before Mergesort:"<<endl;
-    output(arr, perm, n);
-    
+    // Before merge sort
+    output("before.out", arr, perm, n);
     *perm = index_array(arr, perm, n);
-    
-    cout<<endl<<"After Mergesort: "<<endl;
-    output(arr, perm, n);
+    // After merge sort
+    output("after.out", arr, perm, n);
     is_valid(arr, perm, n)? cout<<"It is correct."<<endl: cout<<"It is incorrect."<<endl;
-    
     return 0;
 }

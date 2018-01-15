@@ -73,10 +73,10 @@ int randomNumberGenerator();
 
 //TESTING FUNCTIONS
 
-//A function used for testing
+//A function used to build a test file with random data
 void buildFile ( FILE *f, int numberOfItems );
+//A function used to read instructions from a file
 void readFile ( FILE *f, Node *node );
-extern int global_minimum, global_maximum;
 
 
 

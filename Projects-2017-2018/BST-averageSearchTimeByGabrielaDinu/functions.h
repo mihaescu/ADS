@@ -3,6 +3,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <fstream>
+#include <time.h>
 using namespace std;
 
 typedef struct _Node
@@ -13,10 +14,10 @@ typedef struct _Node
 }
 Node;
 
-int count_nodes(Node *node);
+Node *Add_Node(Node *node,int data);
 void buildInput(ofstream &outputFile, int minValue, int MaxValue, int nrOfValues);
-Node *Add_Node(Node *root,int data);
-int computeIPL(Node *root,int value);
-float computeAveragePathLength(Node *root);
-
+int countNodes(Node *node);
+int computeIPL(Node *node,int value);
+int internalPathLength(Node *node, int &count1);
+float computeAveragePathLength(Node *node);
 
