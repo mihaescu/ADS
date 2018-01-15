@@ -68,9 +68,12 @@ int main()
 
     }else{
         g>>n;
+        int ok=0;
         while (!g.eof()){
+            if (ok == n) break;
             g>>x;
             root = Add_Node(root,x);
+            ok++;
         }
 
         for(i=0 ; i<n*n ; i++){
@@ -88,6 +91,7 @@ int main()
              is_search = Search(root,x);
              while (is_search==true){
                 x = rand()%100000;
+                is_search = Search(root,x);
                 is_search = Search(root,x);
                 }
              root = Add_Node(root, x);
