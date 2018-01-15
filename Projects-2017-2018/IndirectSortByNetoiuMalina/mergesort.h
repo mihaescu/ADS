@@ -9,17 +9,17 @@ using namespace std;
 
 const int n = 100;
 
-void merges(int arr[100], int perm[100], int left, int mid, int right);
+void merges(int arr[n], int perm[n], int left, int mid, int right);
 
-void mergesort(int arr[100], int left, int right);
+void mergesort(int arr[n], int left, int right);
 
-int index_array(int arr[100], int perm[100], int n);
+int index_array(int arr[n], int perm[n], int n);
 
 int rand_number(int min_val, int max_val);
 
-bool is_valid(int arr[100], int perm[100], int n);
+bool is_valid(int arr[n], int perm[n], int n);
 
-void output(int arr[100], int perm[100], int n);
+void output(string filename, int arr[n], int perm[n], int n);
 
 void create_file(string filename);
 
