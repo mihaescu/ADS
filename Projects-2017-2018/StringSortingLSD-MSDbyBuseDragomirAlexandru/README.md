@@ -1,3 +1,4 @@
+///I do not own some of the images below; they were used in educational purposes///
 ![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Logo%20proiect.png)
 
 <i>Radix sort este un algoritm de sortare care nu implică compararea de valori, ci acționează prin gruparea elementelor în funcție de chei. </i></br>
