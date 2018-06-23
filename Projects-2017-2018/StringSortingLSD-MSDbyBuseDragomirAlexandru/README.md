@@ -1,19 +1,19 @@
 ///I do not own some of the images below; they were used in educational purposes///
-![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Logo%20proiect.png)
+![alt text](https://github.com/NyKto/Lsd-Msd-radix-sorts-on-strings/blob/master/Photos/Logo%20proiect.png)
 
 <i>Radix sort este un algoritm de sortare care nu implică compararea de valori, ci acționează prin gruparea elementelor în funcție de chei. </i></br>
 
 Mai jos adaug pașii schematici și implementarea funcției key indexed counting sort, fundamentul celor două metode de sortare (LSD și MSD) : </br></br>
 
-![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Counting%20sort%201.png)
+![alt text](https://github.com/NyKto/Lsd-Msd-radix-sorts-on-strings/blob/master/Photos/Counting%20sort%201.png)
 
-![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Counting%20sort%202.png)
+![alt text](https://github.com/NyKto/Lsd-Msd-radix-sorts-on-strings/blob/master/Photos/Counting%20sort%202.png)
 
-![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Counting%20sort%203.png)
+![alt text](https://github.com/NyKto/Lsd-Msd-radix-sorts-on-strings/blob/master/Photos/Counting%20sort%203.png)
 
-![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Counting%20sort%204.png)
+![alt text](https://github.com/NyKto/Lsd-Msd-radix-sorts-on-strings/blob/master/Photos/Counting%20sort%204.png)
 
-![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Key%20indexed%20counting%20code.png)
+![alt text](https://github.com/NyKto/Lsd-Msd-radix-sorts-on-strings/blob/master/Photos/Key%20indexed%20counting%20code.png)
 
 În cazul de față, proiectul va prezenta sortările numite LSD (Least Significant Digit) și MSD (Most Significant Digit).
 
@@ -24,7 +24,7 @@ LSD operează de la coadă la începutul stringului       <------------------
 MSD operează de la începutul stringului spre coada sa  ------------------>
 
 
-![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Exemplu%20prelucrat%20LSD-MSD%20(Taken%20and%20modified%20from%20Code%20Worm).png)
+![alt text](https://github.com/NyKto/Lsd-Msd-radix-sorts-on-strings/blob/master/Photos/Exemplu%20prelucrat%20LSD-MSD%20(Taken%20and%20modified%20from%20Code%20Worm).png)
 
 
 ✍ **Rezumarea algoritmilor:**
@@ -36,7 +36,7 @@ MSD operează de la începutul stringului spre coada sa  ------------------>
 **LSD.3** Se repetă procesul de sortare pentru litere din ce în ce mai semnificante până la obținerea ordonării
 
 
-![alt_text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Algorithms-4th-edition-Robert-Sedgewick-and-Kevin-Wayne%20LSD.png)
+![alt_text](https://github.com/NyKto/Lsd-Msd-radix-sorts-on-strings/blob/master/Photos/Algorithms-4th-edition-Robert-Sedgewick-and-Kevin-Wayne%20LSD.png)
 
 
 <b>MOST SIGNIFICANT DIGIT SORT</b>
@@ -47,7 +47,7 @@ MSD operează de la începutul stringului spre coada sa  ------------------>
 **MDS.4** Se concatenează la loc textul original (se pun laolaltă stringurile sortate)
 </br>
 
-![alt_text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Algorithms-4th-edition-Robert-Sedgewick-and-Kevin-Wayne%20MSD.png)
+![alt_text](https://github.com/NyKto/Lsd-Msd-radix-sorts-on-strings/blob/master/Photos/Algorithms-4th-edition-Robert-Sedgewick-and-Kevin-Wayne%20MSD.png)
 
 </br></br>
 ***_**Ce este o metodă de sortare stabilă?**_ </br>
@@ -67,13 +67,13 @@ MSD operează de la începutul stringului spre coada sa  ------------------>
 ###### Se observă faptul că nu avem certitudinea păstrării ordinii relative.
 
 ###### Exemplu preluat de pe Stackexchange : </br></br>
-![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Stack_exchange%20example%20on%20Stable%20Sort.png)
+![alt text](https://github.com/NyKto/Lsd-Msd-radix-sorts-on-strings/blob/master/Photos/Stack_exchange%20example%20on%20Stable%20Sort.png)
 
 ###### Exemplu preluat din cartea Algorithms 4th edition privind complexitatea mai multor algoritmi, inclusiv LSD, MSD : </br></br>
-![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Complexity%20comparison.png)
+![alt text](https://github.com/NyKto/Lsd-Msd-radix-sorts-on-strings/blob/master/Photos/Complexity%20comparison.png)
 
 ###### Un grafic ce ne indică eficiența metodei de sortare radix sort ca timp de execuție:
-![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/RadixSortComplexity.jpg)
+![alt text](https://github.com/NyKto/Lsd-Msd-radix-sorts-on-strings/blob/master/Photos/RadixSortComplexity.jpg)
 
 ###### În încheiere voi prezenta alte câteva informații comparative legate de algoritmii de sortare (Algorithms 4th edition) : </br>
-![alt text](https://github.com/AIexandru/LSD-and-MSD-Radix-Sorts-on-Strings/blob/master/Algorithm%20complexity.png)
+![alt text](https://github.com/NyKto/Lsd-Msd-radix-sorts-on-strings/blob/master/Photos/Algorithm%20complexity.png)
